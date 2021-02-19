@@ -4,6 +4,12 @@ buildscript {
     repositories {
         google()
         mavenCentral()
+
+        // Workaround for migration from jcenter to mavenCentral
+        // see: https://youtrack.jetbrains.com/issue/IDEA-261387
+        jcenter().mavenContent {
+            includeGroup("org.jetbrains.trove4j")
+        }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:4.1.2"
@@ -18,6 +24,12 @@ allprojects {
     repositories {
         google()
         mavenCentral()
+
+        // Workaround for migration from jcenter to mavenCentral
+        // see: https://youtrack.jetbrains.com/issue/IDEA-261387
+        jcenter().mavenContent {
+            includeGroup("org.jetbrains.trove4j")
+        }
     }
 }
 
