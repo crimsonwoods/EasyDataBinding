@@ -1,4 +1,4 @@
-EasyDataBinding
+EasyDataBinding [![Check](https://github.com/crimsonwoods/EasyDataBinding/actions/workflows/check.yml/badge.svg?branch=main)](https://github.com/crimsonwoods/EasyDataBinding/actions/workflows/check.yml)
 ----
 
 This small library provides simple data model and some BindingAdapters.
