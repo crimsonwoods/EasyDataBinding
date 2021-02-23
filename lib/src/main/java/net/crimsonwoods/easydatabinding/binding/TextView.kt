@@ -19,7 +19,7 @@ fun TextView.setText(text: Text) = when (text) {
         }
     }
     is Text.CharSequence -> {
-        setText(text)
+        setText(text.rawValue)
     }
     is Text.Multilingual -> {
         val locale = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
