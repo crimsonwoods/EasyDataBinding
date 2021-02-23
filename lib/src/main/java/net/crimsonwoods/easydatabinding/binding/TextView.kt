@@ -12,10 +12,11 @@ import net.crimsonwoods.easydatabinding.models.TextSize
 @BindingAdapter("android:text")
 fun TextView.setText(text: Text) = when (text) {
     is Text.Res -> {
-        setText(text.resId)
-    }
-    is Text.ResWithArgs -> {
-        setText(context.getString(text.resId, *text.args.toTypedArray()))
+        if (text.args.isNotEmpty()) {
+            setText(context.getString(text.resId, *text.args.toTypedArray()))
+        } else {
+            setText(text.resId)
+        }
     }
     is Text.CharSequence -> {
         setText(text)
@@ -27,7 +28,7 @@ fun TextView.setText(text: Text) = when (text) {
             @Suppress("DEPRECATION")
             context.resources.configuration.locale
         }
-        setText(text.values[locale] ?: text.fallback ?: context.getString(text.fallbackRes))
+        setText(text.values[locale] ?: text.fallback ?: context.getString(text.fallbackResId))
     }
 }
 
