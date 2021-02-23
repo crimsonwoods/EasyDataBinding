@@ -1,6 +1,5 @@
 package net.crimsonwoods.easydatabinding.binding
 
-import android.os.Build
 import android.widget.TextView
 import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.lifecycle.Lifecycle
@@ -13,10 +12,8 @@ import kotlin.test.Test
 import net.crimsonwoods.easydatabinding.fragment.TestFragment
 import net.crimsonwoods.easydatabinding.models.Text
 import org.junit.runner.RunWith
-import org.robolectric.annotation.Config
 
 @RunWith(AndroidJUnit4::class)
-@Config(sdk = [Build.VERSION_CODES.P])
 class TextViewBindingTest {
     @Test
     fun testBinding_setText_for_CharSequence() {
