@@ -12,14 +12,14 @@ You can use simple data model that requires no `Context` and bind it to `View` a
 In your `ViewModel`:
 ```Kotlin
 class MyActivityViewModel : ViewModel() {
-    private val _message = MutableLiveData(Text(R.string.message))
+    private val _message = MutableLiveData(Text.of(R.string.message))
 
     val message: LiveData<Text> = _message
 
     val onClickButton: View.OnClickListener
         get() = View.OnClickListener {
             // Context is NOT necessary 
-            _message.value = Text(R.string.clicked)
+            _message.value = Text.of(R.string.clicked)
         }
 }
 ```
