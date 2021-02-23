@@ -34,6 +34,40 @@ sealed class Text {
         val values: Map<Locale, kotlin.CharSequence>,
         val fallback: kotlin.CharSequence? = null,
         @StringRes
-        val fallbackRes: Int = 0,
+        val fallbackResId: Int = 0,
     ) : Text()
+
+    companion object {
+        @JvmStatic
+        fun of(
+            @StringRes resId: Int
+        ): Text = Res(resId = resId)
+
+        @JvmStatic
+        fun of(
+            @StringRes resId: Int, vararg args: Any?
+        ): Text = Res(resId = resId, args = args)
+
+        @JvmStatic
+        fun of(
+            value: kotlin.CharSequence
+        ): Text = CharSequence(rawValue = value)
+
+        @JvmStatic
+        fun of(
+            vararg values: Pair<Locale, kotlin.CharSequence>
+        ): Text = Multilingual(values = values.toMap())
+
+        @JvmStatic
+        fun of(
+            values: Map<Locale, kotlin.CharSequence>,
+            fallback: kotlin.CharSequence
+        ): Text = Multilingual(values = values, fallback = fallback)
+
+        @JvmStatic
+        fun of(
+            values: Map<Locale, kotlin.CharSequence>,
+            @StringRes fallbackResId: Int
+        ): Text = Multilingual(values = values, fallback = null, fallbackResId = fallbackResId)
+    }
 }
