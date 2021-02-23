@@ -1,21 +1,13 @@
 package net.crimsonwoods.easydatabinding.models
 
 import androidx.annotation.StringRes
-import java.util.*
+import java.util.Locale
 
 sealed class Text {
     /**
-     * Text data loaded from resource.
-     */
-    data class Res(
-        @StringRes
-        val resId: Int,
-    ) : Text()
-
-    /**
      * Text data loaded from resource with arguments.
      */
-    data class ResWithArgs(
+    data class Res(
         @StringRes
         val resId: Int,
         val args: List<Any?>,
@@ -24,6 +16,8 @@ sealed class Text {
             resId,
             args.toList()
         )
+
+        constructor(@StringRes resId: Int) : this(resId, emptyList())
     }
 
     /**
