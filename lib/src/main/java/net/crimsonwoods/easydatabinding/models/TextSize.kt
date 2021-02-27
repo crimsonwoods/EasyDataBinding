@@ -20,4 +20,18 @@ sealed class TextSize {
         @DimenRes
         val resId: Int
     ) : TextSize()
+
+    companion object {
+        @JvmStatic
+        fun px(value: Float): TextSize = Px(value)
+
+        @JvmStatic
+        fun sp(value: Float): TextSize = Sp(value)
+
+        @JvmStatic
+        fun dp(value: Float): TextSize = Dp(value)
+
+        @JvmStatic
+        fun of(@DimenRes resId: Int): TextSize = Res(resId)
+    }
 }
