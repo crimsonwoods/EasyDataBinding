@@ -19,4 +19,7 @@ fun View.setBackground(color: Background) = when (color) {
     is Background.Color.Drawable -> {
         setBackgroundColor(color.drawable.color)
     }
+    is Background.Drawable -> {
+        background = color.drawable
+    }
 }

@@ -24,4 +24,8 @@ sealed class Background {
             val drawable: ColorDrawable
         ) : Color()
     }
+
+    data class Drawable(
+        val drawable: android.graphics.drawable.Drawable?
+    ) : Background()
 }
