@@ -3,6 +3,7 @@ package net.crimsonwoods.easydatabinding.models
 import android.graphics.drawable.ColorDrawable
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
+import androidx.annotation.DrawableRes
 
 sealed class Background {
     sealed class Color : Background() {
@@ -24,6 +25,11 @@ sealed class Background {
             val drawable: ColorDrawable
         ) : Color()
     }
+
+    data class Res(
+        @DrawableRes
+        val resId: Int
+    ) : Background()
 
     data class Drawable(
         val drawable: android.graphics.drawable.Drawable?
