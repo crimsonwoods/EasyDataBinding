@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">TextViewSample</string>
+    <string name="hint">HINT</string>
+    <string name="button_caption">Shuffle</string>
+    <string name="text_hello_world">Hello World!</string>
+    <string name="text_hello_android">Hello Android!</string>
+    <string name="text_hello_databinding">Hello DataBinding!</string>
+</resources>
