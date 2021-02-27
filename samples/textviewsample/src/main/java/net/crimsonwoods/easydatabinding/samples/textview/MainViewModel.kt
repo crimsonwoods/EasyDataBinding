@@ -10,7 +10,7 @@ import net.crimsonwoods.easydatabinding.models.TextSize
 
 class MainViewModel : ViewModel() {
     private val _text = MutableLiveData(Text.of(R.string.text_hello_world))
-    private val _textSize = MutableLiveData<TextSize>(TextSize.Res(R.dimen.text_size_normal))
+    private val _textSize = MutableLiveData(TextSize.of(R.dimen.text_size_normal))
     private val _textColor = MutableLiveData(Color.of(android.R.color.white))
     private val _hintTextColor = MutableLiveData(Color.of(android.R.color.darker_gray))
 
@@ -28,9 +28,9 @@ class MainViewModel : ViewModel() {
         ).random()
 
         _textSize.value = listOf(
-            TextSize.Res(R.dimen.text_size_normal),
-            TextSize.Res(R.dimen.text_size_medium),
-            TextSize.Res(R.dimen.text_size_large),
+            TextSize.of(R.dimen.text_size_normal),
+            TextSize.of(R.dimen.text_size_medium),
+            TextSize.of(R.dimen.text_size_large),
         ).random()
 
         _textColor.value = listOf(
