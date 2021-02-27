@@ -88,6 +88,18 @@ class ViewBindingTest {
         onView(withId(android.R.id.text1)).check(matches(isDrawableClassOf<ShapeDrawable>()))
     }
 
+    @Test
+    fun testBinding_setBackground_None() {
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<TextView>(android.R.id.text1)
+                .apply {
+                    setBackgroundColor(Color.RED)
+                    setBackground(Background.None)
+                }
+        }
+        onView(withId(android.R.id.text1)).check(matches(noBackground()))
+    }
+
     private fun hasBackgroundColor(@ColorInt color: Int): Matcher<View> {
         return object : BoundedMatcher<View, View>(View::class.java) {
             override fun describeTo(description: Description) {
@@ -111,6 +123,18 @@ class ViewBindingTest {
 
             override fun matchesSafely(item: View): Boolean {
                 return item.background?.javaClass == T::class.java
+            }
+        }
+    }
+
+    private fun noBackground(): Matcher<View> {
+        return object : BoundedMatcher<View, View>(View::class.java) {
+            override fun describeTo(description: Description) {
+                description.appendText("has background")
+            }
+
+            override fun matchesSafely(item: View): Boolean {
+                return item.background == null
             }
         }
     }
