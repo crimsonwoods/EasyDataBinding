@@ -25,4 +25,7 @@ fun View.setBackground(value: Background) = when (value) {
     is Background.Drawable -> {
         background = value.drawable
     }
+    is Background.None -> {
+        background = null
+    }
 }

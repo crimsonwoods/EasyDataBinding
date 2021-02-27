@@ -35,6 +35,8 @@ sealed class Background {
         val drawable: android.graphics.drawable.Drawable?
     ) : Background()
 
+    object None : Background()
+
     companion object {
         @JvmStatic
         fun of(@DrawableRes resId: Int): Background = Res(resId)
@@ -58,5 +60,8 @@ sealed class Background {
 
         @JvmStatic
         fun ofColor(drawable: ColorDrawable): Background = Color.Drawable(drawable)
+
+        @JvmStatic
+        fun none(): Background = Background.None
     }
 }
