@@ -34,4 +34,29 @@ sealed class Background {
     data class Drawable(
         val drawable: android.graphics.drawable.Drawable?
     ) : Background()
+
+    companion object {
+        @JvmStatic
+        fun of(@DrawableRes resId: Int): Background = Res(resId)
+
+        @JvmStatic
+        fun of(drawable: android.graphics.drawable.Drawable?): Background = Drawable(drawable)
+
+        @JvmStatic
+        fun argb(alpha: Int, red: Int, green: Int, blue: Int): Background =
+            Color.Int(android.graphics.Color.argb(alpha, red, green, blue))
+
+        @JvmStatic
+        fun rgb(red: Int, green: Int, blue: Int): Background =
+            Color.Int(android.graphics.Color.rgb(red, green, blue))
+
+        @JvmStatic
+        fun ofColor(@ColorRes resId: Int): Background = Color.Res(resId)
+
+        @JvmStatic
+        fun ofColor(color: String): Background = Color.String(color)
+
+        @JvmStatic
+        fun ofColor(drawable: ColorDrawable): Background = Color.Drawable(drawable)
+    }
 }
