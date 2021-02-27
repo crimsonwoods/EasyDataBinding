@@ -60,5 +60,22 @@ In your `my_activity.xml`:
 </layout>
 ```
 
+## BindingAdapter
+
+### View
+
+|XML attribute     |data model|
+|:-----------------|:---------|
+|android:background|Background|
+
+### TextView
+
+|XML attribute        |data model|
+|:--------------------|:---------|
+|android:text         |Text      |
+|android:textSize     |TextSize  |
+|android:textColor    |Color     |
+|android:hintTextColor|Color     |
+
 # License
 MIT License
