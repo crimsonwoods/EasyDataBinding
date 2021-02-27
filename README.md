@@ -3,6 +3,12 @@ EasyDataBinding [![Check](https://github.com/crimsonwoods/EasyDataBinding/action
 
 This small library provides simple data model and some BindingAdapters.
 
+
+__NOTICE:__
+
+This project has NO stable/released version yet.
+
+
 # Motive
 Android `ViewModel` has no `Context`. It makes difficult to handle resources (drawable, color, string, etc.).
 This small library helps you to solve this issue.
