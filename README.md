@@ -1,6 +1,8 @@
 EasyDataBinding [![Check](https://github.com/crimsonwoods/EasyDataBinding/actions/workflows/check.yml/badge.svg?branch=main)](https://github.com/crimsonwoods/EasyDataBinding/actions/workflows/check.yml)
 ----
 
+[In Japanese](README.ja.md) / [日本語版](README.ja.md)
+
 This small library provides simple data model and some BindingAdapters.
 
 
