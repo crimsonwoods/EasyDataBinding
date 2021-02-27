@@ -6,20 +6,20 @@ import androidx.databinding.BindingAdapter
 import net.crimsonwoods.easydatabinding.models.Background
 
 @BindingAdapter("android:background")
-fun View.setBackground(color: Background) = when (color) {
+fun View.setBackground(value: Background) = when (value) {
     is Background.Color.Int -> {
-        setBackgroundColor(color.rawValue)
+        setBackgroundColor(value.rawValue)
     }
     is Background.Color.Res -> {
-        setBackgroundColor(ContextCompat.getColor(context, color.resId))
+        setBackgroundColor(ContextCompat.getColor(context, value.resId))
     }
     is Background.Color.String -> {
-        setBackgroundColor(android.graphics.Color.parseColor(color.color))
+        setBackgroundColor(android.graphics.Color.parseColor(value.color))
     }
     is Background.Color.Drawable -> {
-        setBackgroundColor(color.drawable.color)
+        setBackgroundColor(value.drawable.color)
     }
     is Background.Drawable -> {
-        background = color.drawable
+        background = value.drawable
     }
 }
