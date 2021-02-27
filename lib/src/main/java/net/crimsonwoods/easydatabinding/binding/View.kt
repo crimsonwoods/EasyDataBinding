@@ -7,16 +7,16 @@ import net.crimsonwoods.easydatabinding.models.Background
 
 @BindingAdapter("android:background")
 fun View.setBackground(color: Background) = when (color) {
-    is Background.Int -> {
+    is Background.Color.Int -> {
         setBackgroundColor(color.rawValue)
     }
-    is Background.Res -> {
+    is Background.Color.Res -> {
         setBackgroundColor(ContextCompat.getColor(context, color.resId))
     }
-    is Background.String -> {
+    is Background.Color.String -> {
         setBackgroundColor(android.graphics.Color.parseColor(color.color))
     }
-    is Background.Drawable -> {
+    is Background.Color.Drawable -> {
         setBackgroundColor(color.drawable.color)
     }
 }
