@@ -46,7 +46,7 @@ fun TextView.setTextColor(color: Color) = when (color) {
     is Color.Drawable -> {
         setTextColor(color.drawable.color)
     }
-    is Color.ColorStateList -> {
+    is Color.StateList -> {
         setTextColor(color.stateList)
     }
 }
@@ -65,7 +65,7 @@ fun TextView.setHintTextColor(color: Color) = when (color) {
     is Color.Drawable -> {
         setHintTextColor(color.drawable.color)
     }
-    is Color.ColorStateList -> {
+    is Color.StateList -> {
         setHintTextColor(color.stateList)
     }
 }
