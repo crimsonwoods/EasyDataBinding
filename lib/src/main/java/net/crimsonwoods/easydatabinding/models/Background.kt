@@ -4,22 +4,22 @@ import android.graphics.drawable.ColorDrawable
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 
-sealed class BackgroundColor {
+sealed class Background {
     data class Int(
         @ColorInt
         val rawValue: kotlin.Int,
-    ) : BackgroundColor()
+    ) : Background()
 
     data class Res(
         @ColorRes
         val resId: kotlin.Int
-    ) : BackgroundColor()
+    ) : Background()
 
     data class String(
         val color: kotlin.String
-    ) : BackgroundColor()
+    ) : Background()
 
     data class Drawable(
         val drawable: ColorDrawable
-    ) : BackgroundColor()
+    ) : Background()
 }
