@@ -73,7 +73,7 @@ In your `my_activity.xml`:
 |XML attribute        |data model|
 |:--------------------|:---------|
 |android:text         |Text      |
-|android:textSize     |TextSize  |
+|android:textSize     |Dimension |
 |android:textColor    |Color     |
 |android:hintTextColor|Color     |
 
