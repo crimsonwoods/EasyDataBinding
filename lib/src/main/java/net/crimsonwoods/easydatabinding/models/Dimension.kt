@@ -1,5 +1,8 @@
 package net.crimsonwoods.easydatabinding.models
 
+import android.content.Context
+import android.content.res.Resources
+import android.util.TypedValue
 import androidx.annotation.DimenRes
 
 sealed class Dimension {
@@ -20,6 +23,25 @@ sealed class Dimension {
         @DimenRes
         val resId: Int
     ) : Dimension()
+
+    @androidx.annotation.Px
+    fun toPx(resources: Resources): Float = when (this) {
+        is Px -> rawValue
+        is Sp -> TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_SP,
+            rawValue,
+            resources.displayMetrics
+        )
+        is Dp -> TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_DIP,
+            rawValue,
+            resources.displayMetrics
+        )
+        is Res -> resources.getDimension(resId)
+    }
+
+    @androidx.annotation.Px
+    fun toPx(context: Context): Float = toPx(context.resources)
 
     companion object {
         @JvmStatic
