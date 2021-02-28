@@ -64,9 +64,16 @@ In your `my_activity.xml`:
 
 ### View
 
-|XML attribute     |data model|
-|:-----------------|:---------|
-|android:background|Background|
+|XML attribute        |data model|
+|:--------------------|:---------|
+|android:background   |Background|
+|android:padding      |Dimension |
+|android:paddingLeft  |Dimension |
+|android:paddingStart |Dimension |
+|android:paddingRight |Dimension |
+|android:paddingEnd   |Dimension |
+|android:paddingTop   |Dimension |
+|android:paddingBottom|Dimension |
 
 ### TextView
 
