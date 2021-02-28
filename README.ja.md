@@ -76,5 +76,11 @@ class MyActivityViewModel : ViewModel() {
 |android:textColor    |Color     |
 |android:hintTextColor|Color     |
 
+### ImageView
+
+|XML attribute|data model|
+|:-----------:|:---------|
+|android:src  |Image     |
+
 # License
 MIT License
