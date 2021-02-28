@@ -5,17 +5,17 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import net.crimsonwoods.easydatabinding.models.Color
+import net.crimsonwoods.easydatabinding.models.Dimension
 import net.crimsonwoods.easydatabinding.models.Text
-import net.crimsonwoods.easydatabinding.models.TextSize
 
 class MainViewModel : ViewModel() {
     private val _text = MutableLiveData(Text.of(R.string.text_hello_world))
-    private val _textSize = MutableLiveData(TextSize.of(R.dimen.text_size_normal))
+    private val _textSize = MutableLiveData(Dimension.of(R.dimen.text_size_normal))
     private val _textColor = MutableLiveData(Color.of(android.R.color.white))
     private val _hintTextColor = MutableLiveData(Color.of(android.R.color.darker_gray))
 
     val text: LiveData<Text> = _text
-    val textSize: LiveData<TextSize> = _textSize
+    val textSize: LiveData<Dimension> = _textSize
     val textColor: LiveData<Color> = _textColor
     val hintTextColor: LiveData<Color> = _hintTextColor
 
@@ -28,9 +28,9 @@ class MainViewModel : ViewModel() {
         ).random()
 
         _textSize.value = listOf(
-            TextSize.of(R.dimen.text_size_normal),
-            TextSize.of(R.dimen.text_size_medium),
-            TextSize.of(R.dimen.text_size_large),
+            Dimension.of(R.dimen.text_size_normal),
+            Dimension.of(R.dimen.text_size_medium),
+            Dimension.of(R.dimen.text_size_large),
         ).random()
 
         _textColor.value = listOf(

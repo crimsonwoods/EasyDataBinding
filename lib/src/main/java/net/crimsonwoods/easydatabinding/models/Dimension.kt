@@ -2,36 +2,36 @@ package net.crimsonwoods.easydatabinding.models
 
 import androidx.annotation.DimenRes
 
-sealed class TextSize {
+sealed class Dimension {
     data class Px(
         @androidx.annotation.Px
         val rawValue: Float
-    ) : TextSize()
+    ) : Dimension()
 
     data class Sp(
         val rawValue: Float
-    ) : TextSize()
+    ) : Dimension()
 
     data class Dp(
         val rawValue: Float
-    ) : TextSize()
+    ) : Dimension()
 
     data class Res(
         @DimenRes
         val resId: Int
-    ) : TextSize()
+    ) : Dimension()
 
     companion object {
         @JvmStatic
-        fun px(value: Float): TextSize = Px(value)
+        fun px(value: Float): Dimension = Px(value)
 
         @JvmStatic
-        fun sp(value: Float): TextSize = Sp(value)
+        fun sp(value: Float): Dimension = Sp(value)
 
         @JvmStatic
-        fun dp(value: Float): TextSize = Dp(value)
+        fun dp(value: Float): Dimension = Dp(value)
 
         @JvmStatic
-        fun of(@DimenRes resId: Int): TextSize = Res(resId)
+        fun of(@DimenRes resId: Int): Dimension = Res(resId)
     }
 }

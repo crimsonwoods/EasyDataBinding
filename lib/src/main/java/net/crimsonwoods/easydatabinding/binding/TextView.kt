@@ -6,8 +6,8 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import net.crimsonwoods.easydatabinding.models.Color
+import net.crimsonwoods.easydatabinding.models.Dimension
 import net.crimsonwoods.easydatabinding.models.Text
-import net.crimsonwoods.easydatabinding.models.TextSize
 
 @BindingAdapter("android:text")
 fun TextView.setText(text: Text) = when (text) {
@@ -71,17 +71,17 @@ fun TextView.setHintTextColor(color: Color) = when (color) {
 }
 
 @BindingAdapter("android:textSize")
-fun TextView.setTextSize(size: TextSize) = when (size) {
-    is TextSize.Px -> {
+fun TextView.setTextSize(size: Dimension) = when (size) {
+    is Dimension.Px -> {
         setTextSize(TypedValue.COMPLEX_UNIT_PX, size.rawValue)
     }
-    is TextSize.Sp -> {
+    is Dimension.Sp -> {
         setTextSize(TypedValue.COMPLEX_UNIT_SP, size.rawValue)
     }
-    is TextSize.Dp -> {
+    is Dimension.Dp -> {
         setTextSize(TypedValue.COMPLEX_UNIT_DIP, size.rawValue)
     }
-    is TextSize.Res -> {
+    is Dimension.Res -> {
         setTextSize(TypedValue.COMPLEX_UNIT_FRACTION, context.resources.getDimension(size.resId))
     }
 }
