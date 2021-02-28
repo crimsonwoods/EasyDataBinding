@@ -18,4 +18,7 @@ fun ImageView.setImage(image: Image) = when (image) {
     is Image.Uri -> {
         setImageURI(image.rawValue)
     }
+    is Image.None -> {
+        setImageDrawable(null)
+    }
 }

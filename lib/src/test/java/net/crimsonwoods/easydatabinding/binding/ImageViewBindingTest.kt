@@ -99,6 +99,22 @@ class ImageViewBindingTest {
             .check(matches(withDrawable<ColorDrawable>()))
     }
 
+    @Test
+    fun testBinding_setImage_None() {
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<ImageView>(android.R.id.icon)
+                .setImage(Image.Res(android.R.drawable.ic_btn_speak_now))
+        }
+        onView(withId(android.R.id.icon))
+            .check(matches(withDrawable<BitmapDrawable>()))
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<ImageView>(android.R.id.icon)
+                .setImage(Image.None)
+        }
+        onView(withId(android.R.id.icon))
+            .check(matches(noDrawable()))
+    }
+
     private fun Resources.toResourceUri(resId: Int): Uri {
         val scheme = ContentResolver.SCHEME_ANDROID_RESOURCE
         val packageName = getResourcePackageName(resId)

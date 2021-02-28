@@ -19,4 +19,6 @@ sealed class Image {
     data class Uri(
         val rawValue: android.net.Uri?
     ) : Image()
+
+    object None : Image()
 }
