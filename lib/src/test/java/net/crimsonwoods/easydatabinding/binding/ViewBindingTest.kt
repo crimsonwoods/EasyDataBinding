@@ -15,12 +15,15 @@ import androidx.lifecycle.Lifecycle
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.BoundedMatcher
+import androidx.test.espresso.matcher.ViewMatchers.isClickable
+import androidx.test.espresso.matcher.ViewMatchers.isFocusable
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import net.crimsonwoods.easydatabinding.fragment.TestFragment
 import net.crimsonwoods.easydatabinding.models.Background
+import net.crimsonwoods.easydatabinding.models.Bool
 import net.crimsonwoods.easydatabinding.models.Dimension
 import org.hamcrest.Description
 import org.hamcrest.Matcher
@@ -163,6 +166,24 @@ class ViewBindingTest {
                 .setPadding(Dimension.px(10f))
         }
         onView(withId(android.R.id.text1)).check(matches(withPadding(10)))
+    }
+
+    @Test
+    fun testBinding_setClickable() {
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<TextView>(android.R.id.text1)
+                .setClickable(Bool.TRUE)
+        }
+        onView(withId(android.R.id.text1)).check(matches(isClickable()))
+    }
+
+    @Test
+    fun testBinding_setFocusable() {
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<TextView>(android.R.id.text1)
+                .setFocusable(Bool.TRUE)
+        }
+        onView(withId(android.R.id.text1)).check(matches(isFocusable()))
     }
 
     private fun hasBackgroundColor(@ColorInt color: Int): Matcher<View> {
