@@ -72,6 +72,16 @@ fun View.setPadding(value: Dimension) {
     setPadding(value.toPx(context).roundToInt())
 }
 
+@BindingAdapter("android:minHeight")
+fun View.setMinHeight(value: Dimension) {
+    minimumHeight = value.toPx(context).roundToInt()
+}
+
+@BindingAdapter("android:minWidth")
+fun View.setMinWidth(value: Dimension) {
+    minimumWidth = value.toPx(context).roundToInt()
+}
+
 @BindingAdapter("android:clickable")
 fun View.setClickable(value: Bool) {
     isClickable = value.toBoolean(resources)
