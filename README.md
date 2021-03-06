@@ -67,6 +67,8 @@ In your `my_activity.xml`:
 |XML attribute        |data model|
 |:--------------------|:---------|
 |android:background   |Background|
+|android:clickable    |Bool      |
+|android:focusable    |Bool      |
 |android:padding      |Dimension |
 |android:paddingLeft  |Dimension |
 |android:paddingStart |Dimension |
