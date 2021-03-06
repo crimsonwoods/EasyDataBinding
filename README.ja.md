@@ -85,10 +85,10 @@ __未サポート__:
 
 ### View
 
-|XML attribute        |data model|
-|:--------------------|:---------|
+|XML attribute         |data model|
+|:---------------------|:---------|
 |android:background    |Background|
-|android:backgroundTint|Background|
+|android:backgroundTint|Tint      |
 |android:clickable     |Bool      |
 |android:focusable     |Bool      |
 |android:minHeight     |Dimension |
