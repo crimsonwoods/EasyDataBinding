@@ -64,6 +64,7 @@ class MyActivityViewModel : ViewModel() {
 __サポート済み__:
 - Bool
 - Color
+- ColorStateList
 - Dimension
 - Drawable
 - String
@@ -72,7 +73,6 @@ __未サポート__:
 - Animation
 - Array (String, Integer, etc.)
 - Attr
-- ColorStateList (一部サポート)
 - Font
 - ID
 - Integer
@@ -87,18 +87,19 @@ __未サポート__:
 
 |XML attribute        |data model|
 |:--------------------|:---------|
-|android:background   |Background|
-|android:clickable    |Bool      |
-|android:focusable    |Bool      |
-|android:minHeight    |Dimension |
-|android:minWidth     |Dimension |
-|android:padding      |Dimension |
-|android:paddingLeft  |Dimension |
-|android:paddingStart |Dimension |
-|android:paddingRight |Dimension |
-|android:paddingEnd   |Dimension |
-|android:paddingTop   |Dimension |
-|android:paddingBottom|Dimension |
+|android:background    |Background|
+|android:backgroundTint|Background|
+|android:clickable     |Bool      |
+|android:focusable     |Bool      |
+|android:minHeight     |Dimension |
+|android:minWidth      |Dimension |
+|android:padding       |Dimension |
+|android:paddingLeft   |Dimension |
+|android:paddingStart  |Dimension |
+|android:paddingRight  |Dimension |
+|android:paddingEnd    |Dimension |
+|android:paddingTop    |Dimension |
+|android:paddingBottom |Dimension |
 
 ### TextView
 
