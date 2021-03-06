@@ -60,6 +60,28 @@ In your `my_activity.xml`:
 </layout>
 ```
 
+## Resource Types
+
+__Supported__:
+- Bool
+- Color
+- Dimension
+- Drawable
+- String
+
+__Not Supported__:
+- Animation
+- Array (String, Integer, etc.)
+- Attr
+- ColorStateList (一部サポート)
+- Font
+- ID
+- Integer
+- Layout
+- Menu
+- Raw
+- Style/Theme
+
 ## BindingAdapter
 
 ### View

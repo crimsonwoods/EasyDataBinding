@@ -59,6 +59,28 @@ class MyActivityViewModel : ViewModel() {
 </layout>
 ```
 
+## Resource Types
+
+__サポート済み__:
+- Bool
+- Color
+- Dimension
+- Drawable
+- String
+
+__未サポート__:
+- Animation
+- Array (String, Integer, etc.)
+- Attr
+- ColorStateList (一部サポート)
+- Font
+- ID
+- Integer
+- Layout
+- Menu
+- Raw
+- Style/Theme
+
 ## BindingAdapter
 
 ### View
