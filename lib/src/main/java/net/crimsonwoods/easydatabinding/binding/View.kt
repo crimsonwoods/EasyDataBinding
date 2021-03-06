@@ -11,6 +11,7 @@ import kotlin.math.roundToInt
 import net.crimsonwoods.easydatabinding.models.Background
 import net.crimsonwoods.easydatabinding.models.Bool
 import net.crimsonwoods.easydatabinding.models.Dimension
+import net.crimsonwoods.easydatabinding.models.Tint
 
 @BindingAdapter("android:background")
 fun View.setBackground(value: Background) = when (value) {
@@ -34,6 +35,19 @@ fun View.setBackground(value: Background) = when (value) {
     }
     is Background.None -> {
         background = null
+    }
+}
+
+@BindingAdapter("android:backgroundTint")
+fun View.setBackgroundTint(value: Tint) = when (value) {
+    is Tint.Res -> {
+        backgroundTintList = ContextCompat.getColorStateList(context, value.resId)
+    }
+    is Tint.ColorStateList -> {
+        backgroundTintList = value.rawValue
+    }
+    is Tint.None -> {
+        backgroundTintList = null
     }
 }
 
