@@ -169,6 +169,24 @@ class ViewBindingTest {
     }
 
     @Test
+    fun testBinding_setMinHeight() {
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<TextView>(android.R.id.text1)
+                .setMinHeight(Dimension.px(10f))
+        }
+        onView(withId(android.R.id.text1)).check(matches(hasMinHeight(10)))
+    }
+
+    @Test
+    fun testBinding_setMinWidth() {
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<TextView>(android.R.id.text1)
+                .setMinWidth(Dimension.px(10f))
+        }
+        onView(withId(android.R.id.text1)).check(matches(hasMinWidth(10)))
+    }
+
+    @Test
     fun testBinding_setClickable() {
         scenario.onFragment { fragment ->
             fragment.requireView().findViewById<TextView>(android.R.id.text1)
@@ -287,6 +305,30 @@ class ViewBindingTest {
 
             override fun matchesSafely(item: View): Boolean {
                 return item.paddingBottom == value
+            }
+        }
+    }
+
+    private fun hasMinHeight(@Px value: Int): Matcher<View> {
+        return object : BoundedMatcher<View, View>(View::class.java) {
+            override fun describeTo(description: Description) {
+                description.appendText("has paddingBottom with $value")
+            }
+
+            override fun matchesSafely(item: View): Boolean {
+                return item.minimumHeight == value
+            }
+        }
+    }
+
+    private fun hasMinWidth(@Px value: Int): Matcher<View> {
+        return object : BoundedMatcher<View, View>(View::class.java) {
+            override fun describeTo(description: Description) {
+                description.appendText("has paddingBottom with $value")
+            }
+
+            override fun matchesSafely(item: View): Boolean {
+                return item.minimumWidth == value
             }
         }
     }
