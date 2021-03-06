@@ -91,6 +91,8 @@ __Not Supported__:
 |android:background   |Background|
 |android:clickable    |Bool      |
 |android:focusable    |Bool      |
+|android:minHeight    |Dimension |
+|android:minWidth     |Dimension |
 |android:padding      |Dimension |
 |android:paddingLeft  |Dimension |
 |android:paddingStart |Dimension |
