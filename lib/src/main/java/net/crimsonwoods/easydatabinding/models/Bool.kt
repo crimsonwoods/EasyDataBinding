@@ -12,12 +12,16 @@ sealed class Bool {
     ) : Bool()
 
     companion object {
+        @JvmField
         val TRUE: Bool = Value(true)
 
+        @JvmField
         val FALSE: Bool = Value(false)
 
+        @JvmStatic
         fun of(@BoolRes resId: Int): Bool = Res(resId)
 
+        @JvmStatic
         fun of(value: Boolean): Bool = Value(value)
     }
 }
