@@ -1,5 +1,6 @@
 package net.crimsonwoods.easydatabinding.binding
 
+import android.content.res.Resources
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.core.view.setPadding
@@ -8,6 +9,7 @@ import androidx.core.view.updatePaddingRelative
 import androidx.databinding.BindingAdapter
 import kotlin.math.roundToInt
 import net.crimsonwoods.easydatabinding.models.Background
+import net.crimsonwoods.easydatabinding.models.Bool
 import net.crimsonwoods.easydatabinding.models.Dimension
 
 @BindingAdapter("android:background")
@@ -68,4 +70,25 @@ fun View.setPaddingBottom(value: Dimension) {
 @BindingAdapter("android:padding")
 fun View.setPadding(value: Dimension) {
     setPadding(value.toPx(context).roundToInt())
+}
+
+@BindingAdapter("android:clickable")
+fun View.setClickable(value: Bool) {
+    isClickable = value.toBoolean(resources)
+}
+
+@BindingAdapter("android:focusable")
+fun View.setFocusable(value: Bool) {
+    isFocusable = value.toBoolean(resources)
+}
+
+private fun Bool.toBoolean(resources: Resources): Boolean {
+    return when (this) {
+        is Bool.Res -> {
+            resources.getBoolean(resId)
+        }
+        is Bool.Value -> {
+            rawValue
+        }
+    }
 }
