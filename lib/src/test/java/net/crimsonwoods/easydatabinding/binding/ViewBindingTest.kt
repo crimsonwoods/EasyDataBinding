@@ -1,5 +1,6 @@
 package net.crimsonwoods.easydatabinding.binding
 
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
@@ -25,6 +26,7 @@ import net.crimsonwoods.easydatabinding.fragment.TestFragment
 import net.crimsonwoods.easydatabinding.models.Background
 import net.crimsonwoods.easydatabinding.models.Bool
 import net.crimsonwoods.easydatabinding.models.Dimension
+import net.crimsonwoods.easydatabinding.models.Tint
 import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.junit.runner.RunWith
@@ -103,6 +105,40 @@ class ViewBindingTest {
                 }
         }
         onView(withId(android.R.id.text1)).check(matches(noBackground()))
+    }
+
+    @Test
+    fun testBinding_setBackgroundTint_Res() {
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<TextView>(android.R.id.text1)
+                .setBackgroundTint(Tint.of(android.R.color.tab_indicator_text))
+        }
+        onView(withId(android.R.id.text1)).check(matches(withBackgroundTint { tint ->
+            tint.defaultColor == Color.parseColor("#808080")
+        }))
+    }
+
+    @Test
+    fun testBinding_setBackgroundTint_ColorStateList() {
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<TextView>(android.R.id.text1)
+                .setBackgroundTint(Tint.of(ColorStateList.valueOf(Color.RED)))
+        }
+        onView(withId(android.R.id.text1)).check(matches(withBackgroundTint { tint ->
+            tint.defaultColor == Color.RED
+        }))
+    }
+
+    @Test
+    fun testBinding_setBackgroundTint_None() {
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<TextView>(android.R.id.text1)
+                .apply {
+                    backgroundTintList = ColorStateList.valueOf(Color.RED)
+                    setBackgroundTint(Tint.none())
+                }
+        }
+        onView(withId(android.R.id.text1)).check(matches(noBackgroundTint()))
     }
 
     @Test
@@ -219,6 +255,19 @@ class ViewBindingTest {
         }
     }
 
+    private fun withBackgroundTint(predicate: (ColorStateList) -> Boolean): Matcher<View> {
+        return object : BoundedMatcher<View, View>(View::class.java) {
+            override fun describeTo(description: Description) {
+                description.appendText("has background tint")
+            }
+
+            override fun matchesSafely(item: View): Boolean {
+                val backgroundTintList = item.backgroundTintList
+                return backgroundTintList != null && predicate(backgroundTintList)
+            }
+        }
+    }
+
     private inline fun <reified T : Drawable> isDrawableClassOf(): Matcher<View> {
         return object : BoundedMatcher<View, View>(View::class.java) {
             override fun describeTo(description: Description) {
@@ -239,6 +288,18 @@ class ViewBindingTest {
 
             override fun matchesSafely(item: View): Boolean {
                 return item.background == null
+            }
+        }
+    }
+
+    private fun noBackgroundTint(): Matcher<View> {
+        return object : BoundedMatcher<View, View>(View::class.java) {
+            override fun describeTo(description: Description) {
+                description.appendText("has background")
+            }
+
+            override fun matchesSafely(item: View): Boolean {
+                return item.backgroundTintList == null
             }
         }
     }
