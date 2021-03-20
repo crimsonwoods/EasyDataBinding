@@ -2,7 +2,10 @@ plugins {
     id 'com.android.library'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'maven-publish'
 }
+
+group = 'com.github.crimsonwoods'
 
 android {
     compileSdkVersion 30
@@ -55,4 +58,18 @@ dependencies {
     testImplementation "androidx.test:runner:$androidx_test_version"
     testImplementation "androidx.test.ext:junit:$androidx_test_junit_version"
     testImplementation "androidx.test.espresso:espresso-core:$androidx_test_espresso_version"
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+
+                groupId = 'com.github.crimsonwoods'
+                artifactId = 'easydatabinding'
+                version = '0.1'
+            }
+        }
+    }
 }
