@@ -86,6 +86,7 @@ __Supported__:
 - ColorStateList
 - Dimension
 - Drawable
+- Fraction
 - String
 
 __Not Supported__:
@@ -106,6 +107,7 @@ __Not Supported__:
 
 |XML attribute         |data model|
 |:---------------------|:---------|
+|android:alpha         |Fraction  |
 |android:background    |Background|
 |android:backgroundTint|Tint      |
 |android:clickable     |Bool      |
