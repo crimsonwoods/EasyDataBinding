@@ -24,7 +24,6 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import kotlin.test.BeforeTest
 import kotlin.test.Test
-import net.crimsonwoods.easydatabinding.R
 import net.crimsonwoods.easydatabinding.fragment.TestFragment
 import net.crimsonwoods.easydatabinding.models.Background
 import net.crimsonwoods.easydatabinding.models.Bool
@@ -44,24 +43,6 @@ class ViewBindingTest {
     fun setUp() {
         scenario = launchFragmentInContainer<TestFragment>()
             .moveToState(Lifecycle.State.RESUMED)
-    }
-
-    @Test
-    fun testBinding_setAlpha_Res() {
-        scenario.onFragment { fragment ->
-            fragment.requireView().findViewById<TextView>(android.R.id.text1)
-                .setAlpha(Fraction.of(R.fraction.test_fraction, 1, 2))
-        }
-        onView(withId(android.R.id.text1)).check(matches(withAlpha(0.5f)))
-    }
-
-    @Test
-    fun testBinding_setAlpha_Res_WithParentBase() {
-        scenario.onFragment { fragment ->
-            fragment.requireView().findViewById<TextView>(android.R.id.text1)
-                .setAlpha(Fraction.of(R.fraction.test_fraction_p, 2, 1))
-        }
-        onView(withId(android.R.id.text1)).check(matches(withAlpha(0.5f)))
     }
 
     @Test
