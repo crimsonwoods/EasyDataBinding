@@ -3,12 +3,6 @@ EasyDataBinding [![Check](https://github.com/crimsonwoods/EasyDataBinding/action
 
 この小さなライブラリはシンプルなデータモデルとBindingAdapterを提供します。
 
-
-__注意:__
-
-このプロジェクトにはまだ安定板やリリース版の成果物は存在しません。
-
-
 # 目的
 Androidの `ViewModel` は `Context` を持ちません。また一般に `Context` への参照を持たないように設計することが推奨されています。
 このため、 `ViewModel` の実装に際してリソース（drawble, color, string, etc.）を扱うことが困難な場合があります。
