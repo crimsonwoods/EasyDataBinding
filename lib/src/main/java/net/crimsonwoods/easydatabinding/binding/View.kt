@@ -11,7 +11,13 @@ import kotlin.math.roundToInt
 import net.crimsonwoods.easydatabinding.models.Background
 import net.crimsonwoods.easydatabinding.models.Bool
 import net.crimsonwoods.easydatabinding.models.Dimension
+import net.crimsonwoods.easydatabinding.models.Fraction
 import net.crimsonwoods.easydatabinding.models.Tint
+
+@BindingAdapter("android:alpha")
+fun View.setAlpha(value: Fraction) {
+    alpha = value.toFloat(resources)
+}
 
 @BindingAdapter("android:background")
 fun View.setBackground(value: Background) = when (value) {
@@ -117,6 +123,17 @@ private fun Bool.toBoolean(resources: Resources): Boolean {
             resources.getBoolean(resId)
         }
         is Bool.Value -> {
+            rawValue
+        }
+    }
+}
+
+private fun Fraction.toFloat(resources: Resources): Float {
+    return when (this) {
+        is Fraction.Res -> {
+            resources.getFraction(resId, base, parentBase)
+        }
+        is Fraction.Float -> {
             rawValue
         }
     }
