@@ -6,6 +6,7 @@ plugins {
 }
 
 group = 'com.github.crimsonwoods'
+version = '0.0.1'
 
 android {
     compileSdkVersion 30
@@ -15,7 +16,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
-        versionName "0.1"
+        versionName "$version"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -66,9 +67,9 @@ afterEvaluate {
             release(MavenPublication) {
                 from components.release
 
-                groupId = 'com.github.crimsonwoods'
+                groupId = "$group"
                 artifactId = 'easydatabinding'
-                version = '0.1'
+                version = "$version"
             }
         }
     }
