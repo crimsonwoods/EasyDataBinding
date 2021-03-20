@@ -109,6 +109,7 @@ __Not Supported__:
 |android:background    |Background|
 |android:backgroundTint|Tint      |
 |android:clickable     |Bool      |
+|android:enabled       |Bool      |
 |android:focusable     |Bool      |
 |android:minHeight     |Dimension |
 |android:minWidth      |Dimension |
