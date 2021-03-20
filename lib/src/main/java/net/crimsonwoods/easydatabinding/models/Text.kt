@@ -69,5 +69,8 @@ sealed class Text {
             values: Map<Locale, kotlin.CharSequence>,
             @StringRes fallbackResId: Int
         ): Text = Multilingual(values = values, fallback = null, fallbackResId = fallbackResId)
+
+        @JvmStatic
+        fun empty(): Text = CharSequence(rawValue = "")
     }
 }
