@@ -10,6 +10,30 @@ Androidの `ViewModel` は `Context` を持ちません。また一般に `Conte
 `Context` を要求しないシンプルなデータモデルを使ってDataBindingを実装することができます。
 
 # 利用方法
+
+## セットアップ
+
+`build.gradle` ファイルに下記の記述を追加してください。
+
+```groovy
+allprojects {
+    repositories {
+        ...
+        maven { url 'https://jitpack.io' }
+    }
+}
+```
+
+下記の依存関係も追加します。
+
+```groovy
+dependencies {
+    implementation 'com.github.crimsonwoods:EasyDataBinding:0.0.1'
+}
+```
+
+## コード
+
 `ViewModel`:
 ```Kotlin
 class MyActivityViewModel : ViewModel() {

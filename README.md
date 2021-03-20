@@ -11,6 +11,30 @@ This small library helps you to solve this issue.
 You can use simple data model that requires no `Context` and bind it to `View` attributes via DataBinding.
 
 # Usage
+
+## Setup
+
+Adds below configuration into your `build.gradle`.
+
+```groovy
+allprojects {
+    repositories {
+        ...
+        maven { url 'https://jitpack.io' }
+    }
+}
+```
+
+And adds a dependency
+
+```groovy
+dependencies {
+    implementation 'com.github.crimsonwoods:EasyDataBinding:0.0.1'
+}
+```
+
+## Code
+
 In your `ViewModel`:
 ```Kotlin
 class MyActivityViewModel : ViewModel() {
