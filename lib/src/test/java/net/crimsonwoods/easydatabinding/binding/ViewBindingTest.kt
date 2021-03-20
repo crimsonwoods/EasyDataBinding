@@ -17,6 +17,7 @@ import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.BoundedMatcher
 import androidx.test.espresso.matcher.ViewMatchers.isClickable
+import androidx.test.espresso.matcher.ViewMatchers.isEnabled
 import androidx.test.espresso.matcher.ViewMatchers.isFocusable
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -29,6 +30,7 @@ import net.crimsonwoods.easydatabinding.models.Dimension
 import net.crimsonwoods.easydatabinding.models.Tint
 import org.hamcrest.Description
 import org.hamcrest.Matcher
+import org.hamcrest.core.IsNot
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
@@ -238,6 +240,15 @@ class ViewBindingTest {
                 .setFocusable(Bool.TRUE)
         }
         onView(withId(android.R.id.text1)).check(matches(isFocusable()))
+    }
+
+    @Test
+    fun testBinding_setEnabled() {
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<TextView>(android.R.id.text1)
+                .setEnabled(Bool.FALSE)
+        }
+        onView(withId(android.R.id.text1)).check(matches(IsNot(isEnabled())))
     }
 
     private fun hasBackgroundColor(@ColorInt color: Int): Matcher<View> {

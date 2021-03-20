@@ -106,6 +106,11 @@ fun View.setFocusable(value: Bool) {
     isFocusable = value.toBoolean(resources)
 }
 
+@BindingAdapter("android:enabled")
+fun View.setEnabled(value: Bool) {
+    isEnabled = value.toBoolean(resources)
+}
+
 private fun Bool.toBoolean(resources: Resources): Boolean {
     return when (this) {
         is Bool.Res -> {
