@@ -20,6 +20,7 @@ import androidx.test.espresso.matcher.ViewMatchers.isClickable
 import androidx.test.espresso.matcher.ViewMatchers.isEnabled
 import androidx.test.espresso.matcher.ViewMatchers.isFocusable
 import androidx.test.espresso.matcher.ViewMatchers.withAlpha
+import androidx.test.espresso.matcher.ViewMatchers.withContentDescription
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import kotlin.test.BeforeTest
@@ -29,6 +30,7 @@ import net.crimsonwoods.easydatabinding.models.Background
 import net.crimsonwoods.easydatabinding.models.Bool
 import net.crimsonwoods.easydatabinding.models.Dimension
 import net.crimsonwoods.easydatabinding.models.Fraction
+import net.crimsonwoods.easydatabinding.models.Text
 import net.crimsonwoods.easydatabinding.models.Tint
 import org.hamcrest.Description
 import org.hamcrest.Matcher
@@ -152,6 +154,24 @@ class ViewBindingTest {
                 }
         }
         onView(withId(android.R.id.text1)).check(matches(noBackgroundTint()))
+    }
+
+    @Test
+    fun testBinding_setContentDescription_Res() {
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<TextView>(android.R.id.text1)
+                .setContentDescription(Text.of(android.R.string.ok))
+        }
+        onView(withId(android.R.id.text1)).check(matches(withContentDescription("OK")))
+    }
+
+    @Test
+    fun testBinding_setContentDescription_CharSequence() {
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<TextView>(android.R.id.text1)
+                .setContentDescription(Text.of("test"))
+        }
+        onView(withId(android.R.id.text1)).check(matches(withContentDescription("test")))
     }
 
     @Test
