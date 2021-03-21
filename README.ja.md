@@ -122,6 +122,13 @@ __未サポート__:
 |android:paddingTop    |Dimension |
 |android:paddingBottom |Dimension |
 
+### ViewGroup
+
+|XML attribute         |data model|
+|:---------------------|:---------|
+|android:clipChildren  |Bool      |
+|android:clipToPadding |Bool      |
+
 ### TextView
 
 |XML attribute        |data model|
