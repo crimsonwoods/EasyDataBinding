@@ -1,6 +1,5 @@
 package net.crimsonwoods.easydatabinding.binding
 
-import android.content.res.Resources
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.core.view.setPadding
@@ -13,6 +12,8 @@ import net.crimsonwoods.easydatabinding.models.Bool
 import net.crimsonwoods.easydatabinding.models.Dimension
 import net.crimsonwoods.easydatabinding.models.Fraction
 import net.crimsonwoods.easydatabinding.models.Tint
+import net.crimsonwoods.easydatabinding.models.toBoolean
+import net.crimsonwoods.easydatabinding.models.toFloat
 
 @BindingAdapter("android:alpha")
 fun View.setAlpha(value: Fraction) {
@@ -115,26 +116,4 @@ fun View.setFocusable(value: Bool) {
 @BindingAdapter("android:enabled")
 fun View.setEnabled(value: Bool) {
     isEnabled = value.toBoolean(resources)
-}
-
-private fun Bool.toBoolean(resources: Resources): Boolean {
-    return when (this) {
-        is Bool.Res -> {
-            resources.getBoolean(resId)
-        }
-        is Bool.Value -> {
-            rawValue
-        }
-    }
-}
-
-private fun Fraction.toFloat(resources: Resources): Float {
-    return when (this) {
-        is Fraction.Res -> {
-            resources.getFraction(resId, base, parentBase)
-        }
-        is Fraction.Float -> {
-            rawValue
-        }
-    }
 }

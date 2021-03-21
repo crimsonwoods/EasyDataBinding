@@ -1,5 +1,6 @@
 package net.crimsonwoods.easydatabinding.models
 
+import android.content.res.Resources
 import androidx.annotation.FractionRes
 
 sealed class Fraction {
@@ -26,5 +27,16 @@ sealed class Fraction {
             base = base,
             parentBase = parentBase
         )
+    }
+}
+
+fun Fraction.toFloat(resources: Resources): Float {
+    return when (this) {
+        is Fraction.Res -> {
+            resources.getFraction(resId, base, parentBase)
+        }
+        is Fraction.Float -> {
+            rawValue
+        }
     }
 }

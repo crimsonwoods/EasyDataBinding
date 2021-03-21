@@ -1,5 +1,6 @@
 package net.crimsonwoods.easydatabinding.models
 
+import android.content.res.Resources
 import androidx.annotation.BoolRes
 
 sealed class Bool {
@@ -23,5 +24,16 @@ sealed class Bool {
 
         @JvmStatic
         fun of(value: Boolean): Bool = Value(value)
+    }
+}
+
+fun Bool.toBoolean(resources: Resources): Boolean {
+    return when (this) {
+        is Bool.Res -> {
+            resources.getBoolean(resId)
+        }
+        is Bool.Value -> {
+            rawValue
+        }
     }
 }
