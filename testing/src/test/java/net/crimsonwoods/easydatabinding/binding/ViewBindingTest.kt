@@ -32,6 +32,7 @@ import net.crimsonwoods.easydatabinding.models.Dimension
 import net.crimsonwoods.easydatabinding.models.Fraction
 import net.crimsonwoods.easydatabinding.models.Text
 import net.crimsonwoods.easydatabinding.models.Tint
+import net.crimsonwoods.easydatabinding.testing.R
 import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.hamcrest.core.IsNot
@@ -45,6 +46,24 @@ class ViewBindingTest {
     fun setUp() {
         scenario = launchFragmentInContainer<TestFragment>()
             .moveToState(Lifecycle.State.RESUMED)
+    }
+
+    @Test
+    fun testBinding_setAlpha_Res_Base() {
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<TextView>(android.R.id.text1)
+                .setAlpha(Fraction.of(R.fraction.test_fraction, 1, 2))
+        }
+        onView(withId(android.R.id.text1)).check(matches(withAlpha(0.5f)))
+    }
+
+    @Test
+    fun testBinding_setAlpha_Res_ParentBase() {
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<TextView>(android.R.id.text1)
+                .setAlpha(Fraction.of(R.fraction.test_fraction_p, 2, 1))
+        }
+        onView(withId(android.R.id.text1)).check(matches(withAlpha(0.5f)))
     }
 
     @Test

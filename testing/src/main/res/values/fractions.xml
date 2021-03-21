@@ -1,2 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <fraction name="test_fraction">50%</fraction>
+    <fraction name="test_fraction_p">50%p</fraction>
+</resources>
