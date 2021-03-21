@@ -11,8 +11,10 @@ import net.crimsonwoods.easydatabinding.models.Background
 import net.crimsonwoods.easydatabinding.models.Bool
 import net.crimsonwoods.easydatabinding.models.Dimension
 import net.crimsonwoods.easydatabinding.models.Fraction
+import net.crimsonwoods.easydatabinding.models.Text
 import net.crimsonwoods.easydatabinding.models.Tint
 import net.crimsonwoods.easydatabinding.models.toBoolean
+import net.crimsonwoods.easydatabinding.models.toCharSequence
 import net.crimsonwoods.easydatabinding.models.toFloat
 
 @BindingAdapter("android:alpha")
@@ -56,6 +58,11 @@ fun View.setBackgroundTint(value: Tint) = when (value) {
     is Tint.None -> {
         backgroundTintList = null
     }
+}
+
+@BindingAdapter("android:contentDescription")
+fun View.setContentDescription(value: Text) {
+    contentDescription = value.toCharSequence(resources)
 }
 
 @BindingAdapter("android:paddingStart")
