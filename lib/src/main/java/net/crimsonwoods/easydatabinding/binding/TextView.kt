@@ -1,6 +1,5 @@
 package net.crimsonwoods.easydatabinding.binding
 
-import android.os.Build
 import android.util.TypedValue
 import android.widget.TextView
 import androidx.core.content.ContextCompat
@@ -8,28 +7,11 @@ import androidx.databinding.BindingAdapter
 import net.crimsonwoods.easydatabinding.models.Color
 import net.crimsonwoods.easydatabinding.models.Dimension
 import net.crimsonwoods.easydatabinding.models.Text
+import net.crimsonwoods.easydatabinding.models.toCharSequence
 
 @BindingAdapter("android:text")
-fun TextView.setText(text: Text) = when (text) {
-    is Text.Res -> {
-        if (text.args.isNotEmpty()) {
-            setText(context.getString(text.resId, *text.args.toTypedArray()))
-        } else {
-            setText(text.resId)
-        }
-    }
-    is Text.CharSequence -> {
-        setText(text.rawValue)
-    }
-    is Text.Multilingual -> {
-        val locale = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            context.resources.configuration.locales[0]
-        } else {
-            @Suppress("DEPRECATION")
-            context.resources.configuration.locale
-        }
-        setText(text.values[locale] ?: text.fallback ?: context.getString(text.fallbackResId))
-    }
+fun TextView.setText(text: Text) {
+    this.text = text.toCharSequence(resources)
 }
 
 @BindingAdapter("android:textColor")

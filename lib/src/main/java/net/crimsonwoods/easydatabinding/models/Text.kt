@@ -1,5 +1,7 @@
 package net.crimsonwoods.easydatabinding.models
 
+import android.content.res.Resources
+import android.os.Build
 import androidx.annotation.StringRes
 import java.util.Locale
 
@@ -72,5 +74,27 @@ sealed class Text {
 
         @JvmStatic
         fun empty(): Text = CharSequence(rawValue = "")
+    }
+}
+
+fun Text.toCharSequence(resources: Resources): CharSequence = when (this) {
+    is Text.Res -> {
+        if (args.isNotEmpty()) {
+            resources.getString(resId, *args.toTypedArray())
+        } else {
+            resources.getString(resId)
+        }
+    }
+    is Text.CharSequence -> {
+        rawValue
+    }
+    is Text.Multilingual -> {
+        val locale = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            resources.configuration.locales[0]
+        } else {
+            @Suppress("DEPRECATION")
+            resources.configuration.locale
+        }
+        values[locale] ?: fallback ?: resources.getString(fallbackResId)
     }
 }
