@@ -105,23 +105,24 @@ __Not Supported__:
 
 ### View
 
-|XML attribute         |data model|
-|:---------------------|:---------|
-|android:alpha         |Fraction  |
-|android:background    |Background|
-|android:backgroundTint|Tint      |
-|android:clickable     |Bool      |
-|android:enabled       |Bool      |
-|android:focusable     |Bool      |
-|android:minHeight     |Dimension |
-|android:minWidth      |Dimension |
-|android:padding       |Dimension |
-|android:paddingLeft   |Dimension |
-|android:paddingStart  |Dimension |
-|android:paddingRight  |Dimension |
-|android:paddingEnd    |Dimension |
-|android:paddingTop    |Dimension |
-|android:paddingBottom |Dimension |
+|XML attribute             |data model|
+|:-------------------------|:---------|
+|android:alpha             |Fraction  |
+|android:background        |Background|
+|android:backgroundTint    |Tint      |
+|android:clickable         |Bool      |
+|android:contentDescription|Text      |
+|android:enabled           |Bool      |
+|android:focusable         |Bool      |
+|android:minHeight         |Dimension |
+|android:minWidth          |Dimension |
+|android:padding           |Dimension |
+|android:paddingLeft       |Dimension |
+|android:paddingStart      |Dimension |
+|android:paddingRight      |Dimension |
+|android:paddingEnd        |Dimension |
+|android:paddingTop        |Dimension |
+|android:paddingBottom     |Dimension |
 
 ### ViewGroup
 
