@@ -11,11 +11,13 @@ import net.crimsonwoods.easydatabinding.models.Background
 import net.crimsonwoods.easydatabinding.models.Bool
 import net.crimsonwoods.easydatabinding.models.Dimension
 import net.crimsonwoods.easydatabinding.models.Fraction
+import net.crimsonwoods.easydatabinding.models.Integer
 import net.crimsonwoods.easydatabinding.models.Text
 import net.crimsonwoods.easydatabinding.models.Tint
 import net.crimsonwoods.easydatabinding.models.toBoolean
 import net.crimsonwoods.easydatabinding.models.toCharSequence
 import net.crimsonwoods.easydatabinding.models.toFloat
+import net.crimsonwoods.easydatabinding.models.toInt
 
 @BindingAdapter("android:alpha")
 fun View.setAlpha(value: Fraction) {
@@ -128,4 +130,9 @@ fun View.setEnabled(value: Bool) {
 @BindingAdapter("android:soundEffectsEnabled")
 fun View.setSoundEffectsEnabled(value: Bool) {
     isSoundEffectsEnabled = value.toBoolean(resources)
+}
+
+@BindingAdapter("android:visibility")
+fun View.setVisibility(value: Integer) {
+    visibility = value.toInt(resources)
 }

@@ -16,6 +16,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.BoundedMatcher
+import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.isClickable
 import androidx.test.espresso.matcher.ViewMatchers.isEnabled
 import androidx.test.espresso.matcher.ViewMatchers.isFocusable
@@ -30,6 +31,7 @@ import net.crimsonwoods.easydatabinding.models.Background
 import net.crimsonwoods.easydatabinding.models.Bool
 import net.crimsonwoods.easydatabinding.models.Dimension
 import net.crimsonwoods.easydatabinding.models.Fraction
+import net.crimsonwoods.easydatabinding.models.Integer
 import net.crimsonwoods.easydatabinding.models.Text
 import net.crimsonwoods.easydatabinding.models.Tint
 import net.crimsonwoods.easydatabinding.testing.R
@@ -309,6 +311,51 @@ class ViewBindingTest {
                 .setSoundEffectsEnabled(Bool.FALSE)
         }
         onView(withId(android.R.id.text1)).check(matches(IsNot(isSoundEffectsEnabled())))
+    }
+
+    @Test
+    fun testBinding_setVisibility_Visible() {
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<TextView>(android.R.id.text1)
+                .setVisibility(Integer.wrap(View.VISIBLE))
+        }
+        onView(withId(android.R.id.text1)).check(
+            matches(
+                ViewMatchers.withEffectiveVisibility(
+                    ViewMatchers.Visibility.VISIBLE
+                )
+            )
+        )
+    }
+
+    @Test
+    fun testBinding_setVisibility_Invisible() {
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<TextView>(android.R.id.text1)
+                .setVisibility(Integer.wrap(View.INVISIBLE))
+        }
+        onView(withId(android.R.id.text1)).check(
+            matches(
+                ViewMatchers.withEffectiveVisibility(
+                    ViewMatchers.Visibility.INVISIBLE
+                )
+            )
+        )
+    }
+
+    @Test
+    fun testBinding_setVisibility_Gone() {
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<TextView>(android.R.id.text1)
+                .setVisibility(Integer.wrap(View.GONE))
+        }
+        onView(withId(android.R.id.text1)).check(
+            matches(
+                ViewMatchers.withEffectiveVisibility(
+                    ViewMatchers.Visibility.GONE
+                )
+            )
+        )
     }
 
     private fun hasBackgroundColor(@ColorInt color: Int): Matcher<View> {
