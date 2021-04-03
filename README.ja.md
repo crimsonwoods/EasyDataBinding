@@ -144,7 +144,7 @@ __未サポート__:
 ### ImageView
 
 |XML attribute        |data model|
-|:-------------------:|:---------|
+|:--------------------|:---------|
 |android:cropToPadding|Bool      |
 |android:maxHeight    |Dimension |
 |android:maxWidth     |Dimension |
