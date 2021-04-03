@@ -20,9 +20,13 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import kotlin.test.BeforeTest
 import kotlin.test.Test
+import kotlin.test.assertFailsWith
 import net.crimsonwoods.easydatabinding.R
 import net.crimsonwoods.easydatabinding.fragment.TestFragment
+import net.crimsonwoods.easydatabinding.models.Bool
+import net.crimsonwoods.easydatabinding.models.Dimension
 import net.crimsonwoods.easydatabinding.models.Image
+import net.crimsonwoods.easydatabinding.models.Integer.Companion.wrap
 import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.junit.runner.RunWith
@@ -35,6 +39,53 @@ class ImageViewBindingTest {
     fun setUp() {
         scenario = launchFragmentInContainer<TestFragment>()
             .moveToState(Lifecycle.State.RESUMED)
+    }
+
+    @Test
+    fun testBinding_setCropToPadding() {
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<ImageView>(android.R.id.icon)
+                .setCropToPadding(Bool.TRUE)
+        }
+        onView(withId(android.R.id.icon)).check(matches(isCropToPadding()))
+    }
+
+    @Test
+    fun testBinding_setMaxHeight() {
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<ImageView>(android.R.id.icon)
+                .setMaxHeight(Dimension.px(100f))
+        }
+        onView(withId(android.R.id.icon)).check(matches(withMaxHeight(100)))
+    }
+
+    @Test
+    fun testBinding_setMaxWidth() {
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<ImageView>(android.R.id.icon)
+                .setMaxWidth(Dimension.px(100f))
+        }
+        onView(withId(android.R.id.icon)).check(matches(withMaxWidth(100)))
+    }
+
+    @Test
+    fun testBinding_setScaleType() {
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<ImageView>(android.R.id.icon)
+                .setScaleType(wrap(1))
+        }
+        onView(withId(android.R.id.icon)).check(matches(withScaleType(ImageView.ScaleType.FIT_XY)))
+    }
+
+    @Test
+    fun testBinding_setScaleType_FailedByIllegalArgumentException() {
+        scenario.onFragment { fragment ->
+            assertFailsWith<IllegalArgumentException> {
+                fragment.requireView().findViewById<ImageView>(android.R.id.icon)
+                    .setScaleType(wrap(8))
+            }
+        }
+        onView(withId(android.R.id.icon)).check(matches(withScaleType(ImageView.ScaleType.FIT_CENTER)))
     }
 
     @Test
@@ -144,6 +195,57 @@ class ImageViewBindingTest {
 
             override fun matchesSafely(item: ImageView): Boolean {
                 return item.drawable == null
+            }
+        }
+    }
+
+    private fun isCropToPadding(): Matcher<View> {
+        return object : BoundedMatcher<View, ImageView>(ImageView::class.java) {
+            override fun describeTo(description: Description) {
+                description.appendText("is cropped to fit within its padding")
+            }
+
+            override fun matchesSafely(item: ImageView): Boolean {
+                return item.cropToPadding
+            }
+        }
+    }
+
+    @Suppress("SameParameterValue")
+    private fun withMaxHeight(value: Int): Matcher<View> {
+        return object : BoundedMatcher<View, ImageView>(ImageView::class.java) {
+            override fun describeTo(description: Description) {
+                description.appendText("with max height ($value)")
+            }
+
+            override fun matchesSafely(item: ImageView): Boolean {
+                return item.maxHeight == value
+            }
+        }
+    }
+
+    @Suppress("SameParameterValue")
+    private fun withMaxWidth(value: Int): Matcher<View> {
+        return object : BoundedMatcher<View, ImageView>(ImageView::class.java) {
+            override fun describeTo(description: Description) {
+                description.appendText("with max width ($value)")
+            }
+
+            override fun matchesSafely(item: ImageView): Boolean {
+                return item.maxWidth == value
+            }
+        }
+    }
+
+    @Suppress("SameParameterValue")
+    private fun withScaleType(value: ImageView.ScaleType): Matcher<View> {
+        return object : BoundedMatcher<View, ImageView>(ImageView::class.java) {
+            override fun describeTo(description: Description) {
+                description.appendText("with scale type ($value)")
+            }
+
+            override fun matchesSafely(item: ImageView): Boolean {
+                return item.scaleType == value
             }
         }
     }
