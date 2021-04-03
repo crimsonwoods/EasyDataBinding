@@ -143,9 +143,13 @@ __未サポート__:
 
 ### ImageView
 
-|XML attribute|data model|
-|:-----------:|:---------|
-|android:src  |Image     |
+|XML attribute        |data model|
+|:-------------------:|:---------|
+|android:cropToPadding|Bool      |
+|android:maxHeight    |Dimension |
+|android:maxWidth     |Dimension |
+|android:scaleType    |Integer   |
+|android:src          |Image     |
 
 # License
 MIT License
