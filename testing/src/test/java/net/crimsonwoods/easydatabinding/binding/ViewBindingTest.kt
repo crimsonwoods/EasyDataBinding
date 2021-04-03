@@ -35,6 +35,7 @@ import net.crimsonwoods.easydatabinding.models.Tint
 import net.crimsonwoods.easydatabinding.testing.R
 import org.hamcrest.Description
 import org.hamcrest.Matcher
+import org.hamcrest.TypeSafeMatcher
 import org.hamcrest.core.IsNot
 import org.junit.runner.RunWith
 
@@ -301,6 +302,15 @@ class ViewBindingTest {
         onView(withId(android.R.id.text1)).check(matches(IsNot(isEnabled())))
     }
 
+    @Test
+    fun testBinding_setSoundEffectsEnabled() {
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<TextView>(android.R.id.text1)
+                .setSoundEffectsEnabled(Bool.FALSE)
+        }
+        onView(withId(android.R.id.text1)).check(matches(IsNot(isSoundEffectsEnabled())))
+    }
+
     private fun hasBackgroundColor(@ColorInt color: Int): Matcher<View> {
         return object : BoundedMatcher<View, View>(View::class.java) {
             override fun describeTo(description: Description) {
@@ -451,6 +461,18 @@ class ViewBindingTest {
 
             override fun matchesSafely(item: View): Boolean {
                 return item.minimumWidth == value
+            }
+        }
+    }
+
+    private fun isSoundEffectsEnabled(): Matcher<View> {
+        return object : TypeSafeMatcher<View>() {
+            override fun describeTo(description: Description) {
+                description.appendText("is enabled for sound effects")
+            }
+
+            override fun matchesSafely(item: View): Boolean {
+                return item.isSoundEffectsEnabled
             }
         }
     }

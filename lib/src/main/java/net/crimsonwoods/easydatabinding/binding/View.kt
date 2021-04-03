@@ -124,3 +124,8 @@ fun View.setFocusable(value: Bool) {
 fun View.setEnabled(value: Bool) {
     isEnabled = value.toBoolean(resources)
 }
+
+@BindingAdapter("android:soundEffectsEnabled")
+fun View.setSoundEffectsEnabled(value: Bool) {
+    isSoundEffectsEnabled = value.toBoolean(resources)
+}
