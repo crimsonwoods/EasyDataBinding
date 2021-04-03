@@ -86,6 +86,7 @@ __サポート済み__:
 - Dimension
 - Drawable
 - Fraction
+- Integer
 - String
 
 __未サポート__:
@@ -94,7 +95,6 @@ __未サポート__:
 - Attr
 - Font
 - ID
-- Integer
 - Layout
 - Menu
 - Raw
