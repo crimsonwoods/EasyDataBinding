@@ -1,6 +1,10 @@
 package net.crimsonwoods.easydatabinding.models
 
+import android.content.Context
+import android.content.res.ColorStateList
+import android.content.res.Resources
 import androidx.annotation.ColorRes
+import androidx.core.content.res.ResourcesCompat
 
 sealed class Tint {
     data class Res(
@@ -27,4 +31,16 @@ sealed class Tint {
         @JvmStatic
         fun none(): Tint = None
     }
+}
+
+fun Tint.toColorStateList(resources: Resources, theme: Resources.Theme?): ColorStateList? {
+    return when (this) {
+        is Tint.Res -> ResourcesCompat.getColorStateList(resources, resId, theme)
+        is Tint.ColorStateList -> rawValue
+        is Tint.None -> null
+    }
+}
+
+fun Tint.toColorStateList(context: Context): ColorStateList? {
+    return toColorStateList(context.resources, context.theme)
 }
