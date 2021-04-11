@@ -21,12 +21,12 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertFailsWith
-import net.crimsonwoods.easydatabinding.R
 import net.crimsonwoods.easydatabinding.fragment.TestFragment
 import net.crimsonwoods.easydatabinding.models.Bool
 import net.crimsonwoods.easydatabinding.models.Dimension
 import net.crimsonwoods.easydatabinding.models.Image
 import net.crimsonwoods.easydatabinding.models.Integer.Companion.wrap
+import net.crimsonwoods.easydatabinding.testing.R
 import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.junit.runner.RunWith
@@ -142,7 +142,7 @@ class ImageViewBindingTest {
     fun testBinding_setImage_Uri() {
         scenario.onFragment { fragment ->
             val resources = fragment.requireContext().resources
-            val resId = R.color.design_default_color_background
+            val resId = R.color.test_color
             fragment.requireView().findViewById<ImageView>(android.R.id.icon)
                 .setImage(Image.Uri(resources.toResourceUri(resId)))
         }
