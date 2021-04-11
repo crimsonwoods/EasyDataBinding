@@ -1,6 +1,8 @@
 package net.crimsonwoods.easydatabinding.binding
 
 import android.content.ContentResolver
+import android.content.Context
+import android.content.res.ColorStateList
 import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.Color
@@ -10,9 +12,12 @@ import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.view.View
 import android.widget.ImageView
+import androidx.core.content.ContextCompat
+import androidx.core.widget.ImageViewCompat
 import androidx.fragment.app.testing.FragmentScenario
 import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.lifecycle.Lifecycle
+import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.BoundedMatcher
@@ -26,6 +31,7 @@ import net.crimsonwoods.easydatabinding.models.Bool
 import net.crimsonwoods.easydatabinding.models.Dimension
 import net.crimsonwoods.easydatabinding.models.Image
 import net.crimsonwoods.easydatabinding.models.Integer.Companion.wrap
+import net.crimsonwoods.easydatabinding.models.Tint
 import net.crimsonwoods.easydatabinding.testing.R
 import org.hamcrest.Description
 import org.hamcrest.Matcher
@@ -166,6 +172,38 @@ class ImageViewBindingTest {
             .check(matches(noDrawable()))
     }
 
+    @Test
+    fun testBinding_setTintList_Res() {
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<ImageView>(android.R.id.icon)
+                .setTintList(Tint.of(R.color.test_tint))
+        }
+        val context = ApplicationProvider.getApplicationContext<Context>()
+        val expected = ContextCompat.getColorStateList(context, R.color.test_tint)
+        onView(withId(android.R.id.icon))
+            .check(matches(withTintList(expected)))
+    }
+
+    @Test
+    fun testBinding_setTintList_ColorStateList() {
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<ImageView>(android.R.id.icon)
+                .setTintList(Tint.of(ColorStateList.valueOf(Color.RED)))
+        }
+        onView(withId(android.R.id.icon))
+            .check(matches(withTintList(ColorStateList.valueOf(Color.RED))))
+    }
+
+    @Test
+    fun testBinding_setTintList_None() {
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<ImageView>(android.R.id.icon)
+                .setTintList(Tint.none())
+        }
+        onView(withId(android.R.id.icon))
+            .check(matches(withTintList(null)))
+    }
+
     private fun Resources.toResourceUri(resId: Int): Uri {
         val scheme = ContentResolver.SCHEME_ANDROID_RESOURCE
         val packageName = getResourcePackageName(resId)
@@ -246,6 +284,18 @@ class ImageViewBindingTest {
 
             override fun matchesSafely(item: ImageView): Boolean {
                 return item.scaleType == value
+            }
+        }
+    }
+
+    private fun withTintList(value: ColorStateList?): Matcher<View> {
+        return object : BoundedMatcher<View, ImageView>(ImageView::class.java) {
+            override fun describeTo(description: Description) {
+                description.appendText("with tint list ($value)")
+            }
+
+            override fun matchesSafely(item: ImageView): Boolean {
+                return ImageViewCompat.getImageTintList(item)?.toString() == value?.toString()
             }
         }
     }

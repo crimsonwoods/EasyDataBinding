@@ -1,13 +1,16 @@
 package net.crimsonwoods.easydatabinding.binding
 
 import android.widget.ImageView
+import androidx.core.widget.ImageViewCompat
 import androidx.databinding.BindingAdapter
 import kotlin.math.roundToInt
 import net.crimsonwoods.easydatabinding.models.Bool
 import net.crimsonwoods.easydatabinding.models.Dimension
 import net.crimsonwoods.easydatabinding.models.Image
 import net.crimsonwoods.easydatabinding.models.Integer
+import net.crimsonwoods.easydatabinding.models.Tint
 import net.crimsonwoods.easydatabinding.models.toBoolean
+import net.crimsonwoods.easydatabinding.models.toColorStateList
 import net.crimsonwoods.easydatabinding.models.toInt
 
 @BindingAdapter("android:cropToPadding")
@@ -57,4 +60,9 @@ fun ImageView.setImage(image: Image) = when (image) {
     is Image.None -> {
         setImageDrawable(null)
     }
+}
+
+@BindingAdapter("tint")
+fun ImageView.setTintList(value: Tint) {
+    ImageViewCompat.setImageTintList(this, value.toColorStateList(context))
 }
