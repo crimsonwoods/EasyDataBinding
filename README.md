@@ -152,5 +152,14 @@ __Not Supported__:
 |android:scaleType    |Integer   |
 |android:src          |Image     |
 
+### AbsListView
+
+|XML attribute            |data model|
+|:------------------------|:---------|
+|android:fastScrollEnabled|Bool      |
+|android:smoothScrollbar  |Bool      |
+|android:stackFromBottom  |Bool      |
+|android:textFilterEnabled|Bool      |
+
 # License
 MIT License
