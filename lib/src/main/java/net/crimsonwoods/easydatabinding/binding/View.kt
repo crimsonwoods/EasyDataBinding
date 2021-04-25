@@ -136,3 +136,18 @@ fun View.setSoundEffectsEnabled(value: Bool) {
 fun View.setVisibility(value: Integer) {
     visibility = value.toInt(resources)
 }
+
+internal val View.toBoolean: Bool.() -> Boolean
+    get() {
+        return { toBoolean(resources) }
+    }
+
+internal val View.toCharSequence: Text.() -> CharSequence
+    get() {
+        return { toCharSequence(resources) }
+    }
+
+internal val View.toInt: Integer.() -> Int
+    get() {
+        return { toInt(resources) }
+    }
