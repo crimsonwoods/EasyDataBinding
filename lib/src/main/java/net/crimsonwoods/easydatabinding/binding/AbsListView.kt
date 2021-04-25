@@ -10,7 +10,7 @@ fun AbsListView.setFastScrollEnabled(value: Bool) {
 }
 
 @BindingAdapter("android:smoothScrollbar")
-fun AbsListView.setSmoothScrollbar(value: Bool) {
+fun AbsListView.setSmoothScrollbarEnabled(value: Bool) {
     isSmoothScrollbarEnabled = value.toBoolean()
 }
 
