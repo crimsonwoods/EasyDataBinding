@@ -29,7 +29,7 @@ And adds a dependency
 
 ```groovy
 dependencies {
-    implementation 'com.github.crimsonwoods:EasyDataBinding:0.0.3'
+    implementation 'com.github.crimsonwoods:EasyDataBinding:0.0.4'
 }
 ```
 
