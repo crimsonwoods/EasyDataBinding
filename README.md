@@ -151,6 +151,7 @@ __Not Supported__:
 |android:maxWidth     |Dimension |
 |android:scaleType    |Integer   |
 |android:src          |Image     |
+|app:tint             |Tint      |
 
 ### AbsListView
 
