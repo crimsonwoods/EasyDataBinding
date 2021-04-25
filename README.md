@@ -161,5 +161,11 @@ __Not Supported__:
 |android:stackFromBottom  |Bool      |
 |android:textFilterEnabled|Bool      |
 
+#### FrameLayout
+
+|XML attribute             |data model|
+|:-------------------------|:---------|
+|android:measureAllChildren|Bool      |
+
 # License
 MIT License

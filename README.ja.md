@@ -160,5 +160,11 @@ __未サポート__:
 |android:stackFromBottom  |Bool      |
 |android:textFilterEnabled|Bool      |
 
+#### FrameLayout
+
+|XML attribute             |data model|
+|:-------------------------|:---------|
+|android:measureAllChildren|Bool      |
+
 # License
 MIT License
