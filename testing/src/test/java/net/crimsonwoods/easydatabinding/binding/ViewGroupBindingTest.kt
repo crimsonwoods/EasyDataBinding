@@ -2,7 +2,7 @@ package net.crimsonwoods.easydatabinding.binding
 
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import androidx.fragment.app.testing.FragmentScenario
 import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.lifecycle.Lifecycle
@@ -19,6 +19,7 @@ import net.crimsonwoods.easydatabinding.binding.ViewGroupBindingTest.ViewGroupMa
 import net.crimsonwoods.easydatabinding.binding.ViewGroupBindingTest.ViewGroupMatchers.isClipToPadding
 import net.crimsonwoods.easydatabinding.fragment.TestFragment
 import net.crimsonwoods.easydatabinding.models.Bool
+import net.crimsonwoods.easydatabinding.testing.R
 import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.hamcrest.core.AllOf.allOf
@@ -41,12 +42,12 @@ class ViewGroupBindingTest {
     fun testBinding_setClipChildren_Res_True() {
         scenario.onFragment { fragment ->
             // abc_action_bar_embed_tabs is true when screen rotation is landscape, else false.
-            (fragment.requireView() as ViewGroup)
+            fragment.requireView().findViewById<ViewGroup>(R.id.header)
                 .setClipChildren(Bool.of(androidx.appcompat.R.bool.abc_action_bar_embed_tabs))
         }
         onView(
             allOf(
-                isAssignableFrom(LinearLayout::class.java),
+                isAssignableFrom(RelativeLayout::class.java),
                 withChild(withId(android.R.id.text1))
             )
         ).check(
@@ -61,12 +62,12 @@ class ViewGroupBindingTest {
     fun testBinding_setClipChildren_Res_False() {
         scenario.onFragment { fragment ->
             // abc_action_bar_embed_tabs is true when screen rotation is landscape, else false.
-            (fragment.requireView() as ViewGroup)
+            fragment.requireView().findViewById<ViewGroup>(R.id.header)
                 .setClipChildren(Bool.of(androidx.appcompat.R.bool.abc_action_bar_embed_tabs))
         }
         onView(
             allOf(
-                isAssignableFrom(LinearLayout::class.java),
+                isAssignableFrom(RelativeLayout::class.java),
                 withChild(withId(android.R.id.text1))
             )
         ).check(
@@ -79,12 +80,12 @@ class ViewGroupBindingTest {
     @Test
     fun testBinding_setClipChildren_Value() {
         scenario.onFragment { fragment ->
-            (fragment.requireView() as ViewGroup)
+            fragment.requireView().findViewById<ViewGroup>(R.id.header)
                 .setClipChildren(Bool.FALSE)
         }
         onView(
             allOf(
-                isAssignableFrom(LinearLayout::class.java),
+                isAssignableFrom(RelativeLayout::class.java),
                 withChild(withId(android.R.id.text1))
             )
         ).check(
@@ -99,12 +100,12 @@ class ViewGroupBindingTest {
     fun testBinding_setClipToPadding_Res_True() {
         scenario.onFragment { fragment ->
             // abc_action_bar_embed_tabs is true when screen rotation is landscape, else false.
-            (fragment.requireView() as ViewGroup)
+            fragment.requireView().findViewById<ViewGroup>(R.id.header)
                 .setClipToPadding(Bool.of(androidx.appcompat.R.bool.abc_action_bar_embed_tabs))
         }
         onView(
             allOf(
-                isAssignableFrom(LinearLayout::class.java),
+                isAssignableFrom(RelativeLayout::class.java),
                 withChild(withId(android.R.id.text1))
             )
         ).check(
@@ -119,12 +120,12 @@ class ViewGroupBindingTest {
     fun testBinding_setClipToPadding_Res_False() {
         scenario.onFragment { fragment ->
             // abc_action_bar_embed_tabs is true when screen rotation is landscape, else false.
-            (fragment.requireView() as ViewGroup)
+            fragment.requireView().findViewById<ViewGroup>(R.id.header)
                 .setClipToPadding(Bool.of(androidx.appcompat.R.bool.abc_action_bar_embed_tabs))
         }
         onView(
             allOf(
-                isAssignableFrom(LinearLayout::class.java),
+                isAssignableFrom(RelativeLayout::class.java),
                 withChild(withId(android.R.id.text1))
             )
         ).check(
@@ -137,12 +138,12 @@ class ViewGroupBindingTest {
     @Test
     fun testBinding_setClipToPadding_Value() {
         scenario.onFragment { fragment ->
-            (fragment.requireView() as ViewGroup)
+            fragment.requireView().findViewById<ViewGroup>(R.id.header)
                 .setClipToPadding(Bool.FALSE)
         }
         onView(
             allOf(
-                isAssignableFrom(LinearLayout::class.java),
+                isAssignableFrom(RelativeLayout::class.java),
                 withChild(withId(android.R.id.text1))
             )
         ).check(
