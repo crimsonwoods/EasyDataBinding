@@ -169,6 +169,12 @@ __未サポート__:
 |android:footerDividersEnabled|Bool      |
 |android:headerDividersEnabled|Bool      |
 
+### ScrollView
+
+|XML attribute       |data model|
+|:-------------------|:---------|
+|android:fillViewport|Bool      |
+
 ### FrameLayout
 
 |XML attribute             |data model|
