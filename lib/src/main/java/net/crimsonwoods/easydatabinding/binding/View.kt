@@ -151,3 +151,8 @@ internal val View.toInt: Integer.() -> Int
     get() {
         return { toInt(resources) }
     }
+
+internal val View.toPx: Dimension.() -> Float
+    get() {
+        return { toPx(resources) }
+    }
