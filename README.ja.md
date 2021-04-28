@@ -167,5 +167,14 @@ __未サポート__:
 |:-------------------------|:---------|
 |android:measureAllChildren|Bool      |
 
+### LinearLayout
+
+|XML attribute                    |data model|
+|:--------------------------------|:---------|
+|android:baselineAligned          |Bool      |
+|android:baselineAlignedChildIndex|Integer   |
+|android:measureWithLargestChild  |Bool      |
+|android:dividerPadding           |Dimension |
+
 # License
 MIT License
