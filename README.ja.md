@@ -161,6 +161,14 @@ __未サポート__:
 |android:stackFromBottom  |Bool      |
 |android:textFilterEnabled|Bool      |
 
+### ListView
+
+|XML attribute                |data model|
+|:----------------------------|:---------|
+|android:dividerHeight        |Dimension |
+|android:footerDividersEnabled|Bool      |
+|android:headerDividersEnabled|Bool      |
+
 ### FrameLayout
 
 |XML attribute             |data model|
