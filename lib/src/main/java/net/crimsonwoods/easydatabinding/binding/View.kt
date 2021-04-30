@@ -1,5 +1,6 @@
 package net.crimsonwoods.easydatabinding.binding
 
+import android.content.res.ColorStateList
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.core.view.setPadding
@@ -16,6 +17,7 @@ import net.crimsonwoods.easydatabinding.models.Text
 import net.crimsonwoods.easydatabinding.models.Tint
 import net.crimsonwoods.easydatabinding.models.toBoolean
 import net.crimsonwoods.easydatabinding.models.toCharSequence
+import net.crimsonwoods.easydatabinding.models.toColorStateList
 import net.crimsonwoods.easydatabinding.models.toFloat
 import net.crimsonwoods.easydatabinding.models.toInt
 
@@ -155,4 +157,9 @@ internal val View.toInt: Integer.() -> Int
 internal val View.toPx: Dimension.() -> Float
     get() {
         return { toPx(resources) }
+    }
+
+internal val View.toColorStateList: Tint.() -> ColorStateList?
+    get() {
+        return { toColorStateList(context) }
     }
