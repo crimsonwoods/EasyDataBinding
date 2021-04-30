@@ -139,7 +139,22 @@ __未サポート__:
 |android:text         |Text      |
 |android:textSize     |Dimension |
 |android:textColor    |Color     |
-|android:hintTextColor|Color     |
+|android:hint         |Text      |
+|android:textColorHint|Color     |
+
+### CompoundButton
+
+|XML attribute     |data model|
+|:-----------------|:---------|
+|android:checked   |Bool      |
+|android:buttonTint|Tint      |
+
+### ToggleButton
+
+|XML attribute  |data model|
+|:--------------|:---------|
+|android:textOff|Text      |
+|android:textOn |Text      |
 
 ### ImageView
 
