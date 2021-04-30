@@ -33,9 +33,9 @@ class TextViewBindingTest {
         onView(withId(android.R.id.text1)).check(matches(withText("")))
         scenario.onFragment { fragment ->
             fragment.requireView().findViewById<TextView>(android.R.id.text1)
-                .setText(Text.of(android.R.string.ok))
+                .setText(Text.of(R.string.test_text))
         }
-        onView(withId(android.R.id.text1)).check(matches(withText("OK")))
+        onView(withId(android.R.id.text1)).check(matches(withText("Testing")))
     }
 
     @Test
