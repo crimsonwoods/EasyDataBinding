@@ -216,4 +216,52 @@ class TextViewBindingTest {
             }
         }
     }
+
+    private fun withHint(value: CharSequence?): Matcher<View> {
+        return object : BoundedMatcher<View, TextView>(TextView::class.java) {
+            override fun describeTo(description: Description) {
+                description.appendText("with hint $value")
+            }
+
+            override fun matchesSafely(item: TextView): Boolean {
+                return item.hint == value
+            }
+        }
+    }
+
+    private fun withHintTint(value: ColorStateList?): Matcher<View> {
+        return object : BoundedMatcher<View, TextView>(TextView::class.java) {
+            override fun describeTo(description: Description) {
+                description.appendText("with hint text color $value")
+            }
+
+            override fun matchesSafely(item: TextView): Boolean {
+                return item.hintTextColors?.toString() == value?.toString()
+            }
+        }
+    }
+
+    private fun withHintColor(@ColorInt value: Int): Matcher<View> {
+        return object : BoundedMatcher<View, TextView>(TextView::class.java) {
+            override fun describeTo(description: Description) {
+                description.appendText("with hint text color ${android.graphics.Color.valueOf(value)}")
+            }
+
+            override fun matchesSafely(item: TextView): Boolean {
+                return item.currentHintTextColor == value
+            }
+        }
+    }
+
+    private fun isAllCaps(): Matcher<View> {
+        return object : BoundedMatcher<View, TextView>(TextView::class.java) {
+            override fun describeTo(description: Description) {
+                description.appendText("is all caps")
+            }
+
+            override fun matchesSafely(item: TextView): Boolean {
+                return item.isAllCaps
+            }
+        }
+    }
 }
