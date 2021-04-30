@@ -44,7 +44,7 @@ fun TextView.setHint(value: Text) {
     hint = value.toCharSequence()
 }
 
-@BindingAdapter("android:hintTextColor")
+@BindingAdapter("android:textColorHint")
 fun TextView.setHintTextColor(color: Color) = when (color) {
     is Color.Int -> {
         setHintTextColor(color.rawValue)
