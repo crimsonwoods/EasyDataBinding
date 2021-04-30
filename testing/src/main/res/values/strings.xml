@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="test_text">Testing</string>
+    <string name="test_text_with_args">%1$d/%2$d</string>
     <string name="test_toggle_caption_on">Testing - ON</string>
     <string name="test_toggle_caption_off">Testing - OFF</string>
 </resources>
