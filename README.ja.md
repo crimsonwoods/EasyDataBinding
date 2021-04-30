@@ -28,7 +28,7 @@ allprojects {
 
 ```groovy
 dependencies {
-    implementation 'com.github.crimsonwoods:EasyDataBinding:0.0.5'
+    implementation 'com.github.crimsonwoods:EasyDataBinding:0.0.6'
 }
 ```
 
