@@ -4,6 +4,7 @@ import android.util.TypedValue
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
+import net.crimsonwoods.easydatabinding.models.Bool
 import net.crimsonwoods.easydatabinding.models.Color
 import net.crimsonwoods.easydatabinding.models.Dimension
 import net.crimsonwoods.easydatabinding.models.Text
@@ -12,6 +13,11 @@ import net.crimsonwoods.easydatabinding.models.toCharSequence
 @BindingAdapter("android:text")
 fun TextView.setText(text: Text) {
     this.text = text.toCharSequence(resources)
+}
+
+@BindingAdapter("android:textAllCaps")
+fun TextView.setTextAllCaps(value: Bool) {
+    isAllCaps = value.toBoolean()
 }
 
 @BindingAdapter("android:textColor")
@@ -31,6 +37,11 @@ fun TextView.setTextColor(color: Color) = when (color) {
     is Color.StateList -> {
         setTextColor(color.stateList)
     }
+}
+
+@BindingAdapter("android:hint")
+fun TextView.setHint(value: Text) {
+    hint = value.toCharSequence()
 }
 
 @BindingAdapter("android:hintTextColor")
