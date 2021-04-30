@@ -205,6 +205,95 @@ class TextViewBindingTest {
         onView(withId(android.R.id.text1)).check(matches(hasTextColor(stateList)))
     }
 
+    @Test
+    fun testBinding_setHint() {
+        launchFragmentInContainer<TestFragment>()
+            .moveToState(Lifecycle.State.RESUMED).onFragment { fragment ->
+                fragment.requireView().findViewById<TextView>(android.R.id.text1)
+                    .setHint(Text.of(R.string.test_text))
+            }
+        onView(withId(android.R.id.text1)).check(matches(withHint("Testing")))
+    }
+
+    @Test
+    fun testBinding_setHintTextColor_for_Int() {
+        val scenario = launchFragmentInContainer<TestFragment>()
+            .moveToState(Lifecycle.State.RESUMED)
+            .onFragment { fragment ->
+                fragment.requireView().findViewById<TextView>(android.R.id.text1).setTextColor(0)
+            }
+        onView(withId(android.R.id.text1)).check(matches(hasTextColor(0)))
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<TextView>(android.R.id.text1)
+                .setHintTextColor(Color.Int(0xff))
+        }
+        onView(withId(android.R.id.text1)).check(matches(withHintColor(0xff)))
+    }
+
+    @Test
+    fun testBinding_setHintTextColor_for_Res() {
+        val scenario = launchFragmentInContainer<TestFragment>()
+            .moveToState(Lifecycle.State.RESUMED)
+            .onFragment { fragment ->
+                fragment.requireView().findViewById<TextView>(android.R.id.text1).setTextColor(0)
+            }
+        onView(withId(android.R.id.text1)).check(matches(hasTextColor(0)))
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<TextView>(android.R.id.text1)
+                .setHintTextColor(Color.Res(android.R.color.white))
+        }
+        onView(withId(android.R.id.text1)).check(matches(withHintColor(android.graphics.Color.WHITE)))
+    }
+
+    @Test
+    fun testBinding_setHintTextColor_for_String() {
+        val scenario = launchFragmentInContainer<TestFragment>()
+            .moveToState(Lifecycle.State.RESUMED)
+            .onFragment { fragment ->
+                fragment.requireView().findViewById<TextView>(android.R.id.text1).setTextColor(0)
+            }
+        onView(withId(android.R.id.text1)).check(matches(hasTextColor(0)))
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<TextView>(android.R.id.text1)
+                .setHintTextColor(Color.String("red"))
+        }
+        onView(withId(android.R.id.text1)).check(matches(withHintColor(android.graphics.Color.RED)))
+    }
+
+    @Test
+    fun testBinding_setHintTextColor_for_Drawable() {
+        val scenario = launchFragmentInContainer<TestFragment>()
+            .moveToState(Lifecycle.State.RESUMED)
+            .onFragment { fragment ->
+                fragment.requireView().findViewById<TextView>(android.R.id.text1).setTextColor(0)
+            }
+        onView(withId(android.R.id.text1)).check(matches(hasTextColor(0)))
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<TextView>(android.R.id.text1)
+                .setHintTextColor(Color.Drawable(ColorDrawable(0x0000ff)))
+        }
+        onView(withId(android.R.id.text1)).check(matches(withHintColor(0x0000ff)))
+    }
+
+    @Test
+    fun testBinding_setHintTextColor_for_StateList() {
+        val scenario = launchFragmentInContainer<TestFragment>()
+            .moveToState(Lifecycle.State.RESUMED)
+            .onFragment { fragment ->
+                fragment.requireView().findViewById<TextView>(android.R.id.text1).setTextColor(0)
+            }
+        onView(withId(android.R.id.text1)).check(matches(hasTextColor(0)))
+        val stateList = ColorStateList(
+            arrayOf(intArrayOf(), intArrayOf(android.R.attr.state_selected)),
+            intArrayOf(0x0000ff, 0x00ffff)
+        )
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<TextView>(android.R.id.text1)
+                .setHintTextColor(Color.StateList(stateList))
+        }
+        onView(withId(android.R.id.text1)).check(matches(withHintTint(stateList)))
+    }
+
     private fun hasTextColor(@ColorInt color: Int): Matcher<View> {
         return object : BoundedMatcher<View, TextView>(TextView::class.java) {
             override fun describeTo(description: Description) {
