@@ -15,10 +15,10 @@ import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import java.util.Locale
 import kotlin.test.Test
-import net.crimsonwoods.easydatabinding.R
 import net.crimsonwoods.easydatabinding.fragment.TestFragment
 import net.crimsonwoods.easydatabinding.models.Color
 import net.crimsonwoods.easydatabinding.models.Text
+import net.crimsonwoods.easydatabinding.testing.R
 import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.junit.runner.RunWith
@@ -45,7 +45,7 @@ class TextViewBindingTest {
         onView(withId(android.R.id.text1)).check(matches(withText("")))
         scenario.onFragment { fragment ->
             fragment.requireView().findViewById<TextView>(android.R.id.text1)
-                .setText(Text.of(R.string.character_counter_pattern, 1, 2))
+                .setText(Text.of(R.string.test_text_with_args, 1, 2))
         }
         onView(withId(android.R.id.text1)).check(matches(withText("1/2")))
     }
