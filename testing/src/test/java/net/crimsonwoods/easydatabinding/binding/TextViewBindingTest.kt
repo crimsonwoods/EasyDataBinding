@@ -16,6 +16,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import java.util.Locale
 import kotlin.test.Test
 import net.crimsonwoods.easydatabinding.fragment.TestFragment
+import net.crimsonwoods.easydatabinding.models.Bool
 import net.crimsonwoods.easydatabinding.models.Color
 import net.crimsonwoods.easydatabinding.models.Text
 import net.crimsonwoods.easydatabinding.testing.R
@@ -112,6 +113,17 @@ class TextViewBindingTest {
                 .setText(Text.of(Locale.JAPAN to "テスト", Locale.US to "Test"))
         }
         onView(withId(android.R.id.text1)).check(matches(withText("Test")))
+    }
+
+    @Test
+    fun testBinding_setTextAllCaps() {
+        launchFragmentInContainer<TestFragment>()
+            .moveToState(Lifecycle.State.RESUMED)
+            .onFragment { fragment ->
+                fragment.requireView().findViewById<TextView>(android.R.id.text1)
+                    .setTextAllCaps(Bool.TRUE)
+            }
+        onView(withId(android.R.id.text1)).check(matches(isAllCaps()))
     }
 
     @Test
