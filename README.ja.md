@@ -80,6 +80,7 @@ class MyActivityViewModel : ViewModel() {
 ## Resource Types
 
 __サポート済み__:
+- Animation
 - Bool
 - Color
 - ColorStateList
@@ -90,7 +91,6 @@ __サポート済み__:
 - String
 
 __未サポート__:
-- Animation
 - Array (String, Integer, etc.)
 - Attr
 - Font

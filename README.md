@@ -81,6 +81,7 @@ In your `my_activity.xml`:
 ## Resource Types
 
 __Supported__:
+- Animation
 - Bool
 - Color
 - ColorStateList
@@ -91,7 +92,6 @@ __Supported__:
 - String
 
 __Not Supported__:
-- Animation
 - Array (String, Integer, etc.)
 - Attr
 - Font
