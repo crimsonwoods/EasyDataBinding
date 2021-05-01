@@ -5,6 +5,12 @@ import androidx.databinding.BindingAdapter
 import kotlin.math.roundToInt
 import net.crimsonwoods.easydatabinding.models.Bool
 import net.crimsonwoods.easydatabinding.models.Dimension
+import net.crimsonwoods.easydatabinding.models.Drawable
+
+@BindingAdapter("android:divider")
+fun ListView.setDivider(value: Drawable) {
+    divider = value.toDrawable()
+}
 
 @BindingAdapter("android:dividerHeight")
 fun ListView.setDividerHeight(value: Dimension) {
