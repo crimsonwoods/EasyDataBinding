@@ -191,6 +191,13 @@ __未サポート__:
 |:-------------------|:---------|
 |android:fillViewport|Bool      |
 
+### ViewAnimator
+
+|XML attribute       |data model|
+|:-------------------|:---------|
+|android:inAnimation |Animation |
+|android:outAnimation|Animation |
+
 ### FrameLayout
 
 |XML attribute             |data model|
