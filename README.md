@@ -181,6 +181,7 @@ __Not Supported__:
 
 |XML attribute                |data model|
 |:----------------------------|:---------|
+|android:divider              |Drawable  |
 |android:dividerHeight        |Dimension |
 |android:footerDividersEnabled|Bool      |
 |android:headerDividersEnabled|Bool      |
