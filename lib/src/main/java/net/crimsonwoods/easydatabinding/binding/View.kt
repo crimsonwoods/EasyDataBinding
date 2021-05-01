@@ -11,6 +11,7 @@ import kotlin.math.roundToInt
 import net.crimsonwoods.easydatabinding.models.Background
 import net.crimsonwoods.easydatabinding.models.Bool
 import net.crimsonwoods.easydatabinding.models.Dimension
+import net.crimsonwoods.easydatabinding.models.Drawable
 import net.crimsonwoods.easydatabinding.models.Fraction
 import net.crimsonwoods.easydatabinding.models.Integer
 import net.crimsonwoods.easydatabinding.models.Text
@@ -18,6 +19,7 @@ import net.crimsonwoods.easydatabinding.models.Tint
 import net.crimsonwoods.easydatabinding.models.toBoolean
 import net.crimsonwoods.easydatabinding.models.toCharSequence
 import net.crimsonwoods.easydatabinding.models.toColorStateList
+import net.crimsonwoods.easydatabinding.models.toDrawable
 import net.crimsonwoods.easydatabinding.models.toFloat
 import net.crimsonwoods.easydatabinding.models.toInt
 
@@ -162,4 +164,9 @@ internal val View.toPx: Dimension.() -> Float
 internal val View.toColorStateList: Tint.() -> ColorStateList?
     get() {
         return { toColorStateList(context) }
+    }
+
+internal val View.toDrawable: Drawable.() -> android.graphics.drawable.Drawable?
+    get() {
+        return { toDrawable(context) }
     }
