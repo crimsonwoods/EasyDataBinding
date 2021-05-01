@@ -8,6 +8,7 @@ import androidx.core.view.updatePadding
 import androidx.core.view.updatePaddingRelative
 import androidx.databinding.BindingAdapter
 import kotlin.math.roundToInt
+import net.crimsonwoods.easydatabinding.models.Animation
 import net.crimsonwoods.easydatabinding.models.Background
 import net.crimsonwoods.easydatabinding.models.Bool
 import net.crimsonwoods.easydatabinding.models.Dimension
@@ -16,6 +17,7 @@ import net.crimsonwoods.easydatabinding.models.Fraction
 import net.crimsonwoods.easydatabinding.models.Integer
 import net.crimsonwoods.easydatabinding.models.Text
 import net.crimsonwoods.easydatabinding.models.Tint
+import net.crimsonwoods.easydatabinding.models.toAnimation
 import net.crimsonwoods.easydatabinding.models.toBoolean
 import net.crimsonwoods.easydatabinding.models.toCharSequence
 import net.crimsonwoods.easydatabinding.models.toColorStateList
@@ -140,6 +142,11 @@ fun View.setSoundEffectsEnabled(value: Bool) {
 fun View.setVisibility(value: Integer) {
     visibility = value.toInt(resources)
 }
+
+internal val View.toAnimation: Animation.() -> android.view.animation.Animation?
+    get() {
+        return { toAnimation(context) }
+    }
 
 internal val View.toBoolean: Bool.() -> Boolean
     get() {
