@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/test_drawable_9patch" android:state_pressed="false"/>
+    <item android:state_pressed="true">
+        <layer-list>
+            <item>
+                <shape android:shape="rectangle">
+                    <solid android:color="#FF666666"/>
+                    <corners android:radius="4dp"/>
+                </shape>
+            </item>
+            <item android:drawable="@drawable/test_drawable_9patch"/>
+        </layer-list>
+    </item>
+</selector>
