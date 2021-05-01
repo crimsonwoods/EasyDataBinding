@@ -32,7 +32,7 @@ sealed class Background {
     ) : Background()
 
     data class Drawable(
-        val drawable: android.graphics.drawable.Drawable?
+        val drawable: net.crimsonwoods.easydatabinding.models.Drawable
     ) : Background()
 
     object None : Background()
@@ -42,7 +42,8 @@ sealed class Background {
         fun of(@DrawableRes resId: Int): Background = Res(resId)
 
         @JvmStatic
-        fun of(drawable: android.graphics.drawable.Drawable?): Background = Drawable(drawable)
+        fun of(drawable: android.graphics.drawable.Drawable?): Background =
+            Drawable(net.crimsonwoods.easydatabinding.models.Drawable.of(drawable))
 
         @JvmStatic
         fun argb(alpha: Int, red: Int, green: Int, blue: Int): Background =

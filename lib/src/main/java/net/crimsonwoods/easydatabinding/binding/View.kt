@@ -46,7 +46,7 @@ fun View.setBackground(value: Background) = when (value) {
         setBackgroundResource(value.resId)
     }
     is Background.Drawable -> {
-        background = value.drawable
+        background = value.drawable.toDrawable(context)
     }
     is Background.None -> {
         background = null

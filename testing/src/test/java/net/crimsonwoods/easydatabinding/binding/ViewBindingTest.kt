@@ -127,7 +127,7 @@ class ViewBindingTest {
     fun testBinding_setBackground_Drawable() {
         scenario.onFragment { fragment ->
             fragment.requireView().findViewById<TextView>(android.R.id.text1)
-                .setBackground(Background.Drawable(ShapeDrawable(RectShape())))
+                .setBackground(Background.of(ShapeDrawable(RectShape())))
         }
         onView(withId(android.R.id.text1)).check(matches(isDrawableClassOf<ShapeDrawable>()))
     }
