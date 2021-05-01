@@ -90,7 +90,8 @@ sealed class Drawable {
         fun of(@DrawableRes resId: Int): Drawable = Res(resId)
 
         @JvmStatic
-        fun of(drawable: android.graphics.drawable.Drawable): Drawable = when (drawable) {
+        fun of(drawable: android.graphics.drawable.Drawable?): Drawable = when (drawable) {
+            null -> None
             is AnimationDrawable -> Animation(drawable)
             is BitmapDrawable -> Bitmap(drawable)
             is ColorDrawable -> Color(drawable)
