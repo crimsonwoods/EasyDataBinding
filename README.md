@@ -92,6 +92,7 @@ __Supported__:
 - String
 
 __Not Supported__:
+- Animator
 - Array (String, Integer, etc.)
 - Attr
 - Font
