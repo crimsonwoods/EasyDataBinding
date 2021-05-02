@@ -1,6 +1,7 @@
 package net.crimsonwoods.easydatabinding.binding
 
 import android.content.res.ColorStateList
+import android.graphics.drawable.NinePatchDrawable
 import android.view.View
 import android.widget.CompoundButton
 import androidx.core.content.ContextCompat
@@ -16,7 +17,9 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import kotlin.test.BeforeTest
 import net.crimsonwoods.easydatabinding.fragment.TestFragment
+import net.crimsonwoods.easydatabinding.matcher.ViewMatchers
 import net.crimsonwoods.easydatabinding.models.Bool
+import net.crimsonwoods.easydatabinding.models.Drawable
 import net.crimsonwoods.easydatabinding.models.Tint
 import net.crimsonwoods.easydatabinding.testing.R
 import org.hamcrest.Description
@@ -45,6 +48,16 @@ class CompoundButtonBindingTest {
     }
 
     @Test
+    fun testBinding_setButtonDrawable() {
+        scenario.onFragment { fragment ->
+            fragment.requireView().requireViewById<CompoundButton>(R.id.toggle)
+                .setButtonDrawable(Drawable.of(R.drawable.test_drawable_9patch))
+        }
+        onView(withId(R.id.toggle))
+            .check(matches(withButtonDrawableTypeOf<NinePatchDrawable>()))
+    }
+
+    @Test
     fun testBinding_setButtonTint() {
         scenario.onFragment { fragment ->
             fragment.requireView().requireViewById<CompoundButton>(R.id.toggle)
@@ -68,6 +81,10 @@ class CompoundButtonBindingTest {
                 return item.isChecked
             }
         }
+    }
+
+    private inline fun <reified T : android.graphics.drawable.Drawable> withButtonDrawableTypeOf(): Matcher<View> {
+        return ViewMatchers.withDrawableTypeOf<CompoundButton, T>(CompoundButtonCompat::getButtonDrawable)
     }
 
     private fun withTint(value: ColorStateList?): Matcher<View> {
