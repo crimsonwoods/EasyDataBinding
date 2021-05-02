@@ -287,6 +287,15 @@ class ViewBindingTest {
     }
 
     @Test
+    fun testBinding_setLongClickable() {
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<TextView>(android.R.id.text1)
+                .setLongClickable(Bool.TRUE)
+        }
+        onView(withId(android.R.id.text1)).check(matches(isLongClickable()))
+    }
+
+    @Test
     fun testBinding_setFocusable() {
         scenario.onFragment { fragment ->
             fragment.requireView().findViewById<TextView>(android.R.id.text1)
@@ -520,6 +529,18 @@ class ViewBindingTest {
 
             override fun matchesSafely(item: View): Boolean {
                 return item.isSoundEffectsEnabled
+            }
+        }
+    }
+
+    private fun isLongClickable(): Matcher<View> {
+        return object : TypeSafeMatcher<View>() {
+            override fun describeTo(description: Description) {
+                description.appendText("is long-clickable")
+            }
+
+            override fun matchesSafely(item: View): Boolean {
+                return item.isLongClickable
             }
         }
     }
