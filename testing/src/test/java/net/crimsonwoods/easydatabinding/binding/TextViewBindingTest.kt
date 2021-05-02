@@ -1,12 +1,17 @@
 package net.crimsonwoods.easydatabinding.binding
 
+import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.drawable.ColorDrawable
+import android.util.TypedValue
 import android.view.View
 import android.widget.TextView
 import androidx.annotation.ColorInt
+import androidx.annotation.Px
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.lifecycle.Lifecycle
+import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.BoundedMatcher
@@ -19,6 +24,7 @@ import net.crimsonwoods.easydatabinding.fragment.TestFragment
 import net.crimsonwoods.easydatabinding.models.Bool
 import net.crimsonwoods.easydatabinding.models.Color
 import net.crimsonwoods.easydatabinding.models.Text
+import net.crimsonwoods.easydatabinding.models.TextAppearance
 import net.crimsonwoods.easydatabinding.testing.R
 import org.hamcrest.Description
 import org.hamcrest.Matcher
@@ -124,6 +130,26 @@ class TextViewBindingTest {
                     .setTextAllCaps(Bool.TRUE)
             }
         onView(withId(android.R.id.text1)).check(matches(isAllCaps()))
+    }
+
+    @Test
+    fun testBinding_setTextAppearance() {
+        val context = ApplicationProvider.getApplicationContext<Context>()
+        launchFragmentInContainer<TestFragment>()
+            .moveToState(Lifecycle.State.RESUMED)
+            .onFragment { fragment ->
+                fragment.requireView().findViewById<TextView>(android.R.id.text1)
+                    .setTextAppearance(TextAppearance(R.style.TextAppearance_Testing_Test))
+            }
+        val textSize = TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_SP,
+            32f,
+            context.resources.displayMetrics
+        )
+        val textColor = ContextCompat.getColor(context, R.color.test_color)
+        onView(withId(android.R.id.text1))
+            .check(matches(withTextSize(textSize)))
+            .check(matches(hasTextColor(textColor)))
     }
 
     @Test
@@ -362,6 +388,18 @@ class TextViewBindingTest {
 
             override fun matchesSafely(item: TextView): Boolean {
                 return item.isAllCaps
+            }
+        }
+    }
+
+    private fun withTextSize(@Px value: Float): Matcher<View> {
+        return object : BoundedMatcher<View, TextView>(TextView::class.java) {
+            override fun describeTo(description: Description) {
+                description.appendText("with text size $value")
+            }
+
+            override fun matchesSafely(item: TextView): Boolean {
+                return item.textSize == value
             }
         }
     }
