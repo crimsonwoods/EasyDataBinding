@@ -3,11 +3,13 @@ package net.crimsonwoods.easydatabinding.binding
 import android.util.TypedValue
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.core.widget.TextViewCompat
 import androidx.databinding.BindingAdapter
 import net.crimsonwoods.easydatabinding.models.Bool
 import net.crimsonwoods.easydatabinding.models.Color
 import net.crimsonwoods.easydatabinding.models.Dimension
 import net.crimsonwoods.easydatabinding.models.Text
+import net.crimsonwoods.easydatabinding.models.TextAppearance
 import net.crimsonwoods.easydatabinding.models.toCharSequence
 
 @BindingAdapter("android:text")
@@ -18,6 +20,11 @@ fun TextView.setText(text: Text) {
 @BindingAdapter("android:textAllCaps")
 fun TextView.setTextAllCaps(value: Bool) {
     isAllCaps = value.toBoolean()
+}
+
+@BindingAdapter("android:textAppearance")
+fun TextView.setTextAppearance(value: TextAppearance) {
+    TextViewCompat.setTextAppearance(this, value.resId)
 }
 
 @BindingAdapter("android:textColor")
