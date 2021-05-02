@@ -191,6 +191,14 @@ __Not Supported__:
 |android:footerDividersEnabled|Bool      |
 |android:headerDividersEnabled|Bool      |
 
+### SearchView
+
+|XML attribute             |data model|
+|:-------------------------|:---------|
+|android:iconifiedByDefault|Bool      |
+|android:maxWidth          |Dimension |
+|android:queryHint         |Text      |
+
 ### ScrollView
 
 |XML attribute       |data model|
