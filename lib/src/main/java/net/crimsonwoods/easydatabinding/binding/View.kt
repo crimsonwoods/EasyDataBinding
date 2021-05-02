@@ -123,6 +123,11 @@ fun View.setClickable(value: Bool) {
     isClickable = value.toBoolean(resources)
 }
 
+@BindingAdapter("android:longClickable")
+fun View.setLongClickable(value: Bool) {
+    isLongClickable = value.toBoolean()
+}
+
 @BindingAdapter("android:focusable")
 fun View.setFocusable(value: Bool) {
     isFocusable = value.toBoolean(resources)
