@@ -17,7 +17,7 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import kotlin.test.BeforeTest
 import net.crimsonwoods.easydatabinding.fragment.TestFragment
-import net.crimsonwoods.easydatabinding.matcher.ViewMatchers
+import net.crimsonwoods.easydatabinding.matcher.ViewMatchers.withDrawableTypeOf
 import net.crimsonwoods.easydatabinding.models.Bool
 import net.crimsonwoods.easydatabinding.models.Drawable
 import net.crimsonwoods.easydatabinding.models.Tint
@@ -84,7 +84,7 @@ class CompoundButtonBindingTest {
     }
 
     private inline fun <reified T : android.graphics.drawable.Drawable> withButtonDrawableTypeOf(): Matcher<View> {
-        return ViewMatchers.withDrawableTypeOf<CompoundButton, T>(CompoundButtonCompat::getButtonDrawable)
+        return withDrawableTypeOf<CompoundButton, T>(CompoundButtonCompat::getButtonDrawable)
     }
 
     private fun withTint(value: ColorStateList?): Matcher<View> {
