@@ -90,6 +90,7 @@ __Supported__:
 - Fraction
 - Integer
 - String
+- TextAppearance
 
 __Not Supported__:
 - Animator
@@ -115,6 +116,7 @@ __Not Supported__:
 |android:contentDescription |Text      |
 |android:enabled            |Bool      |
 |android:focusable          |Bool      |
+|android:longClickable      |Bool      |
 |android:minHeight          |Dimension |
 |android:minWidth           |Dimension |
 |android:padding            |Dimension |
@@ -136,19 +138,21 @@ __Not Supported__:
 
 ### TextView
 
-|XML attribute        |data model|
-|:--------------------|:---------|
-|android:text         |Text      |
-|android:textSize     |Dimension |
-|android:textColor    |Color     |
-|android:hint         |Text      |
-|android:textColorHint|Color     |
+|XML attribute         |data model    |
+|:---------------------|:-------------|
+|android:text          |Text          |
+|android:textAppearance|TextAppearance|
+|android:textSize      |Dimension     |
+|android:textColor     |Color         |
+|android:hint          |Text          |
+|android:textColorHint |Color         |
 
 ### CompoundButton
 
 |XML attribute     |data model|
 |:-----------------|:---------|
 |android:checked   |Bool      |
+|android:button    |Drawable  |
 |android:buttonTint|Tint      |
 
 ### ToggleButton
