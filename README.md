@@ -191,6 +191,26 @@ __Not Supported__:
 |android:footerDividersEnabled|Bool      |
 |android:headerDividersEnabled|Bool      |
 
+### ProgressBar
+
+|XML attribute                |data model|
+|:----------------------------|:---------|
+|android:indeterminate         |Bool      |
+|android:indeterminateDrawable |Drawable  |
+|android:indeterminateTint     |Tint      |
+|android:max                   |Integer   |
+|android:maxHeight             |Dimension |
+|android:maxWidth              |Dimension |
+|android:min                   |Integer   |
+|android:minHeight             |Dimension |
+|android:minWidth              |Dimension |
+|android:progress              |Integer   |
+|android:progressBackgroundTint|Tint      |
+|android:progressDrawable      |Drawable  |
+|android:progressTint          |Tint      |
+|android:secondaryProgress     |Integer   |
+|android:secondaryProgressTint |Tint      |
+
 ### SearchView
 
 |XML attribute             |data model|
