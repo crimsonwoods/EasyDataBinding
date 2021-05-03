@@ -15,6 +15,7 @@ import net.crimsonwoods.easydatabinding.models.Dimension
 import net.crimsonwoods.easydatabinding.models.Drawable
 import net.crimsonwoods.easydatabinding.models.Fraction
 import net.crimsonwoods.easydatabinding.models.Integer
+import net.crimsonwoods.easydatabinding.models.Interpolator
 import net.crimsonwoods.easydatabinding.models.Text
 import net.crimsonwoods.easydatabinding.models.Tint
 import net.crimsonwoods.easydatabinding.models.toAnimation
@@ -24,6 +25,7 @@ import net.crimsonwoods.easydatabinding.models.toColorStateList
 import net.crimsonwoods.easydatabinding.models.toDrawable
 import net.crimsonwoods.easydatabinding.models.toFloat
 import net.crimsonwoods.easydatabinding.models.toInt
+import net.crimsonwoods.easydatabinding.models.toInterpolator
 
 @BindingAdapter("android:alpha")
 fun View.setAlpha(value: Fraction) {
@@ -181,4 +183,9 @@ internal val View.toColorStateList: Tint.() -> ColorStateList?
 internal val View.toDrawable: Drawable.() -> android.graphics.drawable.Drawable?
     get() {
         return { toDrawable(context) }
+    }
+
+internal val View.toInterpolator: Interpolator.() -> android.view.animation.Interpolator?
+    get() {
+        return { toInterpolator(context) }
     }
