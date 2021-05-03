@@ -11,6 +11,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:indeterminateOnly="false" />
+
     <RelativeLayout
         android:id="@+id/header"
         android:layout_width="match_parent"
