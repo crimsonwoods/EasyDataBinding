@@ -193,23 +193,24 @@ __Not Supported__:
 
 ### ProgressBar
 
-|XML attribute                |data model|
-|:----------------------------|:---------|
-|android:indeterminate         |Bool      |
-|android:indeterminateDrawable |Drawable  |
-|android:indeterminateTint     |Tint      |
-|android:max                   |Integer   |
-|android:maxHeight             |Dimension |
-|android:maxWidth              |Dimension |
-|android:min                   |Integer   |
-|android:minHeight             |Dimension |
-|android:minWidth              |Dimension |
-|android:progress              |Integer   |
-|android:progressBackgroundTint|Tint      |
-|android:progressDrawable      |Drawable  |
-|android:progressTint          |Tint      |
-|android:secondaryProgress     |Integer   |
-|android:secondaryProgressTint |Tint      |
+|XML attribute                |data model   |
+|:----------------------------|:------------|
+|android:indeterminate         |Bool        |
+|android:indeterminateDrawable |Drawable    |
+|android:indeterminateTint     |Tint        |
+|android:interpolator          |Interpolator|
+|android:max                   |Integer     |
+|android:maxHeight             |Dimension   |
+|android:maxWidth              |Dimension   |
+|android:min                   |Integer     |
+|android:minHeight             |Dimension   |
+|android:minWidth              |Dimension   |
+|android:progress              |Integer     |
+|android:progressBackgroundTint|Tint        |
+|android:progressDrawable      |Drawable    |
+|android:progressTint          |Tint        |
+|android:secondaryProgress     |Integer     |
+|android:secondaryProgressTint |Tint        |
 
 ### SearchView
 
