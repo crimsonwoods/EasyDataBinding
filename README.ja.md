@@ -88,6 +88,7 @@ __サポート済み__:
 - Drawable
 - Fraction
 - Integer
+- Interpolator
 - String
 - TextAppearance
 

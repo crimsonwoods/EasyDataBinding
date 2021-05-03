@@ -89,6 +89,7 @@ __Supported__:
 - Drawable
 - Fraction
 - Integer
+- Interpolator
 - String
 - TextAppearance
 
