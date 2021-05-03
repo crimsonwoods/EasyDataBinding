@@ -5,6 +5,7 @@ import android.content.res.ColorStateList
 import android.graphics.drawable.NinePatchDrawable
 import android.os.Build
 import android.view.View
+import android.view.animation.AccelerateInterpolator
 import android.widget.ProgressBar
 import androidx.annotation.Px
 import androidx.core.content.ContextCompat
@@ -20,11 +21,13 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import kotlin.test.BeforeTest
 import kotlin.test.assertFailsWith
 import net.crimsonwoods.easydatabinding.fragment.TestFragment
+import net.crimsonwoods.easydatabinding.matcher.ViewMatchers
 import net.crimsonwoods.easydatabinding.matcher.ViewMatchers.withDrawableTypeOf
 import net.crimsonwoods.easydatabinding.models.Bool
 import net.crimsonwoods.easydatabinding.models.Dimension
 import net.crimsonwoods.easydatabinding.models.Drawable
 import net.crimsonwoods.easydatabinding.models.Integer
+import net.crimsonwoods.easydatabinding.models.Interpolator
 import net.crimsonwoods.easydatabinding.models.Tint
 import net.crimsonwoods.easydatabinding.testing.R
 import org.hamcrest.Description
@@ -74,6 +77,17 @@ class ProgressBarBindingTest {
         val expected = ContextCompat.getColorStateList(context, R.color.test_tint)
         onView(withId(R.id.progress))
             .check(matches(withIndeterminateTintList(expected)))
+    }
+
+    @Test
+    fun testBinding_setInterpolator() {
+        // Robolectric's "ShadowAnimationUtils.loadInterpolator" always returns "LinearInterpolator"
+        scenario.onFragment { fragment ->
+            fragment.requireView().requireViewById<ProgressBar>(R.id.progress)
+                .setInterpolator(Interpolator.of(AccelerateInterpolator(2.0f)))
+        }
+        onView(withId(R.id.progress))
+            .check(matches(withInterpolatorTypeOf<AccelerateInterpolator>()))
     }
 
     @Test
@@ -300,6 +314,10 @@ class ProgressBarBindingTest {
                 return item.indeterminateTintList?.toString() == value?.toString()
             }
         }
+    }
+
+    private inline fun <reified T : android.view.animation.Interpolator> withInterpolatorTypeOf(): Matcher<View> {
+        return ViewMatchers.withInterpolatorTypeOf<ProgressBar, T>(ProgressBar::getInterpolator)
     }
 
     private fun withMax(value: Int): Matcher<View> {
