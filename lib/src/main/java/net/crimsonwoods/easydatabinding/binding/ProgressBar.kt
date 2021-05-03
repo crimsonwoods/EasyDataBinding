@@ -1,6 +1,7 @@
 package net.crimsonwoods.easydatabinding.binding
 
 import android.os.Build
+import android.view.animation.LinearInterpolator
 import android.widget.ProgressBar
 import androidx.annotation.RequiresApi
 import androidx.databinding.BindingAdapter
@@ -9,6 +10,7 @@ import net.crimsonwoods.easydatabinding.models.Bool
 import net.crimsonwoods.easydatabinding.models.Dimension
 import net.crimsonwoods.easydatabinding.models.Drawable
 import net.crimsonwoods.easydatabinding.models.Integer
+import net.crimsonwoods.easydatabinding.models.Interpolator
 import net.crimsonwoods.easydatabinding.models.Tint
 
 @BindingAdapter("android:indeterminate")
@@ -24,6 +26,11 @@ fun ProgressBar.setIndeterminateDrawable(value: Drawable) {
 @BindingAdapter("android:indeterminateTint")
 fun ProgressBar.setIndeterminateTintList(value: Tint) {
     indeterminateTintList = value.toColorStateList()
+}
+
+@BindingAdapter("android:interpolator")
+fun ProgressBar.setInterpolator(value: Interpolator) {
+    interpolator = value.toInterpolator() ?: LinearInterpolator()
 }
 
 @BindingAdapter("android:max")
