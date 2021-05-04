@@ -227,6 +227,23 @@ __Not Supported__:
 |:-------------------|:---------|
 |android:fillViewport|Bool      |
 
+### Switch
+
+|XML attribute               |data model    |
+|:---------------------------|:-------------|
+|android:showText            |Bool          |
+|android:splitTrack          |Bool          |
+|android:switchMinWidth      |Dimension     |
+|android:switchPadding       |Dimension     |
+|android:switchTextAppearance|TextAppearance|
+|android:textOff             |Text          |
+|android:textOn              |Text          |
+|android:thumb               |Drawable      |
+|android:thumbTextPadding    |Dimension     |
+|android:thumbTint           |Tint          |
+|android:track               |Drawable      |
+|android:trackTint           |Tint          |
+
 ### ViewAnimator
 
 |XML attribute       |data model|
