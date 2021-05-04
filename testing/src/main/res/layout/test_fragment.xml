@@ -22,7 +22,9 @@
     <RelativeLayout
         android:id="@+id/header"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp">
 
         <ImageView
             android:id="@android:id/icon"
@@ -42,6 +44,14 @@
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
             tools:text="TESTING" />
+
+        <Switch
+            android:id="@+id/selected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
     </RelativeLayout>
 
     <ListView
