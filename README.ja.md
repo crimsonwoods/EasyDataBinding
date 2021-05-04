@@ -233,6 +233,13 @@ __未サポート__:
 |android:inAnimation |Animation |
 |android:outAnimation|Animation |
 
+### ViewFlipper
+
+|XML attribute       |data model|
+|:-------------------|:---------|
+|android:autoStart   |Bool      |
+|android:flipInterval|Integer   |
+
 ### FrameLayout
 
 |XML attribute             |data model|
