@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.annotation.ColorInt
 import androidx.annotation.Px
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.testing.FragmentScenario
 import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.lifecycle.Lifecycle
 import androidx.test.core.app.ApplicationProvider
@@ -19,6 +20,7 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import java.util.Locale
+import kotlin.test.BeforeTest
 import kotlin.test.Test
 import net.crimsonwoods.easydatabinding.fragment.TestFragment
 import net.crimsonwoods.easydatabinding.models.Bool
@@ -33,10 +35,16 @@ import org.robolectric.annotation.Config
 
 @RunWith(AndroidJUnit4::class)
 class TextViewBindingTest {
+    private lateinit var scenario: FragmentScenario<TestFragment>
+
+    @BeforeTest
+    fun setUp() {
+        scenario = launchFragmentInContainer<TestFragment>()
+            .moveToState(Lifecycle.State.RESUMED)
+    }
+
     @Test
     fun testBinding_setText_for_Res() {
-        val scenario = launchFragmentInContainer<TestFragment>()
-            .moveToState(Lifecycle.State.RESUMED)
         onView(withId(android.R.id.text1)).check(matches(withText("")))
         scenario.onFragment { fragment ->
             fragment.requireView().findViewById<TextView>(android.R.id.text1)
@@ -47,8 +55,6 @@ class TextViewBindingTest {
 
     @Test
     fun testBinding_setText_for_ResWithArgs() {
-        val scenario = launchFragmentInContainer<TestFragment>()
-            .moveToState(Lifecycle.State.RESUMED)
         onView(withId(android.R.id.text1)).check(matches(withText("")))
         scenario.onFragment { fragment ->
             fragment.requireView().findViewById<TextView>(android.R.id.text1)
@@ -59,8 +65,6 @@ class TextViewBindingTest {
 
     @Test
     fun testBinding_setText_for_CharSequence() {
-        val scenario = launchFragmentInContainer<TestFragment>()
-            .moveToState(Lifecycle.State.RESUMED)
         onView(withId(android.R.id.text1)).check(matches(withText("")))
         scenario.onFragment { fragment ->
             fragment.requireView().findViewById<TextView>(android.R.id.text1)
@@ -72,8 +76,6 @@ class TextViewBindingTest {
     @Test
     @Config(qualifiers = "ja-rJP")
     fun testBinding_setText_for_Multilingual_jaJP() {
-        val scenario = launchFragmentInContainer<TestFragment>()
-            .moveToState(Lifecycle.State.RESUMED)
         onView(withId(android.R.id.text1)).check(matches(withText("")))
         scenario.onFragment { fragment ->
             fragment.requireView().findViewById<TextView>(android.R.id.text1)
@@ -85,8 +87,6 @@ class TextViewBindingTest {
     @Test
     @Config(qualifiers = "en-rUS")
     fun testBinding_setText_for_Multilingual_jaJP_Fallback() {
-        val scenario = launchFragmentInContainer<TestFragment>()
-            .moveToState(Lifecycle.State.RESUMED)
         onView(withId(android.R.id.text1)).check(matches(withText("")))
         scenario.onFragment { fragment ->
             fragment.requireView().findViewById<TextView>(android.R.id.text1)
@@ -98,8 +98,6 @@ class TextViewBindingTest {
     @Test
     @Config(qualifiers = "en-rUS")
     fun testBinding_setText_for_Multilingual_jaJP_FallbackRes() {
-        val scenario = launchFragmentInContainer<TestFragment>()
-            .moveToState(Lifecycle.State.RESUMED)
         onView(withId(android.R.id.text1)).check(matches(withText("")))
         scenario.onFragment { fragment ->
             fragment.requireView().findViewById<TextView>(android.R.id.text1)
@@ -111,8 +109,6 @@ class TextViewBindingTest {
     @Test
     @Config(qualifiers = "en-rUS")
     fun testBinding_setText_for_Multilingual_enUS() {
-        val scenario = launchFragmentInContainer<TestFragment>()
-            .moveToState(Lifecycle.State.RESUMED)
         onView(withId(android.R.id.text1)).check(matches(withText("")))
         scenario.onFragment { fragment ->
             fragment.requireView().findViewById<TextView>(android.R.id.text1)
@@ -123,24 +119,20 @@ class TextViewBindingTest {
 
     @Test
     fun testBinding_setTextAllCaps() {
-        launchFragmentInContainer<TestFragment>()
-            .moveToState(Lifecycle.State.RESUMED)
-            .onFragment { fragment ->
-                fragment.requireView().findViewById<TextView>(android.R.id.text1)
-                    .setTextAllCaps(Bool.TRUE)
-            }
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<TextView>(android.R.id.text1)
+                .setTextAllCaps(Bool.TRUE)
+        }
         onView(withId(android.R.id.text1)).check(matches(isAllCaps()))
     }
 
     @Test
     fun testBinding_setTextAppearance() {
         val context = ApplicationProvider.getApplicationContext<Context>()
-        launchFragmentInContainer<TestFragment>()
-            .moveToState(Lifecycle.State.RESUMED)
-            .onFragment { fragment ->
-                fragment.requireView().findViewById<TextView>(android.R.id.text1)
-                    .setTextAppearance(TextAppearance(R.style.TextAppearance_Testing_Test))
-            }
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<TextView>(android.R.id.text1)
+                .setTextAppearance(TextAppearance(R.style.TextAppearance_Testing_Test))
+        }
         val textSize = TypedValue.applyDimension(
             TypedValue.COMPLEX_UNIT_SP,
             32f,
@@ -154,11 +146,9 @@ class TextViewBindingTest {
 
     @Test
     fun testBinding_setTextColor_for_Int() {
-        val scenario = launchFragmentInContainer<TestFragment>()
-            .moveToState(Lifecycle.State.RESUMED)
-            .onFragment { fragment ->
-                fragment.requireView().findViewById<TextView>(android.R.id.text1).setTextColor(0)
-            }
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<TextView>(android.R.id.text1).setTextColor(0)
+        }
         onView(withId(android.R.id.text1)).check(matches(hasTextColor(0)))
         scenario.onFragment { fragment ->
             fragment.requireView().findViewById<TextView>(android.R.id.text1)
@@ -169,11 +159,9 @@ class TextViewBindingTest {
 
     @Test
     fun testBinding_setTextColor_for_Res() {
-        val scenario = launchFragmentInContainer<TestFragment>()
-            .moveToState(Lifecycle.State.RESUMED)
-            .onFragment { fragment ->
-                fragment.requireView().findViewById<TextView>(android.R.id.text1).setTextColor(0)
-            }
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<TextView>(android.R.id.text1).setTextColor(0)
+        }
         onView(withId(android.R.id.text1)).check(matches(hasTextColor(0)))
         scenario.onFragment { fragment ->
             fragment.requireView().findViewById<TextView>(android.R.id.text1)
@@ -184,11 +172,9 @@ class TextViewBindingTest {
 
     @Test
     fun testBinding_setTextColor_for_String() {
-        val scenario = launchFragmentInContainer<TestFragment>()
-            .moveToState(Lifecycle.State.RESUMED)
-            .onFragment { fragment ->
-                fragment.requireView().findViewById<TextView>(android.R.id.text1).setTextColor(0)
-            }
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<TextView>(android.R.id.text1).setTextColor(0)
+        }
         onView(withId(android.R.id.text1)).check(matches(hasTextColor(0)))
         scenario.onFragment { fragment ->
             fragment.requireView().findViewById<TextView>(android.R.id.text1)
@@ -199,11 +185,9 @@ class TextViewBindingTest {
 
     @Test
     fun testBinding_setTextColor_for_Drawable() {
-        val scenario = launchFragmentInContainer<TestFragment>()
-            .moveToState(Lifecycle.State.RESUMED)
-            .onFragment { fragment ->
-                fragment.requireView().findViewById<TextView>(android.R.id.text1).setTextColor(0)
-            }
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<TextView>(android.R.id.text1).setTextColor(0)
+        }
         onView(withId(android.R.id.text1)).check(matches(hasTextColor(0)))
         scenario.onFragment { fragment ->
             fragment.requireView().findViewById<TextView>(android.R.id.text1)
@@ -214,11 +198,9 @@ class TextViewBindingTest {
 
     @Test
     fun testBinding_setTextColor_for_StateList() {
-        val scenario = launchFragmentInContainer<TestFragment>()
-            .moveToState(Lifecycle.State.RESUMED)
-            .onFragment { fragment ->
-                fragment.requireView().findViewById<TextView>(android.R.id.text1).setTextColor(0)
-            }
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<TextView>(android.R.id.text1).setTextColor(0)
+        }
         onView(withId(android.R.id.text1)).check(matches(hasTextColor(0)))
         val stateList = ColorStateList(
             arrayOf(intArrayOf(), intArrayOf(android.R.attr.state_selected)),
@@ -233,21 +215,18 @@ class TextViewBindingTest {
 
     @Test
     fun testBinding_setHint() {
-        launchFragmentInContainer<TestFragment>()
-            .moveToState(Lifecycle.State.RESUMED).onFragment { fragment ->
-                fragment.requireView().findViewById<TextView>(android.R.id.text1)
-                    .setHint(Text.of(R.string.test_text))
-            }
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<TextView>(android.R.id.text1)
+                .setHint(Text.of(R.string.test_text))
+        }
         onView(withId(android.R.id.text1)).check(matches(withHint("Testing")))
     }
 
     @Test
     fun testBinding_setHintTextColor_for_Int() {
-        val scenario = launchFragmentInContainer<TestFragment>()
-            .moveToState(Lifecycle.State.RESUMED)
-            .onFragment { fragment ->
-                fragment.requireView().findViewById<TextView>(android.R.id.text1).setTextColor(0)
-            }
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<TextView>(android.R.id.text1).setTextColor(0)
+        }
         onView(withId(android.R.id.text1)).check(matches(hasTextColor(0)))
         scenario.onFragment { fragment ->
             fragment.requireView().findViewById<TextView>(android.R.id.text1)
@@ -258,11 +237,9 @@ class TextViewBindingTest {
 
     @Test
     fun testBinding_setHintTextColor_for_Res() {
-        val scenario = launchFragmentInContainer<TestFragment>()
-            .moveToState(Lifecycle.State.RESUMED)
-            .onFragment { fragment ->
-                fragment.requireView().findViewById<TextView>(android.R.id.text1).setTextColor(0)
-            }
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<TextView>(android.R.id.text1).setTextColor(0)
+        }
         onView(withId(android.R.id.text1)).check(matches(hasTextColor(0)))
         scenario.onFragment { fragment ->
             fragment.requireView().findViewById<TextView>(android.R.id.text1)
@@ -273,11 +250,9 @@ class TextViewBindingTest {
 
     @Test
     fun testBinding_setHintTextColor_for_String() {
-        val scenario = launchFragmentInContainer<TestFragment>()
-            .moveToState(Lifecycle.State.RESUMED)
-            .onFragment { fragment ->
-                fragment.requireView().findViewById<TextView>(android.R.id.text1).setTextColor(0)
-            }
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<TextView>(android.R.id.text1).setTextColor(0)
+        }
         onView(withId(android.R.id.text1)).check(matches(hasTextColor(0)))
         scenario.onFragment { fragment ->
             fragment.requireView().findViewById<TextView>(android.R.id.text1)
@@ -288,11 +263,9 @@ class TextViewBindingTest {
 
     @Test
     fun testBinding_setHintTextColor_for_Drawable() {
-        val scenario = launchFragmentInContainer<TestFragment>()
-            .moveToState(Lifecycle.State.RESUMED)
-            .onFragment { fragment ->
-                fragment.requireView().findViewById<TextView>(android.R.id.text1).setTextColor(0)
-            }
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<TextView>(android.R.id.text1).setTextColor(0)
+        }
         onView(withId(android.R.id.text1)).check(matches(hasTextColor(0)))
         scenario.onFragment { fragment ->
             fragment.requireView().findViewById<TextView>(android.R.id.text1)
@@ -303,11 +276,9 @@ class TextViewBindingTest {
 
     @Test
     fun testBinding_setHintTextColor_for_StateList() {
-        val scenario = launchFragmentInContainer<TestFragment>()
-            .moveToState(Lifecycle.State.RESUMED)
-            .onFragment { fragment ->
-                fragment.requireView().findViewById<TextView>(android.R.id.text1).setTextColor(0)
-            }
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<TextView>(android.R.id.text1).setTextColor(0)
+        }
         onView(withId(android.R.id.text1)).check(matches(hasTextColor(0)))
         val stateList = ColorStateList(
             arrayOf(intArrayOf(), intArrayOf(android.R.attr.state_selected)),
