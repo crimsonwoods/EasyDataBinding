@@ -11,6 +11,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <View
+        android:id="@+id/border"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#ffc1c1c1" />
+
     <ProgressBar
         android:id="@+id/progress"
         android:layout_width="match_parent"
