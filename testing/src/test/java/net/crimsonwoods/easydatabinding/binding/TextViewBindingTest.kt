@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
+import android.text.TextPaint
 import android.util.TypedValue
 import android.view.View
 import android.widget.TextView
@@ -25,6 +26,7 @@ import java.util.Locale
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertFailsWith
+import kotlin.test.assertTrue
 import net.crimsonwoods.easydatabinding.fragment.TestFragment
 import net.crimsonwoods.easydatabinding.models.Bool
 import net.crimsonwoods.easydatabinding.models.Color
@@ -33,6 +35,8 @@ import net.crimsonwoods.easydatabinding.models.Integer
 import net.crimsonwoods.easydatabinding.models.Text
 import net.crimsonwoods.easydatabinding.models.TextAppearance
 import net.crimsonwoods.easydatabinding.models.Tint
+import net.crimsonwoods.easydatabinding.shadows.ShadowPaint
+import net.crimsonwoods.easydatabinding.shadows.ShadowTextPaint
 import net.crimsonwoods.easydatabinding.shadows.ShadowTextView
 import net.crimsonwoods.easydatabinding.testing.R
 import org.hamcrest.Description
@@ -127,7 +131,73 @@ class TextViewBindingTest {
         }
     }
 
-    // TODO Add more tests...
+    @Test
+    fun testBinding_setFirstBaselineToTopHeight() {
+        val resources = ApplicationProvider.getApplicationContext<Context>().resources
+        val paint = TextPaint(TextPaint.ANTI_ALIAS_FLAG).apply {
+            density = resources.displayMetrics.density
+            textSize = 15f
+        }
+        onView(withId(android.R.id.text1)).check(matches(withFirstBaselineToTopHeight(-paint.fontMetricsInt.top)))
+        scenario.onFragment { fragment ->
+            fragment.requireView().requireViewById<TextView>(android.R.id.text1)
+                .setFirstBaselineToTopHeight(Dimension.px(123f))
+        }
+        onView(withId(android.R.id.text1)).check(matches(withFirstBaselineToTopHeight(123)))
+    }
+
+    @Test
+    fun testBinding_setFontFeatureSettings() {
+        onView(withId(android.R.id.text1)).check(matches(withFontFeatureSettings(null)))
+        scenario.onFragment { fragment ->
+            fragment.requireView().requireViewById<TextView>(android.R.id.text1)
+                .setFontFeatureSettings(Text.of("\"smcp\" on"))
+        }
+        onView(withId(android.R.id.text1)).check(matches(withFontFeatureSettings("\"smcp\" on")))
+    }
+
+    @Config(shadows = [ShadowPaint::class, ShadowTextPaint::class, ShadowTextView::class])
+    @Test
+    fun testBinding_setFontVariationSettings() {
+        onView(withId(android.R.id.text1)).check(matches(withFontVariationSettings(null)))
+        scenario.onFragment { fragment ->
+            assertTrue {
+                fragment.requireView().requireViewById<TextView>(android.R.id.text1)
+                    .setFontVariationSettings(Text.of("\"wdth\" 123"))
+            }
+        }
+        onView(withId(android.R.id.text1)).check(matches(withFontVariationSettings("\"wdth\" 123")))
+    }
+
+    @Test
+    fun testBinding_setFreezesText() {
+        onView(withId(android.R.id.text1)).check(matches(not(isTextFrozen())))
+        scenario.onFragment { fragment ->
+            fragment.requireView().requireViewById<TextView>(android.R.id.text1)
+                .setFreezesText(Bool.TRUE)
+        }
+        onView(withId(android.R.id.text1)).check(matches(isTextFrozen()))
+    }
+
+    @Test
+    fun testBinding_setHeight() {
+        onView(withId(android.R.id.text1)).check(matches(withMaxHeight(-1)))
+        scenario.onFragment { fragment ->
+            fragment.requireView().requireViewById<TextView>(android.R.id.text1)
+                .setHeight(Dimension.px(123f))
+        }
+        onView(withId(android.R.id.text1)).check(matches(withMaxHeight(123)))
+    }
+
+    @Test
+    fun testBinding_setIncludeFontPadding() {
+        onView(withId(android.R.id.text1)).check(matches(isFontPaddingIncluded()))
+        scenario.onFragment { fragment ->
+            fragment.requireView().requireViewById<TextView>(android.R.id.text1)
+                .setIncludeFontPadding(Bool.FALSE)
+        }
+        onView(withId(android.R.id.text1)).check(matches(not(isFontPaddingIncluded())))
+    }
 
     @Test
     fun testBinding_setText_for_Res() {
@@ -469,8 +539,67 @@ class TextViewBindingTest {
             }
 
             override fun matchesSafely(item: TextView): Boolean {
-                val h = TextViewCompat.getFirstBaselineToTopHeight(item)
-                return h == value
+                return TextViewCompat.getFirstBaselineToTopHeight(item) == value
+            }
+        }
+    }
+
+    private fun withFontFeatureSettings(value: String?): Matcher<View> {
+        return object : TextViewMatcher() {
+            override fun describeTo(description: Description) {
+                description.appendText("with font feature settings $value")
+            }
+
+            override fun matchesSafely(item: TextView): Boolean {
+                return item.fontFeatureSettings == value
+            }
+        }
+    }
+
+    private fun withFontVariationSettings(value: String?): Matcher<View> {
+        return object : TextViewMatcher() {
+            override fun describeTo(description: Description) {
+                description.appendText("with font variation settings $value")
+            }
+
+            override fun matchesSafely(item: TextView): Boolean {
+                return item.fontVariationSettings == value
+            }
+        }
+    }
+
+    private fun isTextFrozen(): Matcher<View> {
+        return object : TextViewMatcher() {
+            override fun describeTo(description: Description) {
+                description.appendText("is text frozen")
+            }
+
+            override fun matchesSafely(item: TextView): Boolean {
+                return item.freezesText
+            }
+        }
+    }
+
+    private fun withMaxHeight(value: Int): Matcher<View> {
+        return object : TextViewMatcher() {
+            override fun describeTo(description: Description) {
+                description.appendText("with max height")
+            }
+
+            override fun matchesSafely(item: TextView): Boolean {
+                return item.maxHeight == value
+            }
+        }
+    }
+
+    private fun isFontPaddingIncluded(): Matcher<View> {
+        return object : TextViewMatcher() {
+            override fun describeTo(description: Description) {
+                description.appendText("is font paddinbg included")
+            }
+
+            override fun matchesSafely(item: TextView): Boolean {
+                return item.includeFontPadding
             }
         }
     }
