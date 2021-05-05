@@ -4,5 +4,4 @@ import android.text.TextPaint
 import org.robolectric.annotation.Implements
 
 @Implements(TextPaint::class)
-open class ShadowTextPaint : ShadowPaint() {
-}
+open class ShadowTextPaint : ShadowPaint()

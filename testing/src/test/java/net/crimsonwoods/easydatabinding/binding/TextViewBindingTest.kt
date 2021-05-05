@@ -35,9 +35,8 @@ import net.crimsonwoods.easydatabinding.models.Integer
 import net.crimsonwoods.easydatabinding.models.Text
 import net.crimsonwoods.easydatabinding.models.TextAppearance
 import net.crimsonwoods.easydatabinding.models.Tint
-import net.crimsonwoods.easydatabinding.shadows.ShadowPaint
-import net.crimsonwoods.easydatabinding.shadows.ShadowTextPaint
 import net.crimsonwoods.easydatabinding.shadows.ShadowTextView
+import net.crimsonwoods.easydatabinding.shadows.ShadowTypeface
 import net.crimsonwoods.easydatabinding.testing.R
 import org.hamcrest.Description
 import org.hamcrest.Matcher
@@ -156,7 +155,7 @@ class TextViewBindingTest {
         onView(withId(android.R.id.text1)).check(matches(withFontFeatureSettings("\"smcp\" on")))
     }
 
-    @Config(shadows = [ShadowPaint::class, ShadowTextPaint::class, ShadowTextView::class])
+    @Config(shadows = [ShadowTypeface::class])
     @Test
     fun testBinding_setFontVariationSettings() {
         onView(withId(android.R.id.text1)).check(matches(withFontVariationSettings(null)))
