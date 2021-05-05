@@ -66,9 +66,9 @@ fun TextView.setFontFeatureSettings(value: Text) {
 
 @RequiresApi(value = Build.VERSION_CODES.O)
 @BindingAdapter("android:fontVariationSettings")
-fun TextView.setFontVariationSettings(value: Text) {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-        fontVariationSettings = value.toCharSequence().toString()
+fun TextView.setFontVariationSettings(value: Text): Boolean {
+    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        setFontVariationSettings(value.toCharSequence().toString())
     } else {
         throw UnsupportedOperationException(
             "BindingAdapter for \"android:fontVariationSettings\" attribute is being supported after Android O or later."
