@@ -31,6 +31,7 @@ import net.crimsonwoods.easydatabinding.fragment.TestFragment
 import net.crimsonwoods.easydatabinding.models.Bool
 import net.crimsonwoods.easydatabinding.models.Color
 import net.crimsonwoods.easydatabinding.models.Dimension
+import net.crimsonwoods.easydatabinding.models.Fraction
 import net.crimsonwoods.easydatabinding.models.Integer
 import net.crimsonwoods.easydatabinding.models.Text
 import net.crimsonwoods.easydatabinding.models.TextAppearance
@@ -226,6 +227,16 @@ class TextViewBindingTest {
                 .setLineSpacingExtra(Dimension.px(12f))
         }
         onView(withId(android.R.id.text1)).check(matches(withLineSpacingExtra(12f)))
+    }
+
+    @Test
+    fun testBinding_setLineSpacingMultiplier() {
+        onView(withId(android.R.id.text1)).check(matches(withLineSpacingMultiplier(1.0f)))
+        scenario.onFragment { fragment ->
+            fragment.requireView().requireViewById<TextView>(android.R.id.text1)
+                .setLineSpacingMultiplier(Fraction.of(1.2f))
+        }
+        onView(withId(android.R.id.text1)).check(matches(withLineSpacingMultiplier(1.2f)))
     }
 
     @Test
@@ -606,6 +617,18 @@ class TextViewBindingTest {
 
             override fun matchesSafely(item: TextView): Boolean {
                 return item.lineSpacingExtra == value
+            }
+        }
+    }
+
+    private fun withLineSpacingMultiplier(value: Float): Matcher<View> {
+        return object : TextViewMatcher() {
+            override fun describeTo(description: Description) {
+                description.appendText("with line spacing multiplier $value")
+            }
+
+            override fun matchesSafely(item: TextView): Boolean {
+                return item.lineSpacingMultiplier == value
             }
         }
     }
