@@ -209,6 +209,26 @@ class TextViewBindingTest {
     }
 
     @Test
+    fun testBinding_setLineHeight() {
+        onView(withId(android.R.id.text1)).check(matches(withLineHeight(35)))
+        scenario.onFragment { fragment ->
+            fragment.requireView().requireViewById<TextView>(android.R.id.text1)
+                .setLineHeight(Dimension.px(48f))
+        }
+        onView(withId(android.R.id.text1)).check(matches(withLineHeight(48)))
+    }
+
+    @Test
+    fun testBinding_setLineSpacingExtra() {
+        onView(withId(android.R.id.text1)).check(matches(withLineSpacingExtra(0f)))
+        scenario.onFragment { fragment ->
+            fragment.requireView().requireViewById<TextView>(android.R.id.text1)
+                .setLineSpacingExtra(Dimension.px(12f))
+        }
+        onView(withId(android.R.id.text1)).check(matches(withLineSpacingExtra(12f)))
+    }
+
+    @Test
     fun testBinding_setMinLines() {
         onView(withId(android.R.id.text1)).check(matches(withMinLines(0)))
         scenario.onFragment { fragment ->
@@ -562,6 +582,30 @@ class TextViewBindingTest {
 
             override fun matchesSafely(item: TextView): Boolean {
                 return item.isElegantTextHeight
+            }
+        }
+    }
+
+    private fun withLineHeight(@Px value: Int): Matcher<View> {
+        return object : TextViewMatcher() {
+            override fun describeTo(description: Description) {
+                description.appendText("with line height $value")
+            }
+
+            override fun matchesSafely(item: TextView): Boolean {
+                return item.lineHeight == value
+            }
+        }
+    }
+
+    private fun withLineSpacingExtra(@Px value: Float): Matcher<View> {
+        return object : TextViewMatcher() {
+            override fun describeTo(description: Description) {
+                description.appendText("with line spacing extra $value")
+            }
+
+            override fun matchesSafely(item: TextView): Boolean {
+                return item.lineSpacingExtra == value
             }
         }
     }
