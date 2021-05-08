@@ -189,3 +189,8 @@ internal val View.toInterpolator: Interpolator.() -> android.view.animation.Inte
     get() {
         return { toInterpolator(context) }
     }
+
+internal val View.toFloat: Fraction.() -> Float
+    get() {
+        return { toFloat(resources) }
+    }

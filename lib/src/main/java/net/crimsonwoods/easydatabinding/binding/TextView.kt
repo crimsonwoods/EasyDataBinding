@@ -11,11 +11,13 @@ import kotlin.math.roundToInt
 import net.crimsonwoods.easydatabinding.models.Bool
 import net.crimsonwoods.easydatabinding.models.Color
 import net.crimsonwoods.easydatabinding.models.Dimension
+import net.crimsonwoods.easydatabinding.models.Fraction
 import net.crimsonwoods.easydatabinding.models.Integer
 import net.crimsonwoods.easydatabinding.models.Text
 import net.crimsonwoods.easydatabinding.models.TextAppearance
 import net.crimsonwoods.easydatabinding.models.Tint
 import net.crimsonwoods.easydatabinding.models.toCharSequence
+import net.crimsonwoods.easydatabinding.models.toFloat
 
 @BindingAdapter("android:cursorVisible")
 fun TextView.setCursorVisible(value: Bool) {
@@ -107,8 +109,8 @@ fun TextView.setLineSpacingExtra(value: Dimension) {
 }
 
 @BindingAdapter("android:lineSpacingMultiplier")
-fun TextView.setLineSpacingMultiplier(value: Dimension) {
-    setLineSpacing(lineSpacingExtra, value.toPx())
+fun TextView.setLineSpacingMultiplier(value: Fraction) {
+    setLineSpacing(lineSpacingExtra, value.toFloat())
 }
 
 @BindingAdapter("android:lines")
