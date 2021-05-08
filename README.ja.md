@@ -138,14 +138,44 @@ __未サポート__:
 
 ### TextView
 
-|XML attribute         |data model    |
-|:---------------------|:-------------|
-|android:text          |Text          |
-|android:textAppearance|TextAppearance|
-|android:textSize      |Dimension     |
-|android:textColor     |Color         |
-|android:hint          |Text          |
-|android:textColorHint |Color         |
+|XML attribute                     |data model    |
+|:---------------------------------|:-------------|
+|android:cursorVisible             |Bool          |
+|android:drawablePadding           |Dimension     |
+|android:drawableTint              |Tint          |
+|android:elegantTextHeight         |Bool          |
+|android:ems                       |Integer       |
+|android:fallbackLineSpacing       |Bool          |
+|android:firstBaselineToTopHeight  |Dimension     |
+|android:fontFeatureSettings       |Text          |
+|android:fontVariationSettings     |Text          |
+|android:freezesText               |Bool          |
+|android:height                    |Dimension     |
+|android:hint                      |Text          |
+|android:includeFontPadding        |Bool          |
+|android:lastBaselineToBottomHeight|Dimension     |
+|android:lineHeight                |Dimension     |
+|android:lineSpacingExtra          |Dimension     |
+|android:lineSpacingMultiplier     |Fraction      |
+|android:lines                     |Integer       |
+|android:linksClickable            |Bool          |
+|android:maxEms                    |Integer       |
+|android:maxHeight                 |Dimension     |
+|android:maxLines                  |Integer       |
+|android:maxWidth                  |Dimension     |
+|android:minEms                    |Integer       |
+|android:minHeight                 |Dimension     |
+|android:minLines                  |Integer       |
+|android:minWidth                  |Dimension     |
+|android:scrollHorizontally        |Bool          |
+|android:selectAllOnFocus          |Bool          |
+|android:text                      |Text          |
+|android:textAllCaps               |Bool          |
+|android:textAppearance            |TextAppearance|
+|android:textColor                 |Color         |
+|android:textColorHint             |Color         |
+|android:textSize                  |Dimension     |
+|android:width                     |Dimension     |
 
 ### CompoundButton
 
