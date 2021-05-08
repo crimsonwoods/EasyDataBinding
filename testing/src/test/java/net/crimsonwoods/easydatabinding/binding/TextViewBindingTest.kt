@@ -189,6 +189,16 @@ class TextViewBindingTest {
     }
 
     @Test
+    fun testBinding_setWidth() {
+        onView(withId(android.R.id.text1)).check(matches(withMaxWidth(Int.MAX_VALUE)))
+        scenario.onFragment { fragment ->
+            fragment.requireView().requireViewById<TextView>(android.R.id.text1)
+                .setWidth(Dimension.px(123f))
+        }
+        onView(withId(android.R.id.text1)).check(matches(withMaxWidth(123)))
+    }
+
+    @Test
     fun testBinding_setIncludeFontPadding() {
         onView(withId(android.R.id.text1)).check(matches(isFontPaddingIncluded()))
         scenario.onFragment { fragment ->
@@ -196,6 +206,46 @@ class TextViewBindingTest {
                 .setIncludeFontPadding(Bool.FALSE)
         }
         onView(withId(android.R.id.text1)).check(matches(not(isFontPaddingIncluded())))
+    }
+
+    @Test
+    fun testBinding_setMinLines() {
+        onView(withId(android.R.id.text1)).check(matches(withMinLines(0)))
+        scenario.onFragment { fragment ->
+            fragment.requireView().requireViewById<TextView>(android.R.id.text1)
+                .setMinLines(Integer.wrap(1))
+        }
+        onView(withId(android.R.id.text1)).check(matches(withMinLines(1)))
+    }
+
+    @Test
+    fun testBinding_setMinWidth() {
+        onView(withId(android.R.id.text1)).check(matches(withMinWidth(0)))
+        scenario.onFragment { fragment ->
+            fragment.requireView().requireViewById<TextView>(android.R.id.text1)
+                .setMinWidth(Dimension.px(123f))
+        }
+        onView(withId(android.R.id.text1)).check(matches(withMinWidth(123)))
+    }
+
+    @Config(minSdk = Build.VERSION_CODES.Q)
+    @Test
+    fun testBinding_setScrollHorizontally() {
+        onView(withId(android.R.id.text1)).check(matches(not(isHorizontallyScrollable())))
+        scenario.onFragment { fragment ->
+            fragment.requireView().requireViewById<TextView>(android.R.id.text1)
+                .setScrollHorizontally(Bool.TRUE)
+        }
+        onView(withId(android.R.id.text1)).check(matches(isHorizontallyScrollable()))
+    }
+
+    @Test
+    fun testBinding_setSelectAllOnFocus() {
+        scenario.onFragment { fragment ->
+            fragment.requireView().requireViewById<TextView>(android.R.id.text1)
+                .setSelectAllOnFocus(Bool.TRUE)
+        }
+        // Behavior of "setSelectAllOnFocus" cannot be verified on Robolectric.
     }
 
     @Test
@@ -446,6 +496,27 @@ class TextViewBindingTest {
         onView(withId(android.R.id.text1)).check(matches(withHintTint(stateList)))
     }
 
+    @Test
+    fun testBinding_setTextSize() {
+        val context = ApplicationProvider.getApplicationContext<Context>()
+        val defaultTextSize = TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_SP,
+            14f,
+            context.resources.displayMetrics
+        )
+        onView(withId(android.R.id.text1)).check(matches(withTextSize(defaultTextSize)))
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<TextView>(android.R.id.text1)
+                .setTextSize(Dimension.sp(18f))
+        }
+        val expected = TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_SP,
+            18f,
+            context.resources.displayMetrics
+        )
+        onView(withId(android.R.id.text1)).check(matches(withTextSize(expected)))
+    }
+
     private fun isCursorVisible(): Matcher<View> {
         return object : TextViewMatcher() {
             override fun describeTo(description: Description) {
@@ -591,6 +662,18 @@ class TextViewBindingTest {
         }
     }
 
+    private fun withMaxWidth(value: Int): Matcher<View> {
+        return object : TextViewMatcher() {
+            override fun describeTo(description: Description) {
+                description.appendText("with max width")
+            }
+
+            override fun matchesSafely(item: TextView): Boolean {
+                return item.maxWidth == value
+            }
+        }
+    }
+
     private fun isFontPaddingIncluded(): Matcher<View> {
         return object : TextViewMatcher() {
             override fun describeTo(description: Description) {
@@ -599,6 +682,42 @@ class TextViewBindingTest {
 
             override fun matchesSafely(item: TextView): Boolean {
                 return item.includeFontPadding
+            }
+        }
+    }
+
+    private fun withMinLines(value: Int): Matcher<View> {
+        return object : TextViewMatcher() {
+            override fun describeTo(description: Description) {
+                description.appendText("with min lines $value")
+            }
+
+            override fun matchesSafely(item: TextView): Boolean {
+                return item.minLines == value
+            }
+        }
+    }
+
+    private fun withMinWidth(value: Int): Matcher<View> {
+        return object : TextViewMatcher() {
+            override fun describeTo(description: Description) {
+                description.appendText("with min width $value")
+            }
+
+            override fun matchesSafely(item: TextView): Boolean {
+                return item.minWidth == value
+            }
+        }
+    }
+
+    private fun isHorizontallyScrollable(): Matcher<View> {
+        return object : TextViewMatcher() {
+            override fun describeTo(description: Description) {
+                description.appendText("is horizontally scrollable")
+            }
+
+            override fun matchesSafely(item: TextView): Boolean {
+                return item.isHorizontallyScrollable
             }
         }
     }
