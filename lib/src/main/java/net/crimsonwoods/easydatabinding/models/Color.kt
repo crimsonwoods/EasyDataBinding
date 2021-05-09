@@ -1,9 +1,11 @@
 package net.crimsonwoods.easydatabinding.models
 
+import android.content.Context
 import android.graphics.drawable.ColorDrawable
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.annotation.IntRange
+import androidx.core.content.ContextCompat
 
 sealed class Color {
     data class Int(
@@ -61,5 +63,24 @@ sealed class Color {
         fun of(
             stateList: android.content.res.ColorStateList
         ): Color = StateList(stateList)
+    }
+}
+
+@ColorInt
+fun Color.toInt(context: Context): Int = when (this) {
+    is Color.Int -> {
+        rawValue
+    }
+    is Color.Res -> {
+        ContextCompat.getColor(context, resId)
+    }
+    is Color.String -> {
+        android.graphics.Color.parseColor(color)
+    }
+    is Color.Drawable -> {
+        drawable.color
+    }
+    is Color.StateList -> {
+        stateList.defaultColor
     }
 }

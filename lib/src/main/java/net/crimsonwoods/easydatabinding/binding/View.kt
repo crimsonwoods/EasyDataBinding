@@ -11,6 +11,7 @@ import kotlin.math.roundToInt
 import net.crimsonwoods.easydatabinding.models.Animation
 import net.crimsonwoods.easydatabinding.models.Background
 import net.crimsonwoods.easydatabinding.models.Bool
+import net.crimsonwoods.easydatabinding.models.Color
 import net.crimsonwoods.easydatabinding.models.Dimension
 import net.crimsonwoods.easydatabinding.models.Drawable
 import net.crimsonwoods.easydatabinding.models.Fraction
@@ -173,6 +174,11 @@ internal val View.toInt: Integer.() -> Int
 internal val View.toPx: Dimension.() -> Float
     get() {
         return { toPx(resources) }
+    }
+
+internal val View.toColorInt: Color.() -> Int
+    get() {
+        return { toInt(context) }
     }
 
 internal val View.toColorStateList: Tint.() -> ColorStateList?
