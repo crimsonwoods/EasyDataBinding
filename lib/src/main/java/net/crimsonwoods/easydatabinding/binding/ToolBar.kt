@@ -10,6 +10,7 @@ import net.crimsonwoods.easydatabinding.models.Dimension
 import net.crimsonwoods.easydatabinding.models.Drawable
 import net.crimsonwoods.easydatabinding.models.Text
 import net.crimsonwoods.easydatabinding.models.TextAppearance
+import net.crimsonwoods.easydatabinding.models.Theme
 
 @RequiresApi(value = Build.VERSION_CODES.Q)
 @BindingAdapter("android:collapseContentDescription")
@@ -97,6 +98,11 @@ fun Toolbar.setNavigationContentDescription(value: Text) {
 @BindingAdapter("android:navigationIcon")
 fun Toolbar.setNavigationIcon(value: Drawable) {
     navigationIcon = value.toDrawable()
+}
+
+@BindingAdapter("android:popupTheme")
+fun Toolbar.setPopupTheme(value: Theme) {
+    popupTheme = value.resId
 }
 
 @BindingAdapter("android:subtitle")
