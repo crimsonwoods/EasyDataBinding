@@ -31,7 +31,7 @@ class AbsListViewBindingTest {
         scenario = launchFragmentInContainer<TestFragment>()
             .moveToState(Lifecycle.State.RESUMED)
             .onFragment { fragment ->
-                fragment.requireView().requireViewById<ListView>(R.id.list).apply {
+                fragment.requireView().findViewById<ListView>(R.id.list).apply {
                     // To enable fast-scroll, ListView must contain many items (over 4 pages).
                     adapter = object : ArrayAdapter<String>(
                         fragment.requireContext(),
@@ -46,7 +46,7 @@ class AbsListViewBindingTest {
     @Test
     fun testBinding_setFastScrollEnabled() {
         scenario.onFragment { fragment ->
-            fragment.requireView().requireViewById<ListView>(R.id.list)
+            fragment.requireView().findViewById<ListView>(R.id.list)
                 .setFastScrollEnabled(Bool.TRUE)
         }
         onView(withId(R.id.list))
@@ -57,7 +57,7 @@ class AbsListViewBindingTest {
     fun testBinding_setSmoothScrollbar() {
         scenario.onFragment { fragment ->
             // SmoothScrollbar is enabled by default.
-            fragment.requireView().requireViewById<ListView>(R.id.list)
+            fragment.requireView().findViewById<ListView>(R.id.list)
                 .setSmoothScrollbarEnabled(Bool.FALSE)
         }
         onView(withId(R.id.list))
@@ -67,7 +67,7 @@ class AbsListViewBindingTest {
     @Test
     fun testBinding_setStackFromBottom() {
         scenario.onFragment { fragment ->
-            fragment.requireView().requireViewById<ListView>(R.id.list)
+            fragment.requireView().findViewById<ListView>(R.id.list)
                 .setStackFromBottom(Bool.TRUE)
         }
         onView(withId(R.id.list))
@@ -77,7 +77,7 @@ class AbsListViewBindingTest {
     @Test
     fun testBinding_setTextFilterEnabled() {
         scenario.onFragment { fragment ->
-            fragment.requireView().requireViewById<ListView>(R.id.list)
+            fragment.requireView().findViewById<ListView>(R.id.list)
                 .setTextFilterEnabled(Bool.TRUE)
         }
         onView(withId(R.id.list))

@@ -35,14 +35,14 @@ class ListViewBindingTest {
         scenario = launchFragmentInContainer<TestFragment>()
             .moveToState(Lifecycle.State.RESUMED)
             .onFragment { fragment ->
-                fragment.requireView().requireViewById<ListView>(R.id.list)
+                fragment.requireView().findViewById<ListView>(R.id.list)
             }
     }
 
     @Test
     fun testBinding_setDivider() {
         scenario.onFragment { fragment ->
-            fragment.requireView().requireViewById<ListView>(R.id.list)
+            fragment.requireView().findViewById<ListView>(R.id.list)
                 .setDivider(Drawable.ofColor(Color.RED))
         }
         onView(withId(R.id.list))
@@ -52,7 +52,7 @@ class ListViewBindingTest {
     @Test
     fun testBinding_setDividerHeight() {
         scenario.onFragment { fragment ->
-            fragment.requireView().requireViewById<ListView>(R.id.list)
+            fragment.requireView().findViewById<ListView>(R.id.list)
                 .setDividerHeight(Dimension.px(10.0f))
         }
         onView(withId(R.id.list))
@@ -63,7 +63,7 @@ class ListViewBindingTest {
     fun testBinding_setFooterDividersEnabled() {
         scenario.onFragment { fragment ->
             // footer dividers are enabled by default.
-            fragment.requireView().requireViewById<ListView>(R.id.list)
+            fragment.requireView().findViewById<ListView>(R.id.list)
                 .setFooterDividersEnabled(Bool.FALSE)
         }
         onView(withId(R.id.list))
@@ -74,7 +74,7 @@ class ListViewBindingTest {
     fun testBinding_setHeaderDividersEnabled() {
         scenario.onFragment { fragment ->
             // header dividers are enabled by default.
-            fragment.requireView().requireViewById<ListView>(R.id.list)
+            fragment.requireView().findViewById<ListView>(R.id.list)
                 .setHeaderDividersEnabled(Bool.FALSE)
         }
         onView(withId(R.id.list))

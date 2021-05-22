@@ -32,7 +32,7 @@ class FrameLayoutBindingTest {
     @Test
     fun testBinding_setMeasureAllChildren() {
         scenario.onFragment { fragment ->
-            fragment.requireView().requireViewById<FrameLayout>(R.id.contents)
+            fragment.requireView().findViewById<FrameLayout>(R.id.contents)
                 .setMeasureAllChildren(Bool.TRUE)
         }
         onView(withId(R.id.contents))

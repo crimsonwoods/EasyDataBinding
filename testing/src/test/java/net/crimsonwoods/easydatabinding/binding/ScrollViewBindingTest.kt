@@ -33,7 +33,7 @@ class ScrollViewBindingTest {
     fun testBinding_setFillViewport() {
         scenario.onFragment { fragment ->
             // fillViewport is disabled by default.
-            fragment.requireView().requireViewById<ScrollView>(R.id.scroll)
+            fragment.requireView().findViewById<ScrollView>(R.id.scroll)
                 .setFillViewport(Bool.TRUE)
         }
         onView(withId(R.id.scroll))

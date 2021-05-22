@@ -36,7 +36,7 @@ class ViewFlipperBindingTest {
     fun testBinding_setFlipInterval() {
         scenario.onFragment { fragment ->
             // Default interval is 3000ms.
-            fragment.requireView().requireViewById<ViewFlipper>(R.id.flipper)
+            fragment.requireView().findViewById<ViewFlipper>(R.id.flipper)
                 .setFlipInterval(Integer.wrap(1234))
         }
         onView(withId(R.id.flipper))
@@ -48,7 +48,7 @@ class ViewFlipperBindingTest {
     fun testBinding_setAutoStart() {
         scenario.onFragment { fragment ->
             // "autoStart" is set to false by default.
-            fragment.requireView().requireViewById<ViewFlipper>(R.id.flipper)
+            fragment.requireView().findViewById<ViewFlipper>(R.id.flipper)
                 .setAutoStart(Bool.TRUE)
         }
         onView(withId(R.id.flipper))

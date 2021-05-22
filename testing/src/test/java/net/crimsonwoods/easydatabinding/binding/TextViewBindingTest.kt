@@ -60,7 +60,7 @@ class TextViewBindingTest {
     fun testBinding_setCursorVisible() {
         onView(withId(android.R.id.text1)).check(matches(isCursorVisible()))
         scenario.onFragment { fragment ->
-            fragment.requireView().requireViewById<TextView>(android.R.id.text1)
+            fragment.requireView().findViewById<TextView>(android.R.id.text1)
                 .setCursorVisible(Bool.FALSE)
         }
         onView(withId(android.R.id.text1)).check(matches(not(isCursorVisible())))
@@ -70,7 +70,7 @@ class TextViewBindingTest {
     fun testBinding_setDrawablePadding() {
         onView(withId(android.R.id.text1)).check(matches(withDrawablePadding(0)))
         scenario.onFragment { fragment ->
-            fragment.requireView().requireViewById<TextView>(android.R.id.text1)
+            fragment.requireView().findViewById<TextView>(android.R.id.text1)
                 .setDrawablePadding(Dimension.px(123f))
         }
         onView(withId(android.R.id.text1)).check(matches(withDrawablePadding(123)))
@@ -81,7 +81,7 @@ class TextViewBindingTest {
         val context = ApplicationProvider.getApplicationContext<Context>()
         onView(withId(android.R.id.text1)).check(matches(withDrawableTintList(null)))
         scenario.onFragment { fragment ->
-            fragment.requireView().requireViewById<TextView>(android.R.id.text1)
+            fragment.requireView().findViewById<TextView>(android.R.id.text1)
                 .setDrawableTintList(Tint.of(R.color.test_tint))
         }
         val expected = ContextCompat.getColorStateList(context, R.color.test_tint)
@@ -93,7 +93,7 @@ class TextViewBindingTest {
     fun testBinding_setElegantTextHeight() {
         onView(withId(android.R.id.text1)).check(matches(not(isElegantTextHeight())))
         scenario.onFragment { fragment ->
-            fragment.requireView().requireViewById<TextView>(android.R.id.text1)
+            fragment.requireView().findViewById<TextView>(android.R.id.text1)
                 .setElegantTextHeight(Bool.TRUE)
         }
         onView(withId(android.R.id.text1)).check(matches(isElegantTextHeight()))
@@ -103,7 +103,7 @@ class TextViewBindingTest {
     fun testBinding_setEms() {
         onView(withId(android.R.id.text1)).check(matches(allOf(withMaxEms(-1), withMinEms(-1))))
         scenario.onFragment { fragment ->
-            fragment.requireView().requireViewById<TextView>(android.R.id.text1)
+            fragment.requireView().findViewById<TextView>(android.R.id.text1)
                 .setEms(Integer.wrap(12))
         }
         onView(withId(android.R.id.text1)).check(matches(allOf(withMaxEms(12), withMinEms(12))))
@@ -114,7 +114,7 @@ class TextViewBindingTest {
     fun testBinding_setFallbackLineSpacing_P() {
         onView(withId(android.R.id.text1)).check(matches(isFallbackLineSpacing()))
         scenario.onFragment { fragment ->
-            fragment.requireView().requireViewById<TextView>(android.R.id.text1)
+            fragment.requireView().findViewById<TextView>(android.R.id.text1)
                 .setFallbackLineSpacing(Bool.FALSE)
         }
         onView(withId(android.R.id.text1)).check(matches(not(isFallbackLineSpacing())))
@@ -140,7 +140,7 @@ class TextViewBindingTest {
         }
         onView(withId(android.R.id.text1)).check(matches(withFirstBaselineToTopHeight(-paint.fontMetricsInt.top)))
         scenario.onFragment { fragment ->
-            fragment.requireView().requireViewById<TextView>(android.R.id.text1)
+            fragment.requireView().findViewById<TextView>(android.R.id.text1)
                 .setFirstBaselineToTopHeight(Dimension.px(123f))
         }
         onView(withId(android.R.id.text1)).check(matches(withFirstBaselineToTopHeight(123)))
@@ -150,7 +150,7 @@ class TextViewBindingTest {
     fun testBinding_setFontFeatureSettings() {
         onView(withId(android.R.id.text1)).check(matches(withFontFeatureSettings(null)))
         scenario.onFragment { fragment ->
-            fragment.requireView().requireViewById<TextView>(android.R.id.text1)
+            fragment.requireView().findViewById<TextView>(android.R.id.text1)
                 .setFontFeatureSettings(Text.of("\"smcp\" on"))
         }
         onView(withId(android.R.id.text1)).check(matches(withFontFeatureSettings("\"smcp\" on")))
@@ -162,7 +162,7 @@ class TextViewBindingTest {
         onView(withId(android.R.id.text1)).check(matches(withFontVariationSettings(null)))
         scenario.onFragment { fragment ->
             assertTrue {
-                fragment.requireView().requireViewById<TextView>(android.R.id.text1)
+                fragment.requireView().findViewById<TextView>(android.R.id.text1)
                     .setFontVariationSettings(Text.of("\"wdth\" 123"))
             }
         }
@@ -173,7 +173,7 @@ class TextViewBindingTest {
     fun testBinding_setFreezesText() {
         onView(withId(android.R.id.text1)).check(matches(not(isTextFrozen())))
         scenario.onFragment { fragment ->
-            fragment.requireView().requireViewById<TextView>(android.R.id.text1)
+            fragment.requireView().findViewById<TextView>(android.R.id.text1)
                 .setFreezesText(Bool.TRUE)
         }
         onView(withId(android.R.id.text1)).check(matches(isTextFrozen()))
@@ -183,7 +183,7 @@ class TextViewBindingTest {
     fun testBinding_setHeight() {
         onView(withId(android.R.id.text1)).check(matches(withMaxHeight(-1)))
         scenario.onFragment { fragment ->
-            fragment.requireView().requireViewById<TextView>(android.R.id.text1)
+            fragment.requireView().findViewById<TextView>(android.R.id.text1)
                 .setHeight(Dimension.px(123f))
         }
         onView(withId(android.R.id.text1)).check(matches(withMaxHeight(123)))
@@ -193,7 +193,7 @@ class TextViewBindingTest {
     fun testBinding_setWidth() {
         onView(withId(android.R.id.text1)).check(matches(withMaxWidth(Int.MAX_VALUE)))
         scenario.onFragment { fragment ->
-            fragment.requireView().requireViewById<TextView>(android.R.id.text1)
+            fragment.requireView().findViewById<TextView>(android.R.id.text1)
                 .setWidth(Dimension.px(123f))
         }
         onView(withId(android.R.id.text1)).check(matches(withMaxWidth(123)))
@@ -203,7 +203,7 @@ class TextViewBindingTest {
     fun testBinding_setIncludeFontPadding() {
         onView(withId(android.R.id.text1)).check(matches(isFontPaddingIncluded()))
         scenario.onFragment { fragment ->
-            fragment.requireView().requireViewById<TextView>(android.R.id.text1)
+            fragment.requireView().findViewById<TextView>(android.R.id.text1)
                 .setIncludeFontPadding(Bool.FALSE)
         }
         onView(withId(android.R.id.text1)).check(matches(not(isFontPaddingIncluded())))
@@ -213,7 +213,7 @@ class TextViewBindingTest {
     fun testBinding_setLineHeight() {
         onView(withId(android.R.id.text1)).check(matches(withLineHeight(35)))
         scenario.onFragment { fragment ->
-            fragment.requireView().requireViewById<TextView>(android.R.id.text1)
+            fragment.requireView().findViewById<TextView>(android.R.id.text1)
                 .setLineHeight(Dimension.px(48f))
         }
         onView(withId(android.R.id.text1)).check(matches(withLineHeight(48)))
@@ -223,7 +223,7 @@ class TextViewBindingTest {
     fun testBinding_setLineSpacingExtra() {
         onView(withId(android.R.id.text1)).check(matches(withLineSpacingExtra(0f)))
         scenario.onFragment { fragment ->
-            fragment.requireView().requireViewById<TextView>(android.R.id.text1)
+            fragment.requireView().findViewById<TextView>(android.R.id.text1)
                 .setLineSpacingExtra(Dimension.px(12f))
         }
         onView(withId(android.R.id.text1)).check(matches(withLineSpacingExtra(12f)))
@@ -233,7 +233,7 @@ class TextViewBindingTest {
     fun testBinding_setLineSpacingMultiplier() {
         onView(withId(android.R.id.text1)).check(matches(withLineSpacingMultiplier(1.0f)))
         scenario.onFragment { fragment ->
-            fragment.requireView().requireViewById<TextView>(android.R.id.text1)
+            fragment.requireView().findViewById<TextView>(android.R.id.text1)
                 .setLineSpacingMultiplier(Fraction.of(1.2f))
         }
         onView(withId(android.R.id.text1)).check(matches(withLineSpacingMultiplier(1.2f)))
@@ -243,7 +243,7 @@ class TextViewBindingTest {
     fun testBinding_setMinLines() {
         onView(withId(android.R.id.text1)).check(matches(withMinLines(0)))
         scenario.onFragment { fragment ->
-            fragment.requireView().requireViewById<TextView>(android.R.id.text1)
+            fragment.requireView().findViewById<TextView>(android.R.id.text1)
                 .setMinLines(Integer.wrap(1))
         }
         onView(withId(android.R.id.text1)).check(matches(withMinLines(1)))
@@ -253,7 +253,7 @@ class TextViewBindingTest {
     fun testBinding_setMinWidth() {
         onView(withId(android.R.id.text1)).check(matches(withMinWidth(0)))
         scenario.onFragment { fragment ->
-            fragment.requireView().requireViewById<TextView>(android.R.id.text1)
+            fragment.requireView().findViewById<TextView>(android.R.id.text1)
                 .setMinWidth(Dimension.px(123f))
         }
         onView(withId(android.R.id.text1)).check(matches(withMinWidth(123)))
@@ -264,7 +264,7 @@ class TextViewBindingTest {
     fun testBinding_setScrollHorizontally() {
         onView(withId(android.R.id.text1)).check(matches(not(isHorizontallyScrollable())))
         scenario.onFragment { fragment ->
-            fragment.requireView().requireViewById<TextView>(android.R.id.text1)
+            fragment.requireView().findViewById<TextView>(android.R.id.text1)
                 .setScrollHorizontally(Bool.TRUE)
         }
         onView(withId(android.R.id.text1)).check(matches(isHorizontallyScrollable()))
@@ -273,7 +273,7 @@ class TextViewBindingTest {
     @Test
     fun testBinding_setSelectAllOnFocus() {
         scenario.onFragment { fragment ->
-            fragment.requireView().requireViewById<TextView>(android.R.id.text1)
+            fragment.requireView().findViewById<TextView>(android.R.id.text1)
                 .setSelectAllOnFocus(Bool.TRUE)
         }
         // Behavior of "setSelectAllOnFocus" cannot be verified on Robolectric.

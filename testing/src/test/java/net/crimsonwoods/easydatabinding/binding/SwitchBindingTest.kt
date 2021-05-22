@@ -46,7 +46,7 @@ class SwitchBindingTest {
     fun testBinding_setShowText() {
         scenario.onFragment { fragment ->
             // "showText" is set to true by default.
-            fragment.requireView().requireViewById<Switch>(R.id.selected)
+            fragment.requireView().findViewById<Switch>(R.id.selected)
                 .setShowText(Bool.FALSE)
         }
         onView(withId(R.id.selected))
@@ -57,7 +57,7 @@ class SwitchBindingTest {
     fun testBinding_setSplitTrack() {
         scenario.onFragment { fragment ->
             // "splitTrack" is set to false by default.
-            fragment.requireView().requireViewById<Switch>(R.id.selected)
+            fragment.requireView().findViewById<Switch>(R.id.selected)
                 .setSplitTrack(Bool.TRUE)
         }
         onView(withId(R.id.selected))
@@ -67,7 +67,7 @@ class SwitchBindingTest {
     @Test
     fun testBinding_setSwitchMinWidth() {
         scenario.onFragment { fragment ->
-            fragment.requireView().requireViewById<Switch>(R.id.selected)
+            fragment.requireView().findViewById<Switch>(R.id.selected)
                 .setSwitchMinWidth(Dimension.px(123f))
         }
         onView(withId(R.id.selected))
@@ -77,7 +77,7 @@ class SwitchBindingTest {
     @Test
     fun testBinding_setSwitchPadding() {
         scenario.onFragment { fragment ->
-            fragment.requireView().requireViewById<Switch>(R.id.selected)
+            fragment.requireView().findViewById<Switch>(R.id.selected)
                 .setSwitchPadding(Dimension.px(123f))
         }
         onView(withId(R.id.selected))
@@ -87,7 +87,7 @@ class SwitchBindingTest {
     @Test
     fun testBinding_setSwitchTextAppearance() {
         scenario.onFragment { fragment ->
-            fragment.requireView().requireViewById<Switch>(R.id.selected)
+            fragment.requireView().findViewById<Switch>(R.id.selected)
                 .setSwitchTextAppearance(TextAppearance.of(R.style.TextAppearance_Testing_Test))
         }
         // Unfortunately, we have no way to verify modifying "switchTextAppearance" attribute value.
@@ -96,7 +96,7 @@ class SwitchBindingTest {
     @Test
     fun testBinding_setTextOff() {
         scenario.onFragment { fragment ->
-            fragment.requireView().requireViewById<Switch>(R.id.selected)
+            fragment.requireView().findViewById<Switch>(R.id.selected)
                 .setTextOff(Text.of(R.string.test_text))
         }
         onView(withId(R.id.selected))
@@ -106,7 +106,7 @@ class SwitchBindingTest {
     @Test
     fun testBinding_setTextOn() {
         scenario.onFragment { fragment ->
-            fragment.requireView().requireViewById<Switch>(R.id.selected)
+            fragment.requireView().findViewById<Switch>(R.id.selected)
                 .setTextOn(Text.of(R.string.test_text))
         }
         onView(withId(R.id.selected))
@@ -116,7 +116,7 @@ class SwitchBindingTest {
     @Test
     fun testBinding_setThumbDrawable() {
         scenario.onFragment { fragment ->
-            fragment.requireView().requireViewById<Switch>(R.id.selected)
+            fragment.requireView().findViewById<Switch>(R.id.selected)
                 .setThumbDrawable(Drawable.of(R.drawable.test_drawable_oval))
         }
         onView(withId(R.id.selected))
@@ -126,7 +126,7 @@ class SwitchBindingTest {
     @Test
     fun testBinding_setThumbTextPadding() {
         scenario.onFragment { fragment ->
-            fragment.requireView().requireViewById<Switch>(R.id.selected)
+            fragment.requireView().findViewById<Switch>(R.id.selected)
                 .setThumbTextPadding(Dimension.px(123f))
         }
         onView(withId(R.id.selected))
@@ -137,7 +137,7 @@ class SwitchBindingTest {
     fun testBinding_setThumbTintList() {
         val context = ApplicationProvider.getApplicationContext<Context>()
         scenario.onFragment { fragment ->
-            fragment.requireView().requireViewById<Switch>(R.id.selected)
+            fragment.requireView().findViewById<Switch>(R.id.selected)
                 .setThumbTintList(Tint.of(R.color.test_tint))
         }
         val expected = ContextCompat.getColorStateList(context, R.color.test_tint)
@@ -148,7 +148,7 @@ class SwitchBindingTest {
     @Test
     fun testBinding_setTrackDrawable() {
         scenario.onFragment { fragment ->
-            fragment.requireView().requireViewById<Switch>(R.id.selected)
+            fragment.requireView().findViewById<Switch>(R.id.selected)
                 .setTrackDrawable(Drawable.of(R.drawable.test_drawable_oval))
         }
         onView(withId(R.id.selected))
@@ -159,7 +159,7 @@ class SwitchBindingTest {
     fun testBinding_setTrackTintList() {
         val context = ApplicationProvider.getApplicationContext<Context>()
         scenario.onFragment { fragment ->
-            fragment.requireView().requireViewById<Switch>(R.id.selected)
+            fragment.requireView().findViewById<Switch>(R.id.selected)
                 .setTrackTintList(Tint.of(R.color.test_tint))
         }
         val expected = ContextCompat.getColorStateList(context, R.color.test_tint)

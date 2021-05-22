@@ -38,7 +38,7 @@ class SearchViewBindingTest {
     fun testBinding_setIconifiedByDefault() {
         scenario.onFragment { fragment ->
             // iconifiedByDefault is true by default.
-            fragment.requireView().requireViewById<SearchView>(R.id.search)
+            fragment.requireView().findViewById<SearchView>(R.id.search)
                 .setIconifiedByDefault(Bool.FALSE)
         }
         onView(withId(R.id.search))
@@ -48,7 +48,7 @@ class SearchViewBindingTest {
     @Test
     fun testBinding_setMaxWidth() {
         scenario.onFragment { fragment ->
-            fragment.requireView().requireViewById<SearchView>(R.id.search)
+            fragment.requireView().findViewById<SearchView>(R.id.search)
                 .setMaxWidth(Dimension.px(100f))
         }
         onView(withId(R.id.search))
@@ -58,7 +58,7 @@ class SearchViewBindingTest {
     @Test
     fun testBinding_setQueryHint() {
         scenario.onFragment { fragment ->
-            fragment.requireView().requireViewById<SearchView>(R.id.search)
+            fragment.requireView().findViewById<SearchView>(R.id.search)
                 .setQueryHint(Text.of(R.string.test_text))
         }
         onView(withId(R.id.search))

@@ -40,7 +40,7 @@ class CompoundButtonBindingTest {
     @Test
     fun testBinding_setChecked() {
         scenario.onFragment { fragment ->
-            fragment.requireView().requireViewById<CompoundButton>(R.id.toggle)
+            fragment.requireView().findViewById<CompoundButton>(R.id.toggle)
                 .setChecked(Bool.TRUE)
         }
         onView(withId(R.id.toggle))
@@ -50,7 +50,7 @@ class CompoundButtonBindingTest {
     @Test
     fun testBinding_setButtonDrawable() {
         scenario.onFragment { fragment ->
-            fragment.requireView().requireViewById<CompoundButton>(R.id.toggle)
+            fragment.requireView().findViewById<CompoundButton>(R.id.toggle)
                 .setButtonDrawable(Drawable.of(R.drawable.test_drawable_9patch))
         }
         onView(withId(R.id.toggle))
@@ -60,7 +60,7 @@ class CompoundButtonBindingTest {
     @Test
     fun testBinding_setButtonTint() {
         scenario.onFragment { fragment ->
-            fragment.requireView().requireViewById<CompoundButton>(R.id.toggle)
+            fragment.requireView().findViewById<CompoundButton>(R.id.toggle)
                 .setButtonTint(Tint.of(R.color.test_tint))
         }
         val expected = ContextCompat.getColorStateList(

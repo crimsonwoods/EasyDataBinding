@@ -32,7 +32,7 @@ class ViewAnimatorBindingTest {
     @Test
     fun testBinding_setInAnimation() {
         scenario.onFragment { fragment ->
-            fragment.requireView().requireViewById<ViewAnimator>(R.id.flipper)
+            fragment.requireView().findViewById<ViewAnimator>(R.id.flipper)
                 .setInAnimation(Animation.of(R.anim.test_animation_translate))
         }
         onView(withId(R.id.flipper))
@@ -42,7 +42,7 @@ class ViewAnimatorBindingTest {
     @Test
     fun testBinding_setOutAnimation() {
         scenario.onFragment { fragment ->
-            fragment.requireView().requireViewById<ViewAnimator>(R.id.flipper)
+            fragment.requireView().findViewById<ViewAnimator>(R.id.flipper)
                 .setOutAnimation(Animation.of(R.anim.test_animation_translate))
         }
         onView(withId(R.id.flipper))

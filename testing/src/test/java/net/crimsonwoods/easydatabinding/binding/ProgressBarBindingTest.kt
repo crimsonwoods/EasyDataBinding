@@ -50,7 +50,7 @@ class ProgressBarBindingTest {
     fun testBinding_setIndeterminate() {
         scenario.onFragment { fragment ->
             // "indeterminate" is set to false by default when "indeterminateOnly" is set to false.
-            fragment.requireView().requireViewById<ProgressBar>(R.id.progress)
+            fragment.requireView().findViewById<ProgressBar>(R.id.progress)
                 .setIndeterminate(Bool.TRUE)
         }
         onView(withId(R.id.progress))
@@ -60,7 +60,7 @@ class ProgressBarBindingTest {
     @Test
     fun testBinding_setIndeterminateDrawable() {
         scenario.onFragment { fragment ->
-            fragment.requireView().requireViewById<ProgressBar>(R.id.progress)
+            fragment.requireView().findViewById<ProgressBar>(R.id.progress)
                 .setIndeterminateDrawable(Drawable.of(R.drawable.test_drawable_9patch))
         }
         onView(withId(R.id.progress))
@@ -71,7 +71,7 @@ class ProgressBarBindingTest {
     fun testBinding_setIndeterminateTintList() {
         val context = ApplicationProvider.getApplicationContext<Context>()
         scenario.onFragment { fragment ->
-            fragment.requireView().requireViewById<ProgressBar>(R.id.progress)
+            fragment.requireView().findViewById<ProgressBar>(R.id.progress)
                 .setIndeterminateTintList(Tint.of(R.color.test_tint))
         }
         val expected = ContextCompat.getColorStateList(context, R.color.test_tint)
@@ -83,7 +83,7 @@ class ProgressBarBindingTest {
     fun testBinding_setInterpolator() {
         // Robolectric's "ShadowAnimationUtils.loadInterpolator" always returns "LinearInterpolator"
         scenario.onFragment { fragment ->
-            fragment.requireView().requireViewById<ProgressBar>(R.id.progress)
+            fragment.requireView().findViewById<ProgressBar>(R.id.progress)
                 .setInterpolator(Interpolator.of(AccelerateInterpolator(2.0f)))
         }
         onView(withId(R.id.progress))
@@ -93,7 +93,7 @@ class ProgressBarBindingTest {
     @Test
     fun testBinding_setMax() {
         scenario.onFragment { fragment ->
-            fragment.requireView().requireViewById<ProgressBar>(R.id.progress)
+            fragment.requireView().findViewById<ProgressBar>(R.id.progress)
                 .setMax(Integer.wrap(123))
         }
         onView(withId(R.id.progress))
@@ -106,7 +106,7 @@ class ProgressBarBindingTest {
     @Test
     fun testBinding_setMaxHeight_Q() {
         scenario.onFragment { fragment ->
-            fragment.requireView().requireViewById<ProgressBar>(R.id.progress)
+            fragment.requireView().findViewById<ProgressBar>(R.id.progress)
                 .setMaxHeight(Dimension.px(200f))
         }
         onView(withId(R.id.progress))
@@ -119,7 +119,7 @@ class ProgressBarBindingTest {
     fun testBinding_setMaxHeight_P() {
         assertFailsWith<UnsupportedOperationException> {
             scenario.onFragment { fragment ->
-                fragment.requireView().requireViewById<ProgressBar>(R.id.progress)
+                fragment.requireView().findViewById<ProgressBar>(R.id.progress)
                     .setMaxHeight(Dimension.px(200f))
             }
         }
@@ -131,7 +131,7 @@ class ProgressBarBindingTest {
     @Test
     fun testBinding_setMaxWidth_Q() {
         scenario.onFragment { fragment ->
-            fragment.requireView().requireViewById<ProgressBar>(R.id.progress)
+            fragment.requireView().findViewById<ProgressBar>(R.id.progress)
                 .setMaxWidth(Dimension.px(200f))
         }
         onView(withId(R.id.progress))
@@ -144,7 +144,7 @@ class ProgressBarBindingTest {
     fun testBinding_setMaxWidth_P() {
         assertFailsWith<UnsupportedOperationException> {
             scenario.onFragment { fragment ->
-                fragment.requireView().requireViewById<ProgressBar>(R.id.progress)
+                fragment.requireView().findViewById<ProgressBar>(R.id.progress)
                     .setMaxWidth(Dimension.px(200f))
             }
         }
@@ -178,7 +178,7 @@ class ProgressBarBindingTest {
     @Test
     fun testBinding_setMinHeight_Q() {
         scenario.onFragment { fragment ->
-            fragment.requireView().requireViewById<ProgressBar>(R.id.progress)
+            fragment.requireView().findViewById<ProgressBar>(R.id.progress)
                 .setMinHeight(Dimension.px(10f))
         }
         onView(withId(R.id.progress))
@@ -191,7 +191,7 @@ class ProgressBarBindingTest {
     fun testBinding_setMinHeight_P() {
         assertFailsWith<UnsupportedOperationException> {
             scenario.onFragment { fragment ->
-                fragment.requireView().requireViewById<ProgressBar>(R.id.progress)
+                fragment.requireView().findViewById<ProgressBar>(R.id.progress)
                     .setMinHeight(Dimension.px(10f))
             }
         }
@@ -203,7 +203,7 @@ class ProgressBarBindingTest {
     @Test
     fun testBinding_setMinHeight_Q() {
         scenario.onFragment { fragment ->
-            fragment.requireView().requireViewById<ProgressBar>(R.id.progress)
+            fragment.requireView().findViewById<ProgressBar>(R.id.progress)
                 .setMinWidth(Dimension.px(10f))
         }
         onView(withId(R.id.progress))
@@ -216,7 +216,7 @@ class ProgressBarBindingTest {
     fun testBinding_setMinWidth_P() {
         assertFailsWith<UnsupportedOperationException> {
             scenario.onFragment { fragment ->
-                fragment.requireView().requireViewById<ProgressBar>(R.id.progress)
+                fragment.requireView().findViewById<ProgressBar>(R.id.progress)
                     .setMinWidth(Dimension.px(10f))
             }
         }
@@ -225,7 +225,7 @@ class ProgressBarBindingTest {
     @Test
     fun testBinding_setProgress() {
         scenario.onFragment { fragment ->
-            fragment.requireView().requireViewById<ProgressBar>(R.id.progress)
+            fragment.requireView().findViewById<ProgressBar>(R.id.progress)
                 .setProgress(Integer.wrap(12))
         }
         onView(withId(R.id.progress))
@@ -236,7 +236,7 @@ class ProgressBarBindingTest {
     fun testBinding_setProgressBackgroundTintList() {
         val context = ApplicationProvider.getApplicationContext<Context>()
         scenario.onFragment { fragment ->
-            fragment.requireView().requireViewById<ProgressBar>(R.id.progress)
+            fragment.requireView().findViewById<ProgressBar>(R.id.progress)
                 .setProgressBackgroundTintList(Tint.of(R.color.test_tint))
         }
         val expected = ContextCompat.getColorStateList(context, R.color.test_tint)
@@ -247,7 +247,7 @@ class ProgressBarBindingTest {
     @Test
     fun testBinding_setProgressDrawable() {
         scenario.onFragment { fragment ->
-            fragment.requireView().requireViewById<ProgressBar>(R.id.progress)
+            fragment.requireView().findViewById<ProgressBar>(R.id.progress)
                 .setProgressDrawable(Drawable.of(R.drawable.test_drawable_9patch))
         }
         onView(withId(R.id.progress))
@@ -258,7 +258,7 @@ class ProgressBarBindingTest {
     fun testBinding_setProgressTintList() {
         val context = ApplicationProvider.getApplicationContext<Context>()
         scenario.onFragment { fragment ->
-            fragment.requireView().requireViewById<ProgressBar>(R.id.progress)
+            fragment.requireView().findViewById<ProgressBar>(R.id.progress)
                 .setProgressTintList(Tint.of(R.color.test_tint))
         }
         val expected = ContextCompat.getColorStateList(context, R.color.test_tint)
@@ -269,7 +269,7 @@ class ProgressBarBindingTest {
     @Test
     fun testBinding_setSecondaryProgress() {
         scenario.onFragment { fragment ->
-            fragment.requireView().requireViewById<ProgressBar>(R.id.progress)
+            fragment.requireView().findViewById<ProgressBar>(R.id.progress)
                 .setSecondaryProgress(Integer.wrap(12))
         }
         onView(withId(R.id.progress))
@@ -280,7 +280,7 @@ class ProgressBarBindingTest {
     fun testBinding_setSecondaryProgressTint() {
         val context = ApplicationProvider.getApplicationContext<Context>()
         scenario.onFragment { fragment ->
-            fragment.requireView().requireViewById<ProgressBar>(R.id.progress)
+            fragment.requireView().findViewById<ProgressBar>(R.id.progress)
                 .setSecondaryProgressTint(Tint.of(R.color.test_tint))
         }
         val expected = ContextCompat.getColorStateList(context, R.color.test_tint)

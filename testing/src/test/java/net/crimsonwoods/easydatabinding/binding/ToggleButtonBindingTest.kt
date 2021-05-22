@@ -32,7 +32,7 @@ class ToggleButtonBindingTest {
     @Test
     fun testBinding_setTextOff() {
         scenario.onFragment { fragment ->
-            fragment.requireView().requireViewById<ToggleButton>(R.id.toggle)
+            fragment.requireView().findViewById<ToggleButton>(R.id.toggle)
                 .setTextOff(Text.of(R.string.test_text))
         }
         onView(withId(R.id.toggle))
@@ -42,7 +42,7 @@ class ToggleButtonBindingTest {
     @Test
     fun testBinding_setTextOn() {
         scenario.onFragment { fragment ->
-            fragment.requireView().requireViewById<ToggleButton>(R.id.toggle)
+            fragment.requireView().findViewById<ToggleButton>(R.id.toggle)
                 .setTextOn(Text.of(R.string.test_text))
         }
         onView(withId(R.id.toggle))
