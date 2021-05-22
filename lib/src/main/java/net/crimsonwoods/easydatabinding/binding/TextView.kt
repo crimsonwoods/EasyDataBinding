@@ -6,6 +6,7 @@ import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.core.widget.TextViewCompat
+import androidx.core.widget.TintableCompoundDrawablesView
 import androidx.databinding.BindingAdapter
 import kotlin.math.roundToInt
 import net.crimsonwoods.easydatabinding.models.Bool
@@ -17,7 +18,6 @@ import net.crimsonwoods.easydatabinding.models.Text
 import net.crimsonwoods.easydatabinding.models.TextAppearance
 import net.crimsonwoods.easydatabinding.models.Tint
 import net.crimsonwoods.easydatabinding.models.toCharSequence
-import net.crimsonwoods.easydatabinding.models.toFloat
 
 @BindingAdapter("android:cursorVisible")
 fun TextView.setCursorVisible(value: Bool) {
@@ -31,6 +31,11 @@ fun TextView.setDrawablePadding(value: Dimension) {
 
 @BindingAdapter("android:drawableTint")
 fun TextView.setDrawableTintList(value: Tint) {
+    if (this !is TintableCompoundDrawablesView && Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
+        throw UnsupportedOperationException(
+            "BindingAdapter for \"android:drawableTint\" attribute is being supported after Android N or later."
+        )
+    }
     TextViewCompat.setCompoundDrawableTintList(this, value.toColorStateList())
 }
 
