@@ -72,7 +72,7 @@ fun Toolbar.setContentInsetStart(value: Dimension) {
 @BindingAdapter("android:contentInsetStartWithNavigation")
 fun Toolbar.setContentInsetStartWithNavigation(value: Dimension) {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-        contentInsetEndWithActions = value.toPx().roundToInt()
+        contentInsetStartWithNavigation = value.toPx().roundToInt()
     } else {
         throw UnsupportedOperationException(
             "BindingAdapter for \"android:contentInsetStartWithNavigation\" attribute is being supported after Android N or later."
