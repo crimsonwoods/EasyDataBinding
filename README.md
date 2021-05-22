@@ -92,6 +92,7 @@ __Supported__:
 - Interpolator
 - String
 - TextAppearance
+- Theme
 
 __Not Supported__:
 - Animator
@@ -102,7 +103,7 @@ __Not Supported__:
 - Layout
 - Menu
 - Raw
-- Style/Theme
+- Style
 
 ## BindingAdapter
 
@@ -273,6 +274,35 @@ __Not Supported__:
 |android:thumbTint           |Tint          |
 |android:track               |Drawable      |
 |android:trackTint           |Tint          |
+
+### Toolbar
+
+|XML attribute                          |data model    |
+|:--------------------------------------|:-------------|
+|android:collapseContentDescription     |Text          |
+|android:collapseIcon                   |Drawable      |
+|android:contentInsetEnd                |Dimension     |
+|android:contentInsetEndWithActions     |Dimension     |
+|android:contentInsetLeft               |Dimension     |
+|android:contentInsetRight              |Dimension     |
+|android:contentInsetStart              |Dimension     |
+|android:contentInsetStartWithNavigation|Dimension     |
+|android:logo                           |Drawable      |
+|android:logoDescription                |Text          |
+|android:navigationContentDescription   |Text          |
+|android:navigationIcon                 |Drawable      |
+|android:popupTheme                     |Theme         |
+|android:subtitle                       |Text          |
+|android:subtitleTextAppearance         |TextAppearance|
+|android:subtitleTextColor              |Color         |
+|android:title                          |Text          |
+|android:titleMargin                    |Dimension     |
+|android:titleMarginBottom              |Dimension     |
+|android:titleMarginEnd                 |Dimension     |
+|android:titleMarginStart               |Dimension     |
+|android:titleMarginTop                 |Dimension     |
+|android:titleTextAppearance            |TextAppearance|
+|android:titleTextColor                 |Color         |
 
 ### ViewAnimator
 
