@@ -77,6 +77,7 @@ class TextViewBindingTest {
         onView(withId(android.R.id.text1)).check(matches(withDrawablePadding(123)))
     }
 
+    @Config(minSdk = Build.VERSION_CODES.N)
     @Test
     fun testBinding_setDrawableTintList() {
         val context = ApplicationProvider.getApplicationContext<Context>()
