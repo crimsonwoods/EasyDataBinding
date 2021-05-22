@@ -3,6 +3,7 @@ package net.crimsonwoods.easydatabinding.binding
 import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.drawable.GradientDrawable
+import android.os.Build
 import android.view.View
 import android.widget.Switch
 import androidx.annotation.Px
@@ -31,6 +32,7 @@ import org.hamcrest.Matcher
 import org.hamcrest.Matchers.not
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.robolectric.annotation.Config
 
 @RunWith(AndroidJUnit4::class)
 class SwitchBindingTest {
@@ -133,6 +135,7 @@ class SwitchBindingTest {
             .check(matches(withThumbTextPadding(123)))
     }
 
+    @Config(minSdk = Build.VERSION_CODES.M)
     @Test
     fun testBinding_setThumbTintList() {
         val context = ApplicationProvider.getApplicationContext<Context>()
@@ -155,6 +158,7 @@ class SwitchBindingTest {
             .check(matches(withTrackDrawableTypeOf<GradientDrawable>()))
     }
 
+    @Config(minSdk = Build.VERSION_CODES.M)
     @Test
     fun testBinding_setTrackTintList() {
         val context = ApplicationProvider.getApplicationContext<Context>()

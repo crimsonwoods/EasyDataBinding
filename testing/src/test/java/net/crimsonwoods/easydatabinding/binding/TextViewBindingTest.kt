@@ -10,6 +10,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.annotation.ColorInt
 import androidx.annotation.Px
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.core.widget.TextViewCompat
 import androidx.fragment.app.testing.FragmentScenario
@@ -156,7 +157,7 @@ class TextViewBindingTest {
         onView(withId(android.R.id.text1)).check(matches(withFontFeatureSettings("\"smcp\" on")))
     }
 
-    @Config(shadows = [ShadowTypeface::class])
+    @Config(shadows = [ShadowTypeface::class], minSdk = Build.VERSION_CODES.O)
     @Test
     fun testBinding_setFontVariationSettings() {
         onView(withId(android.R.id.text1)).check(matches(withFontVariationSettings(null)))
@@ -353,6 +354,7 @@ class TextViewBindingTest {
         onView(withId(android.R.id.text1)).check(matches(withText("Test")))
     }
 
+    @Config(minSdk = Build.VERSION_CODES.P)
     @Test
     fun testBinding_setTextAllCaps() {
         scenario.onFragment { fragment ->
@@ -693,6 +695,7 @@ class TextViewBindingTest {
         }
     }
 
+    @RequiresApi(value = Build.VERSION_CODES.O)
     private fun withFontVariationSettings(value: String?): Matcher<View> {
         return object : TextViewMatcher() {
             override fun describeTo(description: Description) {
@@ -840,7 +843,7 @@ class TextViewBindingTest {
     private fun withHintColor(@ColorInt value: Int): Matcher<View> {
         return object : BoundedMatcher<View, TextView>(TextView::class.java) {
             override fun describeTo(description: Description) {
-                description.appendText("with hint text color ${android.graphics.Color.valueOf(value)}")
+                description.appendText("with hint text color $value")
             }
 
             override fun matchesSafely(item: TextView): Boolean {
@@ -849,6 +852,7 @@ class TextViewBindingTest {
         }
     }
 
+    @RequiresApi(value = Build.VERSION_CODES.P)
     private fun isAllCaps(): Matcher<View> {
         return object : BoundedMatcher<View, TextView>(TextView::class.java) {
             override fun describeTo(description: Description) {
