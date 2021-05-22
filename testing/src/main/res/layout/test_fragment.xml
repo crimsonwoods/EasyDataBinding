@@ -6,10 +6,18 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <SearchView
-        android:id="@+id/search"
+    <Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="?android:attr/actionBarSize"
+        android:contentInsetStart="8dp"
+        android:contentInsetEnd="8dp">
+
+        <SearchView
+            android:id="@+id/search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </Toolbar>
 
     <View
         android:id="@+id/border"
