@@ -46,7 +46,13 @@ fun ImageView.setScaleType(value: Integer) {
 @BindingAdapter("android:src")
 fun ImageView.setImage(image: Image) = when (image) {
     is Image.Res -> {
-        setImageResource(image.resId)
+        // To keep compatibility for API Level 21,
+        // sets image drawable to null explicitly if given resource ID is zero.
+        if (image.resId == 0) {
+            setImageDrawable(null)
+        } else {
+            setImageResource(image.resId)
+        }
     }
     is Image.Drawable -> {
         setImageDrawable(image.rawValue)
