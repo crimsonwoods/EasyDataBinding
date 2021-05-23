@@ -135,9 +135,9 @@ class SwitchBindingTest {
             .check(matches(withThumbTextPadding(123)))
     }
 
-    @Config(minSdk = Build.VERSION_CODES.M)
+    @Config(sdk = [Build.VERSION_CODES.M])
     @Test
-    fun testBinding_setThumbTintList() {
+    fun testBinding_setThumbTintList_M() {
         val context = ApplicationProvider.getApplicationContext<Context>()
         scenario.onFragment { fragment ->
             fragment.requireView().findViewById<Switch>(R.id.selected)
@@ -158,9 +158,9 @@ class SwitchBindingTest {
             .check(matches(withTrackDrawableTypeOf<GradientDrawable>()))
     }
 
-    @Config(minSdk = Build.VERSION_CODES.M)
+    @Config(sdk = [Build.VERSION_CODES.M])
     @Test
-    fun testBinding_setTrackTintList() {
+    fun testBinding_setTrackTintList_M() {
         val context = ApplicationProvider.getApplicationContext<Context>()
         scenario.onFragment { fragment ->
             fragment.requireView().findViewById<Switch>(R.id.selected)
