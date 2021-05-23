@@ -76,9 +76,9 @@ class TextViewBindingTest {
         onView(withId(android.R.id.text1)).check(matches(withDrawablePadding(123)))
     }
 
-    @Config(minSdk = Build.VERSION_CODES.N)
+    @Config(sdk = [Build.VERSION_CODES.N])
     @Test
-    fun testBinding_setDrawableTintList() {
+    fun testBinding_setDrawableTintList_N() {
         val context = ApplicationProvider.getApplicationContext<Context>()
         onView(withId(android.R.id.text1)).check(matches(withDrawableTintList(null)))
         scenario.onFragment { fragment ->
@@ -155,9 +155,9 @@ class TextViewBindingTest {
         onView(withId(android.R.id.text1)).check(matches(withFontFeatureSettings("\"smcp\" on")))
     }
 
-    @Config(shadows = [ShadowTypeface::class], minSdk = Build.VERSION_CODES.O)
+    @Config(shadows = [ShadowTypeface::class], sdk = [Build.VERSION_CODES.O])
     @Test
-    fun testBinding_setFontVariationSettings() {
+    fun testBinding_setFontVariationSettings_O() {
         onView(withId(android.R.id.text1)).check(matches(withFontVariationSettings(null)))
         scenario.onFragment { fragment ->
             assertTrue {
@@ -258,9 +258,9 @@ class TextViewBindingTest {
         onView(withId(android.R.id.text1)).check(matches(withMinWidth(123)))
     }
 
-    @Config(minSdk = Build.VERSION_CODES.Q)
+    @Config(sdk = [Build.VERSION_CODES.Q])
     @Test
-    fun testBinding_setScrollHorizontally() {
+    fun testBinding_setScrollHorizontally_Q() {
         onView(withId(android.R.id.text1)).check(matches(not(isHorizontallyScrollable())))
         scenario.onFragment { fragment ->
             fragment.requireView().findViewById<TextView>(android.R.id.text1)
@@ -352,9 +352,9 @@ class TextViewBindingTest {
         onView(withId(android.R.id.text1)).check(matches(withText("Test")))
     }
 
-    @Config(minSdk = Build.VERSION_CODES.P)
+    @Config(sdk = [Build.VERSION_CODES.P])
     @Test
-    fun testBinding_setTextAllCaps() {
+    fun testBinding_setTextAllCaps_P() {
         scenario.onFragment { fragment ->
             fragment.requireView().findViewById<TextView>(android.R.id.text1)
                 .setTextAllCaps(Bool.TRUE)
