@@ -58,8 +58,28 @@ afterEvaluate {
                 from components.release
 
                 groupId = "$group"
-                artifactId = 'easydatabinding'
+                artifactId = 'EasyDataBinding'
                 version = "$version"
+
+                pom {
+                    name = "EasyDataBinding"
+                    description = 'Makes easy to use resource in ViewModel'
+                    url = "https://github.com/crimsonwoods/EasyDataBinding"
+
+                    licenses {
+                        license {
+                            name = 'MIT License'
+                            url = 'https://github.com/crimsonwoods/EasyDataBinding/blob/main/LICENSE'
+                        }
+                    }
+
+                    developers {
+                        developer {
+                            name = "crimsonwoods"
+                            email = "crimsonwoods.dev@gmail.com"
+                        }
+                    }
+                }
             }
         }
     }
