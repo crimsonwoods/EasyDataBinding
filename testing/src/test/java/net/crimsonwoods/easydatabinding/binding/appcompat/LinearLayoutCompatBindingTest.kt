@@ -32,8 +32,9 @@ class LinearLayoutCompatBindingTest {
 
     @BeforeTest
     fun setUp() {
-        scenario = launchFragmentInContainer<AppCompatTestFragment>()
-            .moveToState(Lifecycle.State.RESUMED)
+        scenario = launchFragmentInContainer<AppCompatTestFragment>(
+            themeResId = R.style.FragmentScenarioEmptyFragmentAppCompatActivityTheme
+        ).moveToState(Lifecycle.State.RESUMED)
     }
 
     @Test
