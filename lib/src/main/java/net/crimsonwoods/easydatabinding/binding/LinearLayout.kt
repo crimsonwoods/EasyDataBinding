@@ -5,6 +5,7 @@ import androidx.databinding.BindingAdapter
 import kotlin.math.roundToInt
 import net.crimsonwoods.easydatabinding.models.Bool
 import net.crimsonwoods.easydatabinding.models.Dimension
+import net.crimsonwoods.easydatabinding.models.Drawable
 import net.crimsonwoods.easydatabinding.models.Integer
 
 @BindingAdapter("android:baselineAligned")
@@ -15,6 +16,11 @@ fun LinearLayout.setBaselineAligned(value: Bool) {
 @BindingAdapter("android:baselineAlignedChildIndex")
 fun LinearLayout.setBaselineAlignedChildIndex(value: Integer) {
     baselineAlignedChildIndex = value.toInt()
+}
+
+@BindingAdapter("android:divider")
+fun LinearLayout.setDivider(value: Drawable) {
+    dividerDrawable = value.toDrawable()
 }
 
 @BindingAdapter("android:measureWithLargestChild")
