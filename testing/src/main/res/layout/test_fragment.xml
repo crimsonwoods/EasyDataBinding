@@ -119,7 +119,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.LinearLayoutCompat
+        <LinearLayout
             android:id="@+id/scrollableContents"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -154,6 +154,6 @@
                 android:paddingBottom="40dp"
                 android:textSize="84sp"
                 tools:text="FOOTER" />
-        </androidx.appcompat.widget.LinearLayoutCompat>
+        </LinearLayout>
     </ScrollView>
 </LinearLayout>
