@@ -14,7 +14,7 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import kotlin.test.BeforeTest
 import kotlin.test.Test
-import net.crimsonwoods.easydatabinding.fragment.TestFragment
+import net.crimsonwoods.easydatabinding.fragment.AppCompatTestFragment
 import net.crimsonwoods.easydatabinding.matcher.DrawableTypeMatcher
 import net.crimsonwoods.easydatabinding.models.Bool
 import net.crimsonwoods.easydatabinding.models.Dimension
@@ -28,11 +28,11 @@ import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 class LinearLayoutCompatBindingTest {
-    private lateinit var scenario: FragmentScenario<TestFragment>
+    private lateinit var scenario: FragmentScenario<AppCompatTestFragment>
 
     @BeforeTest
     fun setUp() {
-        scenario = launchFragmentInContainer<TestFragment>()
+        scenario = launchFragmentInContainer<AppCompatTestFragment>()
             .moveToState(Lifecycle.State.RESUMED)
     }
 
