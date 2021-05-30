@@ -1,5 +1,6 @@
 package net.crimsonwoods.easydatabinding.binding
 
+import android.graphics.drawable.NinePatchDrawable
 import android.view.View
 import android.widget.LinearLayout
 import androidx.annotation.Px
@@ -14,8 +15,10 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import net.crimsonwoods.easydatabinding.fragment.TestFragment
+import net.crimsonwoods.easydatabinding.matcher.DrawableTypeMatcher
 import net.crimsonwoods.easydatabinding.models.Bool
 import net.crimsonwoods.easydatabinding.models.Dimension
+import net.crimsonwoods.easydatabinding.models.Drawable
 import net.crimsonwoods.easydatabinding.models.Integer
 import net.crimsonwoods.easydatabinding.testing.R
 import org.hamcrest.Description
@@ -51,6 +54,16 @@ class LinearLayoutBindingTest {
         }
         onView(withId(R.id.root))
             .check(matches(withBaselineAlignedChildIndex(1)))
+    }
+
+    @Test
+    fun testBinding_setDivider() {
+        scenario.onFragment { fragment ->
+            (fragment.requireView() as LinearLayout)
+                .setDivider(Drawable.of(R.drawable.test_drawable_9patch))
+        }
+        onView(withId(R.id.root))
+            .check(matches(withDividerDrawableTypeOf<NinePatchDrawable>()))
     }
 
     @Test
@@ -94,6 +107,12 @@ class LinearLayoutBindingTest {
             override fun matchesSafely(item: LinearLayout): Boolean {
                 return item.baselineAlignedChildIndex == value
             }
+        }
+    }
+
+    private inline fun <reified T : android.graphics.drawable.Drawable> withDividerDrawableTypeOf(): Matcher<View> {
+        return DrawableTypeMatcher(LinearLayout::class, T::class) {
+            dividerDrawable
         }
     }
 
