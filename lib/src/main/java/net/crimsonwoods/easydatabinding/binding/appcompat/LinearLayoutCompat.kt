@@ -22,17 +22,17 @@ fun LinearLayoutCompat.setBaselineAlignedChildIndex(value: Integer) {
     baselineAlignedChildIndex = value.toInt()
 }
 
-@BindingAdapter("android:divider")
+@BindingAdapter("divider")
 fun LinearLayoutCompat.setDivider(value: Drawable) {
     dividerDrawable = value.toDrawable()
 }
 
-@BindingAdapter("android:measureWithLargestChild")
+@BindingAdapter("measureWithLargestChild")
 fun LinearLayoutCompat.setMeasureWithLargestChild(value: Bool) {
     isMeasureWithLargestChildEnabled = value.toBoolean()
 }
 
-@BindingAdapter("android:dividerPadding")
+@BindingAdapter("dividerPadding")
 fun LinearLayoutCompat.setDividerPadding(value: Dimension) {
     dividerPadding = value.toPx().roundToInt()
 }
