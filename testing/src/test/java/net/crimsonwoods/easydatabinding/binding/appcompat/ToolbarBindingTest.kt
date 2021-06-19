@@ -43,7 +43,7 @@ class ToolbarBindingTest {
     }
 
     @Test
-    fun testBinding_setCollapseContentDescription_Q() {
+    fun testBinding_setCollapseContentDescription() {
         scenario.onFragment { fragment ->
             fragment.requireView().findViewById<Toolbar>(R.id.toolbar)
                 .setCollapseContentDescription(Text.of(R.string.test_text))
@@ -53,7 +53,7 @@ class ToolbarBindingTest {
     }
 
     @Test
-    fun testBinding_setCollapseIcon_Q() {
+    fun testBinding_setCollapseIcon() {
         scenario.onFragment { fragment ->
             fragment.requireView().findViewById<Toolbar>(R.id.toolbar)
                 .setCollapseIcon(Drawable.of(R.drawable.test_drawable_9patch))
@@ -73,7 +73,7 @@ class ToolbarBindingTest {
     }
 
     @Test
-    fun testBinding_setContentInsetEndWithActions_N() {
+    fun testBinding_setContentInsetEndWithActions() {
         scenario.onFragment { fragment ->
             fragment.requireView().findViewById<Toolbar>(R.id.toolbar)
                 .setContentInsetEndWithActions(Dimension.px(100f))
@@ -113,7 +113,7 @@ class ToolbarBindingTest {
     }
 
     @Test
-    fun testBinding_setContentInsetStartWithNavigation_N() {
+    fun testBinding_setContentInsetStartWithNavigation() {
         scenario.onFragment { fragment ->
             fragment.requireView().findViewById<Toolbar>(R.id.toolbar)
                 .setContentInsetStartWithNavigation(Dimension.px(100f))
@@ -211,7 +211,7 @@ class ToolbarBindingTest {
     }
 
     @Test
-    fun testBinding_setTitleMargin_N() {
+    fun testBinding_setTitleMargin() {
         scenario.onFragment { fragment ->
             fragment.requireView().findViewById<Toolbar>(R.id.toolbar)
                 .setTitleMargin(Dimension.px(100f))
@@ -221,7 +221,7 @@ class ToolbarBindingTest {
     }
 
     @Test
-    fun testBinding_setTitleMarginBottom_N() {
+    fun testBinding_setTitleMarginBottom() {
         scenario.onFragment { fragment ->
             fragment.requireView().findViewById<Toolbar>(R.id.toolbar)
                 .setTitleMarginBottom(Dimension.px(100f))
@@ -231,7 +231,7 @@ class ToolbarBindingTest {
     }
 
     @Test
-    fun testBinding_setTitleMarginEnd_N() {
+    fun testBinding_setTitleMarginEnd() {
         scenario.onFragment { fragment ->
             fragment.requireView().findViewById<Toolbar>(R.id.toolbar)
                 .setTitleMarginEnd(Dimension.px(100f))
@@ -241,7 +241,7 @@ class ToolbarBindingTest {
     }
 
     @Test
-    fun testBinding_setTitleMarginStart_N() {
+    fun testBinding_setTitleMarginStart() {
         scenario.onFragment { fragment ->
             fragment.requireView().findViewById<Toolbar>(R.id.toolbar)
                 .setTitleMarginStart(Dimension.px(100f))
@@ -251,7 +251,7 @@ class ToolbarBindingTest {
     }
 
     @Test
-    fun testBinding_setTitleMarginTop_N() {
+    fun testBinding_setTitleMarginTop() {
         scenario.onFragment { fragment ->
             fragment.requireView().findViewById<Toolbar>(R.id.toolbar)
                 .setTitleMarginTop(Dimension.px(100f))
