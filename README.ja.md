@@ -332,5 +332,70 @@ __未サポート__:
 |android:measureWithLargestChild  |Bool      |
 |android:dividerPadding           |Dimension |
 
+### AndroidX AppCompat
+#### LinearLayoutCompat
+
+|XML attribute                    |data model|
+|:--------------------------------|:---------|
+|android:baselineAligned          |Bool      |
+|android:baselineAlignedChildIndex|Integer   |
+|app:divider                      |Drawable  |
+|app:measureWithLargestChild      |Bool      |
+|app:dividerPadding               |Dimension |
+
+#### SearchView
+
+|XML attribute         |data model|
+|:---------------------|:---------|
+|android:maxWidth      |Dimension |
+|app:iconifiedByDefault|Bool      |
+|app:queryHint         |Text      |
+
+#### SwitchCompat
+
+|XML attribute           |data model    |
+|:-----------------------|:-------------|
+|android:textOff         |Text          |
+|android:textOn          |Text          |
+|android:thumb           |Drawable      |
+|app:showText            |Bool          |
+|app:splitTrack          |Bool          |
+|app:switchMinWidth      |Dimension     |
+|app:switchPadding       |Dimension     |
+|app:switchTextAppearance|TextAppearance|
+|app:thumbTextPadding    |Dimension     |
+|app:thumbTint           |Tint          |
+|app:track               |Drawable      |
+|app:trackTint           |Tint          |
+
+#### Toolbar
+
+|XML attribute                      |data model    |
+|:----------------------------------|:-------------|
+|app:collapseContentDescription     |Text          |
+|app:collapseIcon                   |Drawable      |
+|app:contentInsetEnd                |Dimension     |
+|app:contentInsetEndWithActions     |Dimension     |
+|app:contentInsetLeft               |Dimension     |
+|app:contentInsetRight              |Dimension     |
+|app:contentInsetStart              |Dimension     |
+|app:contentInsetStartWithNavigation|Dimension     |
+|app:logo                           |Drawable      |
+|app:logoDescription                |Text          |
+|app:navigationContentDescription   |Text          |
+|app:navigationIcon                 |Drawable      |
+|app:popupTheme                     |Theme         |
+|app:subtitle                       |Text          |
+|app:subtitleTextAppearance         |TextAppearance|
+|app:subtitleTextColor              |Color         |
+|app:title                          |Text          |
+|app:titleMargin                    |Dimension     |
+|app:titleMarginBottom              |Dimension     |
+|app:titleMarginEnd                 |Dimension     |
+|app:titleMarginStart               |Dimension     |
+|app:titleMarginTop                 |Dimension     |
+|app:titleTextAppearance            |TextAppearance|
+|app:titleTextColor                 |Color         |
+
 # License
 MIT License
