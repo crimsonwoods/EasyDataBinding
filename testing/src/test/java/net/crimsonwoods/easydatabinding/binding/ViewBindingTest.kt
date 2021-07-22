@@ -26,6 +26,11 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import net.crimsonwoods.easydatabinding.fragment.TestFragment
+import net.crimsonwoods.easydatabinding.matcher.ViewMatchers.withRotation
+import net.crimsonwoods.easydatabinding.matcher.ViewMatchers.withRotationX
+import net.crimsonwoods.easydatabinding.matcher.ViewMatchers.withRotationY
+import net.crimsonwoods.easydatabinding.matcher.ViewMatchers.withScaleX
+import net.crimsonwoods.easydatabinding.matcher.ViewMatchers.withScaleY
 import net.crimsonwoods.easydatabinding.models.Background
 import net.crimsonwoods.easydatabinding.models.Bool
 import net.crimsonwoods.easydatabinding.models.Dimension
@@ -301,6 +306,51 @@ class ViewBindingTest {
                 .setEnabled(Bool.FALSE)
         }
         onView(withId(R.id.border)).check(matches(IsNot(isEnabled())))
+    }
+
+    @Test
+    fun testBinding_setRotation() {
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<View>(R.id.border)
+                .setRotation(Float.of(90f))
+        }
+        onView(withId(R.id.border)).check(matches(withRotation(90f)))
+    }
+
+    @Test
+    fun testBinding_setRotationX() {
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<View>(R.id.border)
+                .setRotationX(Float.of(90f))
+        }
+        onView(withId(R.id.border)).check(matches(withRotationX(90f)))
+    }
+
+    @Test
+    fun testBinding_setRotationY() {
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<View>(R.id.border)
+                .setRotationY(Float.of(90f))
+        }
+        onView(withId(R.id.border)).check(matches(withRotationY(90f)))
+    }
+
+    @Test
+    fun testBinding_setScaleX() {
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<View>(R.id.border)
+                .setScaleX(Float.of(1.5f))
+        }
+        onView(withId(R.id.border)).check(matches(withScaleX(1.5f)))
+    }
+
+    @Test
+    fun testBinding_setScaleY() {
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<View>(R.id.border)
+                .setScaleY(Float.of(1.5f))
+        }
+        onView(withId(R.id.border)).check(matches(withScaleY(1.5f)))
     }
 
     @Test
