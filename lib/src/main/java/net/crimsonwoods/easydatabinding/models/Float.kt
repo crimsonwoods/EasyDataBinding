@@ -30,6 +30,7 @@ sealed class Float {
     }
 }
 
+@Throws(Resources.NotFoundException::class)
 fun Float.toFloat(resources: Resources): kotlin.Float = when (this) {
     is Float.Res -> {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
