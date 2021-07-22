@@ -171,7 +171,7 @@ internal val View.toInt: Integer.() -> Int
         return { toInt(resources) }
     }
 
-internal val View.toPx: Dimension.() -> Float
+internal val View.toPx: Dimension.() -> kotlin.Float
     get() {
         return { toPx(resources) }
     }
@@ -196,7 +196,7 @@ internal val View.toInterpolator: Interpolator.() -> android.view.animation.Inte
         return { toInterpolator(context) }
     }
 
-internal val View.toFloat: Fraction.() -> Float
+internal val View.toFloat: Fraction.() -> kotlin.Float
     get() {
         return { toFloat(resources) }
     }

@@ -30,7 +30,7 @@ sealed class Fraction {
     }
 }
 
-fun Fraction.toFloat(resources: Resources): Float {
+fun Fraction.toFloat(resources: Resources): kotlin.Float {
     return when (this) {
         is Fraction.Res -> {
             resources.getFraction(resId, base, parentBase)

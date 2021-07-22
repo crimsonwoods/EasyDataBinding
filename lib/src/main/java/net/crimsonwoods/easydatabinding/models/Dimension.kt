@@ -8,15 +8,15 @@ import androidx.annotation.DimenRes
 sealed class Dimension {
     data class Px(
         @androidx.annotation.Px
-        val rawValue: Float
+        val rawValue: kotlin.Float
     ) : Dimension()
 
     data class Sp(
-        val rawValue: Float
+        val rawValue: kotlin.Float
     ) : Dimension()
 
     data class Dp(
-        val rawValue: Float
+        val rawValue: kotlin.Float
     ) : Dimension()
 
     data class Res(
@@ -25,7 +25,7 @@ sealed class Dimension {
     ) : Dimension()
 
     @androidx.annotation.Px
-    fun toPx(resources: Resources): Float = when (this) {
+    fun toPx(resources: Resources): kotlin.Float = when (this) {
         is Px -> rawValue
         is Sp -> TypedValue.applyDimension(
             TypedValue.COMPLEX_UNIT_SP,
@@ -41,17 +41,17 @@ sealed class Dimension {
     }
 
     @androidx.annotation.Px
-    fun toPx(context: Context): Float = toPx(context.resources)
+    fun toPx(context: Context): kotlin.Float = toPx(context.resources)
 
     companion object {
         @JvmStatic
-        fun px(value: Float): Dimension = Px(value)
+        fun px(value: kotlin.Float): Dimension = Px(value)
 
         @JvmStatic
-        fun sp(value: Float): Dimension = Sp(value)
+        fun sp(value: kotlin.Float): Dimension = Sp(value)
 
         @JvmStatic
-        fun dp(value: Float): Dimension = Dp(value)
+        fun dp(value: kotlin.Float): Dimension = Dp(value)
 
         @JvmStatic
         fun of(@DimenRes resId: Int): Dimension = Res(resId)
