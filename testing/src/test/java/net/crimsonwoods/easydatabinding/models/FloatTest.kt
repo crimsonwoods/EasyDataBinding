@@ -22,6 +22,7 @@ class FloatTest {
         resources = ApplicationProvider.getApplicationContext<Context>().resources
     }
 
+    @Config(sdk = [Build.VERSION_CODES.P, Build.VERSION_CODES.Q])
     @Test
     fun testToFloat_Res() {
         assertEquals(0.0f, Float.of(R.dimen.zero).toFloat(resources))
@@ -29,14 +30,6 @@ class FloatTest {
         assertEquals(1.0f, Float.of(R.dimen.one_point_zero).toFloat(resources))
         assertEquals(0.5f, Float.of(R.dimen.half).toFloat(resources))
         assertEquals(1.0f, Float.of(R.dimen.full).toFloat(resources))
-    }
-
-    @Config(sdk = [Build.VERSION_CODES.Q])
-    @Test
-    fun testToFloat_Res_Q() {
-        assertEquals(0.0f, Float.of(R.dimen.zero).toFloat(resources))
-        assertEquals(0.5f, Float.of(R.dimen.zero_point_five).toFloat(resources))
-        assertEquals(1.0f, Float.of(R.dimen.one_point_zero).toFloat(resources))
     }
 
     @Test
