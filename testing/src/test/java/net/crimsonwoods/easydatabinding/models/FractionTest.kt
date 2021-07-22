@@ -36,16 +36,16 @@ class FractionTest {
     @Test
     fun testToFloat_Value() {
         assertEquals(0.0f, Fraction.ZERO.toFloat(resources))
-        assertEquals(Float.MIN_VALUE, Fraction.of(Float.MIN_VALUE).toFloat(resources))
-        assertEquals(Float.MAX_VALUE, Fraction.of(Float.MAX_VALUE).toFloat(resources))
-        assertEquals(Float.NaN, Fraction.of(Float.NaN).toFloat(resources))
+        assertEquals(kotlin.Float.MIN_VALUE, Fraction.of(kotlin.Float.MIN_VALUE).toFloat(resources))
+        assertEquals(kotlin.Float.MAX_VALUE, Fraction.of(kotlin.Float.MAX_VALUE).toFloat(resources))
+        assertEquals(kotlin.Float.NaN, Fraction.of(kotlin.Float.NaN).toFloat(resources))
         assertEquals(
-            Float.NEGATIVE_INFINITY,
-            Fraction.of(Float.NEGATIVE_INFINITY).toFloat(resources)
+            kotlin.Float.NEGATIVE_INFINITY,
+            Fraction.of(kotlin.Float.NEGATIVE_INFINITY).toFloat(resources)
         )
         assertEquals(
-            Float.POSITIVE_INFINITY,
-            Fraction.of(Float.POSITIVE_INFINITY).toFloat(resources)
+            kotlin.Float.POSITIVE_INFINITY,
+            Fraction.of(kotlin.Float.POSITIVE_INFINITY).toFloat(resources)
         )
     }
 }
