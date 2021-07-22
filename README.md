@@ -87,6 +87,7 @@ __Supported__:
 - ColorStateList
 - Dimension
 - Drawable
+- Float
 - Fraction
 - Integer
 - Interpolator
@@ -111,7 +112,7 @@ __Not Supported__:
 
 |XML attribute              |data model|
 |:--------------------------|:---------|
-|android:alpha              |Fraction  |
+|android:alpha              |Float     |
 |android:background         |Background|
 |android:backgroundTint     |Tint      |
 |android:clickable          |Bool      |
@@ -158,7 +159,7 @@ __Not Supported__:
 |android:lastBaselineToBottomHeight|Dimension     |
 |android:lineHeight                |Dimension     |
 |android:lineSpacingExtra          |Dimension     |
-|android:lineSpacingMultiplier     |Fraction      |
+|android:lineSpacingMultiplier     |Float         |
 |android:lines                     |Integer       |
 |android:linksClickable            |Bool          |
 |android:maxEms                    |Integer       |
