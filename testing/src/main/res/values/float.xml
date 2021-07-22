@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="one_point_zero" format="float" type="dimen">1.0</item>
+    <item name="zero_point_five" format="float" type="dimen">0.5</item>
+    <item name="zero" format="float" type="dimen">0.0</item>
+</resources>
