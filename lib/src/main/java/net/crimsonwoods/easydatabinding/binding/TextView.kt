@@ -12,7 +12,7 @@ import kotlin.math.roundToInt
 import net.crimsonwoods.easydatabinding.models.Bool
 import net.crimsonwoods.easydatabinding.models.Color
 import net.crimsonwoods.easydatabinding.models.Dimension
-import net.crimsonwoods.easydatabinding.models.Fraction
+import net.crimsonwoods.easydatabinding.models.Float
 import net.crimsonwoods.easydatabinding.models.Integer
 import net.crimsonwoods.easydatabinding.models.Text
 import net.crimsonwoods.easydatabinding.models.TextAppearance
@@ -114,7 +114,7 @@ fun TextView.setLineSpacingExtra(value: Dimension) {
 }
 
 @BindingAdapter("android:lineSpacingMultiplier")
-fun TextView.setLineSpacingMultiplier(value: Fraction) {
+fun TextView.setLineSpacingMultiplier(value: Float) {
     setLineSpacing(lineSpacingExtra, value.toFloat())
 }
 

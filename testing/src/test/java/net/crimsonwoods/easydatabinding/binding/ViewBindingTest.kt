@@ -29,7 +29,7 @@ import net.crimsonwoods.easydatabinding.fragment.TestFragment
 import net.crimsonwoods.easydatabinding.models.Background
 import net.crimsonwoods.easydatabinding.models.Bool
 import net.crimsonwoods.easydatabinding.models.Dimension
-import net.crimsonwoods.easydatabinding.models.Fraction
+import net.crimsonwoods.easydatabinding.models.Float
 import net.crimsonwoods.easydatabinding.models.Integer
 import net.crimsonwoods.easydatabinding.models.Text
 import net.crimsonwoods.easydatabinding.models.Tint
@@ -51,28 +51,19 @@ class ViewBindingTest {
     }
 
     @Test
-    fun testBinding_setAlpha_Res_Base() {
+    fun testBinding_setAlpha_Res() {
         scenario.onFragment { fragment ->
             fragment.requireView().findViewById<View>(R.id.border)
-                .setAlpha(Fraction.of(R.fraction.test_fraction, 1, 2))
+                .setAlpha(Float.of(R.dimen.half))
         }
         onView(withId(R.id.border)).check(matches(withAlpha(0.5f)))
     }
 
     @Test
-    fun testBinding_setAlpha_Res_ParentBase() {
+    fun testBinding_setAlpha_Value() {
         scenario.onFragment { fragment ->
             fragment.requireView().findViewById<View>(R.id.border)
-                .setAlpha(Fraction.of(R.fraction.test_fraction_p, 2, 1))
-        }
-        onView(withId(R.id.border)).check(matches(withAlpha(0.5f)))
-    }
-
-    @Test
-    fun testBinding_setAlpha_Float() {
-        scenario.onFragment { fragment ->
-            fragment.requireView().findViewById<View>(R.id.border)
-                .setAlpha(Fraction.of(0.1f))
+                .setAlpha(Float.of(0.1f))
         }
         onView(withId(R.id.border)).check(matches(withAlpha(0.1f)))
     }

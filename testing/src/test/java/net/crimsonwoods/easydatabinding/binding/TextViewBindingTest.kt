@@ -32,7 +32,7 @@ import net.crimsonwoods.easydatabinding.fragment.TestFragment
 import net.crimsonwoods.easydatabinding.models.Bool
 import net.crimsonwoods.easydatabinding.models.Color
 import net.crimsonwoods.easydatabinding.models.Dimension
-import net.crimsonwoods.easydatabinding.models.Fraction
+import net.crimsonwoods.easydatabinding.models.Float
 import net.crimsonwoods.easydatabinding.models.Integer
 import net.crimsonwoods.easydatabinding.models.Text
 import net.crimsonwoods.easydatabinding.models.TextAppearance
@@ -233,7 +233,7 @@ class TextViewBindingTest {
         onView(withId(android.R.id.text1)).check(matches(withLineSpacingMultiplier(1.0f)))
         scenario.onFragment { fragment ->
             fragment.requireView().findViewById<TextView>(android.R.id.text1)
-                .setLineSpacingMultiplier(Fraction.of(1.2f))
+                .setLineSpacingMultiplier(Float.of(1.2f))
         }
         onView(withId(android.R.id.text1)).check(matches(withLineSpacingMultiplier(1.2f)))
     }
@@ -597,7 +597,7 @@ class TextViewBindingTest {
         }
     }
 
-    private fun withLineSpacingExtra(@Px value: Float): Matcher<View> {
+    private fun withLineSpacingExtra(@Px value: kotlin.Float): Matcher<View> {
         return object : TextViewMatcher() {
             override fun describeTo(description: Description) {
                 description.appendText("with line spacing extra $value")
@@ -609,7 +609,7 @@ class TextViewBindingTest {
         }
     }
 
-    private fun withLineSpacingMultiplier(value: Float): Matcher<View> {
+    private fun withLineSpacingMultiplier(value: kotlin.Float): Matcher<View> {
         return object : TextViewMatcher() {
             override fun describeTo(description: Description) {
                 description.appendText("with line spacing multiplier $value")
@@ -851,7 +851,7 @@ class TextViewBindingTest {
         }
     }
 
-    private fun withTextSize(@Px value: Float): Matcher<View> {
+    private fun withTextSize(@Px value: kotlin.Float): Matcher<View> {
         return object : BoundedMatcher<View, TextView>(TextView::class.java) {
             override fun describeTo(description: Description) {
                 description.appendText("with text size $value")
