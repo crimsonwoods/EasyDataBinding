@@ -40,7 +40,9 @@ fun Float.toFloat(resources: Resources): kotlin.Float = when (this) {
             if (value.type == TypedValue.TYPE_FLOAT) {
                 value.float
             } else {
-                throw IllegalArgumentException("Specified resource ($resId) is not a float value.")
+                throw Resources.NotFoundException(
+                    "Resource ID #0x${resId.toHex()} type #0x${value.type.toHex()} is not valid"
+                )
             }
         }
     }
@@ -48,3 +50,5 @@ fun Float.toFloat(resources: Resources): kotlin.Float = when (this) {
         rawValue
     }
 }
+
+private fun Int.toHex(): String = "0x${toString(16)}"
