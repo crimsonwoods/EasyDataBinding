@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="half">0.5</dimen>
+    <dimen name="full">1.0</dimen>
+    <dimen name="one_dp">1dp</dimen>
+    <dimen name="one_sp">1sp</dimen>
+    <dimen name="one_px">1px</dimen>
+    <dimen name="one_pt">1pt</dimen>
+</resources>
