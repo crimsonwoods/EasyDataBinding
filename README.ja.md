@@ -128,6 +128,11 @@ __未サポート__:
 |android:paddingEnd         |Dimension |
 |android:paddingTop         |Dimension |
 |android:paddingBottom      |Dimension |
+|android:rotation           |Float     |
+|android:rotationX          |Float     |
+|android:rotationY          |Float     |
+|android:scaleX             |Float     |
+|android:scaleY             |Float     |
 |android:soundEffectsEnabled|Bool      |
 |android:visibility         |Integer   |
 
