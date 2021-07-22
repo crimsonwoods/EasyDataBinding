@@ -141,6 +141,31 @@ fun View.setEnabled(value: Bool) {
     isEnabled = value.toBoolean(resources)
 }
 
+@BindingAdapter("android:rotation")
+fun View.setRotation(value: Float) {
+    rotation = value.toFloat(resources)
+}
+
+@BindingAdapter("android:rotationX")
+fun View.setRotationX(value: Float) {
+    rotationX = value.toFloat(resources)
+}
+
+@BindingAdapter("android:rotationY")
+fun View.setRotationY(value: Float) {
+    rotationY = value.toFloat(resources)
+}
+
+@BindingAdapter("android:scaleX")
+fun View.setScaleX(value: Float) {
+    scaleX = value.toFloat(resources)
+}
+
+@BindingAdapter("android:scaleY")
+fun View.setScaleY(value: Float) {
+    scaleY = value.toFloat(resources)
+}
+
 @BindingAdapter("android:soundEffectsEnabled")
 fun View.setSoundEffectsEnabled(value: Bool) {
     isSoundEffectsEnabled = value.toBoolean(resources)
