@@ -18,6 +18,7 @@ import net.crimsonwoods.easydatabinding.models.Text
 import net.crimsonwoods.easydatabinding.models.TextAppearance
 import net.crimsonwoods.easydatabinding.models.Tint
 import net.crimsonwoods.easydatabinding.models.toCharSequence
+import net.crimsonwoods.easydatabinding.models.toFloat
 
 @BindingAdapter("android:cursorVisible")
 fun TextView.setCursorVisible(value: Bool) {
@@ -210,6 +211,11 @@ fun TextView.setTextColor(color: Color) = when (color) {
     is Color.StateList -> {
         setTextColor(color.stateList)
     }
+}
+
+@BindingAdapter("android:textScaleX")
+fun TextView.setTextScaleX(value: Float) {
+    textScaleX = value.toFloat(resources)
 }
 
 @BindingAdapter("android:hint")
