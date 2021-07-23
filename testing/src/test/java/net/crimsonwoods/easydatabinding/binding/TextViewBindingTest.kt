@@ -528,6 +528,15 @@ class TextViewBindingTest {
     }
 
     @Test
+    fun testBinding_setTextScaleX() {
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<TextView>(android.R.id.text1)
+                .setTextScaleX(Float.of(R.dimen.half))
+        }
+        // Behavior of "setTextScaleX" cannot be verified on Robolectric.
+    }
+
+    @Test
     fun testBinding_setTextSize() {
         val context = ApplicationProvider.getApplicationContext<Context>()
         val defaultTextSize = TypedValue.applyDimension(
