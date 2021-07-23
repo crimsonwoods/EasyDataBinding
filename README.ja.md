@@ -181,6 +181,7 @@ __未サポート__:
 |android:textAppearance            |TextAppearance|
 |android:textColor                 |Color         |
 |android:textColorHint             |Color         |
+|android:textScaleX                |Float         |
 |android:textSize                  |Dimension     |
 |android:width                     |Dimension     |
 
