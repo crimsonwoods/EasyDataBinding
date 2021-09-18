@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  unit-test:
+  check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -33,7 +33,7 @@ jobs:
         uses: alaegin/Detekt-Action@v1.18.1
         with:
           github_token: ${{ secrets.github_token }}
-          detekt_config: 'detekt.xml'
+          detekt_config: 'detekt.yml'
           fail_on_error: false
 
       - name: tests
