@@ -4,6 +4,7 @@ EasyDataBinding [![Check](https://github.com/crimsonwoods/EasyDataBinding/action
 この小さなライブラリはシンプルなデータモデルとBindingAdapterを提供します。
 
 # 目的
+
 Androidの `ViewModel` は `Context` を持ちません。また一般に `Context` への参照を持たないように設計することが推奨されています。
 このため、 `ViewModel` の実装に際してリソース（drawble, color, string, etc.）を扱うことが困難な場合があります。
 この小さなライブラリはこの問題に対する解決策を提供します。
@@ -35,6 +36,7 @@ dependencies {
 ## コード
 
 `ViewModel`:
+
 ```Kotlin
 class MyActivityViewModel : ViewModel() {
     private val _message = MutableLiveData(Text.of(R.string.message))
@@ -50,36 +52,36 @@ class MyActivityViewModel : ViewModel() {
 ```
 
 `my_activity.xml`:
+
 ```XML
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
-  <data>
+    <data>
+        ...
+
+        <variable name="viewModel" type="MyActivityViewModel" />
+    </data>
+
     ...
-    
-    <variable
-        name="viewModel"
-        type="MyActivityViewModel"/>
-  </data>
-  
-  ...
-  
-  <TextView
-      ...
-      android:text="@{viewModel.message}"
-      .../>
-  
-  ...
-  
-  <Button
-      ...
-      android:onClick="@{viewModel.onClickButton}"
-      .../>
+
+    <TextView
+    ...
+    android:text="@{viewModel.message}"
+    .../>
+
+    ...
+
+    <Button
+    ...
+    android:onClick="@{viewModel.onClickButton}"
+    .../>
 </layout>
 ```
 
 ## Resource Types
 
 __サポート済み__:
+
 - Animation
 - Bool
 - Color
@@ -95,6 +97,7 @@ __サポート済み__:
 - Theme
 
 __未サポート__:
+
 - Animator
 - Array (String, Integer, etc.)
 - Attr
@@ -340,6 +343,7 @@ __未サポート__:
 |android:dividerPadding           |Dimension |
 
 ### AndroidX AppCompat
+
 #### LinearLayoutCompat
 
 |XML attribute                    |data model|
@@ -405,4 +409,5 @@ __未サポート__:
 |app:titleTextColor                 |Color         |
 
 # License
+
 MIT License

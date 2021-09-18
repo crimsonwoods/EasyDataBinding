@@ -6,9 +6,10 @@ EasyDataBinding [![Check](https://github.com/crimsonwoods/EasyDataBinding/action
 This small library provides simple data model and some BindingAdapters.
 
 # Motive
-Android `ViewModel` has no `Context`. It makes difficult to handle resources (drawable, color, string, etc.).
-This small library helps you to solve this issue.
-You can use simple data model that requires no `Context` and bind it to `View` attributes via DataBinding.
+
+Android `ViewModel` has no `Context`. It makes difficult to handle resources (drawable, color,
+string, etc.). This small library helps you to solve this issue. You can use simple data model that
+requires no `Context` and bind it to `View` attributes via DataBinding.
 
 # Usage
 
@@ -36,6 +37,7 @@ dependencies {
 ## Code
 
 In your `ViewModel`:
+
 ```Kotlin
 class MyActivityViewModel : ViewModel() {
     private val _message = MutableLiveData(Text.of(R.string.message))
@@ -51,36 +53,36 @@ class MyActivityViewModel : ViewModel() {
 ```
 
 In your `my_activity.xml`:
+
 ```XML
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
-  <data>
+    <data>
+        ...
+
+        <variable name="viewModel" type="MyActivityViewModel" />
+    </data>
+
     ...
-    
-    <variable
-        name="viewModel"
-        type="MyActivityViewModel"/>
-  </data>
-  
-  ...
-  
-  <TextView
-      ...
-      android:text="@{viewModel.message}"
-      .../>
-  
-  ...
-  
-  <Button
-      ...
-      android:onClick="@{viewModel.onClickButton}"
-      .../>
+
+    <TextView
+    ...
+    android:text="@{viewModel.message}"
+    .../>
+
+    ...
+
+    <Button
+    ...
+    android:onClick="@{viewModel.onClickButton}"
+    .../>
 </layout>
 ```
 
 ## Resource Types
 
 __Supported__:
+
 - Animation
 - Bool
 - Color
@@ -96,6 +98,7 @@ __Supported__:
 - Theme
 
 __Not Supported__:
+
 - Animator
 - Array (String, Integer, etc.)
 - Attr
@@ -341,6 +344,7 @@ __Not Supported__:
 |android:dividerPadding           |Dimension |
 
 ### AndroidX AppCompat
+
 #### LinearLayoutCompat
 
 |XML attribute                    |data model|
@@ -406,4 +410,5 @@ __Not Supported__:
 |app:titleTextColor                 |Color         |
 
 # License
+
 MIT License
