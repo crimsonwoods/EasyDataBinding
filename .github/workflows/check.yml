@@ -22,12 +22,5 @@ jobs:
           java-version: '11'
           cache: 'gradle'
 
-      - uses: actions/cache@v1
-        with:
-          path: ~/.gradle/caches
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
-
       - name: run tests
         run: ./gradlew :testing:testDebugUnitTest
