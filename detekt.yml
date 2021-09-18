@@ -267,8 +267,9 @@ exceptions:
 
 formatting:
   active: true
-  android: false
+  android: true
   autoCorrect: true
+  excludes: [ '**/testing/**', '**/samples/**' ]
   AnnotationOnSeparateLine:
     active: false
     autoCorrect: true
