@@ -22,5 +22,18 @@ jobs:
           java-version: '11'
           cache: 'gradle'
 
-      - name: run tests
+      - name: ktlint
+        uses: ScaCap/action-ktlint@master
+        with:
+          github_token: ${{ secrets.github_token }}
+          android: true
+          fail_on_error: false
+
+      - name: detekt
+        uses: alaegin/Detekt-Action@v1.18.1
+        with:
+          github_token: ${{ secrets.github_token }}
+          fail_on_error: false
+
+      - name: tests
         run: ./gradlew :testing:testDebugUnitTest
