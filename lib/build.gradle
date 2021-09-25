@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'com.github.crimsonwoods'
-version = '0.1.3'
+version = '0.1.4'
 
 android {
     compileSdkVersion 30
@@ -15,7 +15,7 @@ android {
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 15
+        versionCode 16
         versionName "$version"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
