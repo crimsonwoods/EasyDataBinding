@@ -27,6 +27,7 @@ class AttrTest {
 
         assertFalse(Attr.of(R.attr.alpha).isColor(context))
         assertFalse(Attr.of(R.attr.dividerVertical).isColor(context))
+        assertFalse(Attr.of(R.attr.windowFixedWidthMajor).isColor(context))
     }
 
     @Test
@@ -46,6 +47,7 @@ class AttrTest {
 
         assertNull(Attr.of(R.attr.alpha).asColor(context))
         assertNull(Attr.of(R.attr.dividerVertical).asColor(context))
+        assertNull(Attr.of(R.attr.windowFixedWidthMajor).asColor(context))
     }
 
     @Test
@@ -56,6 +58,7 @@ class AttrTest {
 
         assertFalse(Attr.of(R.attr.colorPrimary).isDrawable(context))
         assertFalse(Attr.of(R.attr.alpha).isDrawable(context))
+        assertFalse(Attr.of(R.attr.windowFixedWidthMajor).isDrawable(context))
     }
 
     @Test
@@ -66,5 +69,36 @@ class AttrTest {
 
         assertNull(Attr.of(R.attr.colorPrimary).asDrawable(context))
         assertNull(Attr.of(R.attr.alpha).asDrawable(context))
+        assertNull(Attr.of(R.attr.windowFixedWidthMajor).asDrawable(context))
+    }
+
+    @Test
+    fun isDimension() {
+        assertTrue(Attr.of(R.attr.listPreferredItemHeight).isDimension(context))
+        assertTrue(Attr.of(R.attr.actionBarSize).isDimension(context))
+
+        assertFalse(Attr.of(R.attr.colorPrimary).isDimension(context))
+        assertFalse(Attr.of(R.attr.alpha).isDimension(context))
+        assertFalse(Attr.of(R.attr.selectableItemBackground).isDimension(context))
+        assertFalse(Attr.of(R.attr.windowFixedWidthMajor).isDimension(context))
+    }
+
+    @Test
+    fun asDimension() {
+        assertEquals(
+            // same as "androidx.appcompat.R.dimen.abc_list_item_height_material"
+            Dimension.dp(64f),
+            Attr.of(R.attr.listPreferredItemHeight).asDimension(context)
+        )
+        assertEquals(
+            // same as "androidx.appcompat.R.dimen.abc_action_bar_default_height_material"
+            Dimension.dp(56f),
+            Attr.of(R.attr.actionBarSize).asDimension(context)
+        )
+
+        assertNull(Attr.of(R.attr.colorPrimary).asDimension(context))
+        assertNull(Attr.of(R.attr.alpha).asDimension(context))
+        assertNull(Attr.of(R.attr.selectableItemBackground).asDimension(context))
+        assertNull(Attr.of(R.attr.windowFixedWidthMajor).asDimension(context))
     }
 }

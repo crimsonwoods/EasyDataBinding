@@ -63,3 +63,43 @@ fun Attr.asDrawable(context: Context): Drawable? {
     val drawable = ContextCompat.getDrawable(context, value.resourceId) ?: return null
     return Drawable.of(drawable)
 }
+
+fun Attr.isDimension(context: Context): Boolean {
+    val value = TypedValue()
+    if (!context.theme.resolveAttribute(resId, value, true)) {
+        return false
+    }
+    if (value.type != TypedValue.TYPE_DIMENSION) {
+        return false
+    }
+    return true
+}
+
+fun Attr.asDimension(context: Context): Dimension? {
+    val value = TypedValue()
+    if (!context.theme.resolveAttribute(resId, value, true)) {
+        return null
+    }
+    if (value.type != TypedValue.TYPE_DIMENSION) {
+        return null
+    }
+    return when (TypedValue.COMPLEX_UNIT_MASK and (value.data ushr TypedValue.COMPLEX_UNIT_SHIFT)) {
+        TypedValue.COMPLEX_UNIT_DIP -> {
+            Dimension.dp(TypedValue.complexToFloat(value.data))
+        }
+        TypedValue.COMPLEX_UNIT_PX -> {
+            Dimension.px(TypedValue.complexToFloat(value.data))
+        }
+        TypedValue.COMPLEX_UNIT_SP -> {
+            Dimension.sp(TypedValue.complexToFloat(value.data))
+        }
+        TypedValue.COMPLEX_UNIT_PT,
+        TypedValue.COMPLEX_UNIT_IN,
+        TypedValue.COMPLEX_UNIT_MM -> {
+            null
+        }
+        else -> {
+            null
+        }
+    }
+}
