@@ -4,6 +4,7 @@ import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
+import android.graphics.drawable.RippleDrawable
 import android.graphics.drawable.ShapeDrawable
 import android.graphics.drawable.shapes.RectShape
 import android.view.View
@@ -31,6 +32,7 @@ import net.crimsonwoods.easydatabinding.matcher.ViewMatchers.withRotationX
 import net.crimsonwoods.easydatabinding.matcher.ViewMatchers.withRotationY
 import net.crimsonwoods.easydatabinding.matcher.ViewMatchers.withScaleX
 import net.crimsonwoods.easydatabinding.matcher.ViewMatchers.withScaleY
+import net.crimsonwoods.easydatabinding.models.Attr
 import net.crimsonwoods.easydatabinding.models.Background
 import net.crimsonwoods.easydatabinding.models.Bool
 import net.crimsonwoods.easydatabinding.models.Dimension
@@ -51,8 +53,9 @@ class ViewBindingTest {
 
     @BeforeTest
     fun setUp() {
-        scenario = launchFragmentInContainer<TestFragment>()
-            .moveToState(Lifecycle.State.RESUMED)
+        scenario = launchFragmentInContainer<TestFragment>(
+            themeResId = R.style.Theme_AppCompat_Light,
+        ).moveToState(Lifecycle.State.RESUMED)
     }
 
     @Test
@@ -137,6 +140,24 @@ class ViewBindingTest {
                 }
         }
         onView(withId(R.id.border)).check(matches(noBackground()))
+    }
+
+    @Test
+    fun testBinding_setBackground_Attr_Drawable() {
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<View>(R.id.border)
+                .setBackground(Attr.of(R.attr.selectableItemBackground))
+        }
+        onView(withId(R.id.border)).check(matches(isDrawableClassOf<RippleDrawable>()))
+    }
+
+    @Test
+    fun testBinding_setBackground_Attr_Color() {
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<View>(R.id.border)
+                .setBackground(Attr.of(R.attr.colorPrimary))
+        }
+        onView(withId(R.id.border)).check(matches(isDrawableClassOf<ColorDrawable>()))
     }
 
     @Test
@@ -480,9 +501,9 @@ class ViewBindingTest {
 
             override fun matchesSafely(item: View): Boolean {
                 return item.paddingStart == value &&
-                        item.paddingEnd == value &&
-                        item.paddingTop == value &&
-                        item.paddingBottom == value
+                    item.paddingEnd == value &&
+                    item.paddingTop == value &&
+                    item.paddingBottom == value
             }
         }
     }
