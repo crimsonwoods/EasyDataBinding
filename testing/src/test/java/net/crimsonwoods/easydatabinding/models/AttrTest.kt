@@ -5,6 +5,7 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
+import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import net.crimsonwoods.easydatabinding.testing.R
@@ -25,7 +26,7 @@ class AttrTest {
         assertTrue(Attr.of(R.attr.colorTesting).isColor(context))
 
         assertFalse(Attr.of(R.attr.alpha).isColor(context))
-        assertFalse(Attr.of(R.attr.divider).isColor(context))
+        assertFalse(Attr.of(R.attr.dividerVertical).isColor(context))
     }
 
     @Test
@@ -44,6 +45,26 @@ class AttrTest {
         )
 
         assertNull(Attr.of(R.attr.alpha).asColor(context))
-        assertNull(Attr.of(R.attr.divider).asColor(context))
+        assertNull(Attr.of(R.attr.dividerVertical).asColor(context))
+    }
+
+    @Test
+    fun isDrawable() {
+        assertTrue(Attr.of(R.attr.dividerVertical).isDrawable(context))
+        assertTrue(Attr.of(R.attr.actionBarDivider).isDrawable(context))
+        assertTrue(Attr.of(R.attr.selectableItemBackground).isDrawable(context))
+
+        assertFalse(Attr.of(R.attr.colorPrimary).isDrawable(context))
+        assertFalse(Attr.of(R.attr.alpha).isDrawable(context))
+    }
+
+    @Test
+    fun asDrawable() {
+        assertNotNull(Attr.of(R.attr.dividerVertical).asDrawable(context))
+        assertNotNull(Attr.of(R.attr.actionBarDivider).asDrawable(context))
+        assertNotNull(Attr.of(R.attr.selectableItemBackground).asDrawable(context))
+
+        assertNull(Attr.of(R.attr.colorPrimary).asDrawable(context))
+        assertNull(Attr.of(R.attr.alpha).asDrawable(context))
     }
 }
