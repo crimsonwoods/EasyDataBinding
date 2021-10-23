@@ -4,4 +4,8 @@
     <style name="FragmentScenarioEmptyFragmentAppCompatActivityTheme" parent="Theme.AppCompat">
         <item name="android:windowIsFloating">false</item>
     </style>
+
+    <style name="TestingTheme" parent="Theme.AppCompat">
+        <item name="colorTesting">@android:color/darker_gray</item>
+    </style>
 </resources>
