@@ -9,7 +9,6 @@ import androidx.core.view.updatePaddingRelative
 import androidx.databinding.BindingAdapter
 import kotlin.math.roundToInt
 import net.crimsonwoods.easydatabinding.models.Animation
-import net.crimsonwoods.easydatabinding.models.Attr
 import net.crimsonwoods.easydatabinding.models.Background
 import net.crimsonwoods.easydatabinding.models.Bool
 import net.crimsonwoods.easydatabinding.models.Color
@@ -55,34 +54,24 @@ fun View.setBackground(value: Background) = when (value) {
     is Background.Res -> {
         setBackgroundResource(value.resId)
     }
+    is Background.Attr -> {
+        when {
+            value.attr.isColor(context) -> {
+                setBackgroundColor(checkNotNull(value.attr.asColor(context)).toInt(context))
+            }
+            value.attr.isDrawable(context) -> {
+                background = checkNotNull(value.attr.asDrawable(context)).toDrawable(context)
+            }
+            else -> {
+                throw IllegalArgumentException("Unsupported attribute resource is supplied.")
+            }
+        }
+    }
     is Background.Drawable -> {
         background = value.drawable.toDrawable(context)
     }
     is Background.None -> {
         background = null
-    }
-}
-
-@BindingAdapter("android:background")
-fun View.setBackground(value: Attr) = when {
-    value.isColor(context) -> {
-        val color = value.asColor(context)
-        if (color != null) {
-            setBackgroundColor(color.toInt(context))
-        } else {
-            background = null
-        }
-    }
-    value.isDrawable(context) -> {
-        val drawable = value.asDrawable(context)
-        if (drawable != null) {
-            setBackground(drawable.toDrawable(context))
-        } else {
-            background = null
-        }
-    }
-    else -> {
-        throw IllegalArgumentException("Unsupported attribute resource is supplied.")
     }
 }
 

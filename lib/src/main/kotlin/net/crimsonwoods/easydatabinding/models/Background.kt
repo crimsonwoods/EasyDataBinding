@@ -1,6 +1,7 @@
 package net.crimsonwoods.easydatabinding.models
 
 import android.graphics.drawable.ColorDrawable
+import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
@@ -31,6 +32,10 @@ sealed class Background {
         val resId: Int
     ) : Background()
 
+    data class Attr(
+        val attr: net.crimsonwoods.easydatabinding.models.Attr,
+    ) : Background()
+
     data class Drawable(
         val drawable: net.crimsonwoods.easydatabinding.models.Drawable
     ) : Background()
@@ -40,6 +45,10 @@ sealed class Background {
     companion object {
         @JvmStatic
         fun of(@DrawableRes resId: Int): Background = Res(resId)
+
+        @JvmStatic
+        fun attr(@AttrRes resId: Int): Background =
+            Attr(net.crimsonwoods.easydatabinding.models.Attr.of(resId))
 
         @JvmStatic
         fun of(drawable: android.graphics.drawable.Drawable?): Background =
