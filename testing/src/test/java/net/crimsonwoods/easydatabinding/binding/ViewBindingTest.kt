@@ -32,7 +32,6 @@ import net.crimsonwoods.easydatabinding.matcher.ViewMatchers.withRotationX
 import net.crimsonwoods.easydatabinding.matcher.ViewMatchers.withRotationY
 import net.crimsonwoods.easydatabinding.matcher.ViewMatchers.withScaleX
 import net.crimsonwoods.easydatabinding.matcher.ViewMatchers.withScaleY
-import net.crimsonwoods.easydatabinding.models.Attr
 import net.crimsonwoods.easydatabinding.models.Background
 import net.crimsonwoods.easydatabinding.models.Bool
 import net.crimsonwoods.easydatabinding.models.Dimension
@@ -146,7 +145,7 @@ class ViewBindingTest {
     fun testBinding_setBackground_Attr_Drawable() {
         scenario.onFragment { fragment ->
             fragment.requireView().findViewById<View>(R.id.border)
-                .setBackground(Attr.of(R.attr.selectableItemBackground))
+                .setBackground(Background.attr(R.attr.selectableItemBackground))
         }
         onView(withId(R.id.border)).check(matches(isDrawableClassOf<RippleDrawable>()))
     }
@@ -155,7 +154,7 @@ class ViewBindingTest {
     fun testBinding_setBackground_Attr_Color() {
         scenario.onFragment { fragment ->
             fragment.requireView().findViewById<View>(R.id.border)
-                .setBackground(Attr.of(R.attr.colorPrimary))
+                .setBackground(Background.attr(R.attr.colorPrimary))
         }
         onView(withId(R.id.border)).check(matches(isDrawableClassOf<ColorDrawable>()))
     }
