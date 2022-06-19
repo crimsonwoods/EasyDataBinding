@@ -1,5 +1,6 @@
 package net.crimsonwoods.easydatabinding.binding
 
+import android.content.res.ColorStateList
 import android.os.Build
 import android.util.TypedValue
 import android.widget.TextView
@@ -180,8 +181,8 @@ fun TextView.setSelectAllOnFocus(value: Bool) {
 }
 
 @BindingAdapter("android:text")
-fun TextView.setText(text: Text) {
-    this.text = text.toCharSequence(resources)
+fun TextView.setText(text: Text?) {
+    this.text = text?.toCharSequence(resources)
 }
 
 @BindingAdapter("android:textAllCaps")
@@ -219,12 +220,12 @@ fun TextView.setTextScaleX(value: Float) {
 }
 
 @BindingAdapter("android:hint")
-fun TextView.setHint(value: Text) {
-    hint = value.toCharSequence()
+fun TextView.setHint(value: Text?) {
+    hint = value?.toCharSequence()
 }
 
 @BindingAdapter("android:textColorHint")
-fun TextView.setHintTextColor(color: Color) = when (color) {
+fun TextView.setHintTextColor(color: Color?) = when (color) {
     is Color.Int -> {
         setHintTextColor(color.rawValue)
     }
@@ -239,6 +240,9 @@ fun TextView.setHintTextColor(color: Color) = when (color) {
     }
     is Color.StateList -> {
         setHintTextColor(color.stateList)
+    }
+    null -> {
+        setHintTextColor(null as ColorStateList?)
     }
 }
 
