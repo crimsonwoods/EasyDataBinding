@@ -142,6 +142,18 @@ class ViewBindingTest {
     }
 
     @Test
+    fun testBinding_setBackground_null() {
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<View>(R.id.border)
+                .apply {
+                    setBackgroundColor(Color.RED)
+                    setBackground(null as Background?)
+                }
+        }
+        onView(withId(R.id.border)).check(matches(noBackground()))
+    }
+
+    @Test
     fun testBinding_setBackground_Attr_Drawable() {
         scenario.onFragment { fragment ->
             fragment.requireView().findViewById<View>(R.id.border)
@@ -194,6 +206,18 @@ class ViewBindingTest {
     }
 
     @Test
+    fun testBinding_setBackgroundTint_null() {
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<View>(R.id.border)
+                .apply {
+                    backgroundTintList = ColorStateList.valueOf(Color.RED)
+                    setBackgroundTint(null as Tint?)
+                }
+        }
+        onView(withId(R.id.border)).check(matches(noBackgroundTint()))
+    }
+
+    @Test
     fun testBinding_setContentDescription_Res() {
         scenario.onFragment { fragment ->
             fragment.requireView().findViewById<View>(R.id.border)
@@ -209,6 +233,20 @@ class ViewBindingTest {
                 .setContentDescription(Text.of("test"))
         }
         onView(withId(R.id.border)).check(matches(withContentDescription("test")))
+    }
+
+    @Test
+    fun testBinding_setContentDescription_null() {
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<View>(R.id.border)
+                .contentDescription = "test"
+        }
+        onView(withId(R.id.border)).check(matches(withContentDescription("test")))
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<View>(R.id.border)
+                .setContentDescription(null as Text?)
+        }
+        onView(withId(R.id.border)).check(matches(withContentDescription(null as String?)))
     }
 
     @Test
