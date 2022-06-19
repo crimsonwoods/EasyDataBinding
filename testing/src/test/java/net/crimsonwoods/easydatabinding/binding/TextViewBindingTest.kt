@@ -352,6 +352,21 @@ class TextViewBindingTest {
         onView(withId(android.R.id.text1)).check(matches(withText("Test")))
     }
 
+    @Test
+    fun testBinding_setText_for_null() {
+        onView(withId(android.R.id.text1)).check(matches(withText("")))
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<TextView>(android.R.id.text1)
+                .setText(Text.of("test"))
+        }
+        onView(withId(android.R.id.text1)).check(matches(withText("test")))
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<TextView>(android.R.id.text1)
+                .setText(null as Text?)
+        }
+        onView(withId(android.R.id.text1)).check(matches(withText("")))
+    }
+
     @Config(sdk = [Build.VERSION_CODES.P])
     @Test
     fun testBinding_setTextAllCaps_P() {
@@ -459,6 +474,20 @@ class TextViewBindingTest {
     }
 
     @Test
+    fun testBinding_setHint_for_null() {
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<TextView>(android.R.id.text1)
+                .setHint(Text.of("test"))
+        }
+        onView(withId(android.R.id.text1)).check(matches(withHint("test")))
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<TextView>(android.R.id.text1)
+                .setHint(null as Text?)
+        }
+        onView(withId(android.R.id.text1)).check(matches(withHint(null)))
+    }
+
+    @Test
     fun testBinding_setHintTextColor_for_Int() {
         scenario.onFragment { fragment ->
             fragment.requireView().findViewById<TextView>(android.R.id.text1).setTextColor(0)
@@ -525,6 +554,19 @@ class TextViewBindingTest {
                 .setHintTextColor(Color.StateList(stateList))
         }
         onView(withId(android.R.id.text1)).check(matches(withHintTint(stateList)))
+    }
+
+    @Test
+    fun testBinding_setHintTextColor_for_null() {
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<TextView>(android.R.id.text1).setTextColor(0)
+        }
+        onView(withId(android.R.id.text1)).check(matches(hasTextColor(0)))
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<TextView>(android.R.id.text1)
+                .setHintTextColor(null as Color?)
+        }
+        onView(withId(android.R.id.text1)).check(matches(noHintColors()))
     }
 
     @Test
@@ -843,6 +885,18 @@ class TextViewBindingTest {
 
             override fun matchesSafely(item: TextView): Boolean {
                 return item.currentHintTextColor == value
+            }
+        }
+    }
+
+    private fun noHintColors(): Matcher<View> {
+        return object : BoundedMatcher<View, TextView>(TextView::class.java) {
+            override fun describeTo(description: Description) {
+                description.appendText("has no color with state-list")
+            }
+
+            override fun matchesSafely(item: TextView): Boolean {
+                return item.hintTextColors == null
             }
         }
     }

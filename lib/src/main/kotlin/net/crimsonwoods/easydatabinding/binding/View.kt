@@ -38,7 +38,7 @@ fun View.setAlpha(value: Float) {
 }
 
 @BindingAdapter("android:background")
-fun View.setBackground(value: Background) = when (value) {
+fun View.setBackground(value: Background?) = when (value) {
     is Background.Color.Int -> {
         setBackgroundColor(value.rawValue)
     }
@@ -73,10 +73,13 @@ fun View.setBackground(value: Background) = when (value) {
     is Background.None -> {
         background = null
     }
+    null -> {
+        background = null
+    }
 }
 
 @BindingAdapter("android:backgroundTint")
-fun View.setBackgroundTint(value: Tint) = when (value) {
+fun View.setBackgroundTint(value: Tint?) = when (value) {
     is Tint.Res -> {
         backgroundTintList = ContextCompat.getColorStateList(context, value.resId)
     }
@@ -86,11 +89,14 @@ fun View.setBackgroundTint(value: Tint) = when (value) {
     is Tint.None -> {
         backgroundTintList = null
     }
+    null -> {
+        backgroundTintList = null
+    }
 }
 
 @BindingAdapter("android:contentDescription")
-fun View.setContentDescription(value: Text) {
-    contentDescription = value.toCharSequence(resources)
+fun View.setContentDescription(value: Text?) {
+    contentDescription = value?.toCharSequence(resources)
 }
 
 @BindingAdapter("android:paddingStart")

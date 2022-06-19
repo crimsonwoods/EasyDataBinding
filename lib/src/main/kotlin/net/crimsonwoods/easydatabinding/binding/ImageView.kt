@@ -44,7 +44,7 @@ fun ImageView.setScaleType(value: Integer) {
 }
 
 @BindingAdapter("android:src")
-fun ImageView.setImage(image: Image) = when (image) {
+fun ImageView.setImage(image: Image?) = when (image) {
     is Image.Res -> {
         // To keep compatibility for API Level 21,
         // sets image drawable to null explicitly if given resource ID is zero.
@@ -66,9 +66,12 @@ fun ImageView.setImage(image: Image) = when (image) {
     is Image.None -> {
         setImageDrawable(null)
     }
+    null -> {
+        setImageDrawable(null)
+    }
 }
 
 @BindingAdapter("tint")
-fun ImageView.setTintList(value: Tint) {
-    ImageViewCompat.setImageTintList(this, value.toColorStateList(context))
+fun ImageView.setTintList(value: Tint?) {
+    ImageViewCompat.setImageTintList(this, value?.toColorStateList(context))
 }

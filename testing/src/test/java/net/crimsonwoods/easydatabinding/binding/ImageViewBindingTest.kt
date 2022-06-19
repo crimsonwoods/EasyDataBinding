@@ -173,6 +173,22 @@ class ImageViewBindingTest {
     }
 
     @Test
+    fun testBinding_setImage_null() {
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<ImageView>(android.R.id.icon)
+                .setImage(Image.Res(android.R.drawable.ic_btn_speak_now))
+        }
+        onView(withId(android.R.id.icon))
+            .check(matches(withDrawable<BitmapDrawable>()))
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<ImageView>(android.R.id.icon)
+                .setImage(null as Image?)
+        }
+        onView(withId(android.R.id.icon))
+            .check(matches(noDrawable()))
+    }
+
+    @Test
     fun testBinding_setTintList_Res() {
         scenario.onFragment { fragment ->
             fragment.requireView().findViewById<ImageView>(android.R.id.icon)
@@ -199,6 +215,16 @@ class ImageViewBindingTest {
         scenario.onFragment { fragment ->
             fragment.requireView().findViewById<ImageView>(android.R.id.icon)
                 .setTintList(Tint.none())
+        }
+        onView(withId(android.R.id.icon))
+            .check(matches(withTintList(null)))
+    }
+
+    @Test
+    fun testBinding_setTintList_null() {
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<ImageView>(android.R.id.icon)
+                .setTintList(null as Tint?)
         }
         onView(withId(android.R.id.icon))
             .check(matches(withTintList(null)))
