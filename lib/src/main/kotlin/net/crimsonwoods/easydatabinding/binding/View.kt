@@ -25,7 +25,6 @@ import net.crimsonwoods.easydatabinding.models.isColor
 import net.crimsonwoods.easydatabinding.models.isDrawable
 import net.crimsonwoods.easydatabinding.models.toAnimation
 import net.crimsonwoods.easydatabinding.models.toBoolean
-import net.crimsonwoods.easydatabinding.models.toCharSequence
 import net.crimsonwoods.easydatabinding.models.toColorStateList
 import net.crimsonwoods.easydatabinding.models.toDrawable
 import net.crimsonwoods.easydatabinding.models.toFloat
