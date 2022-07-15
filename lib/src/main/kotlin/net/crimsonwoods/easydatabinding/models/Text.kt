@@ -2,6 +2,7 @@ package net.crimsonwoods.easydatabinding.models
 
 import android.content.res.Resources
 import android.os.Build
+import android.text.SpannableStringBuilder
 import androidx.annotation.StringRes
 import java.util.Locale
 
@@ -39,6 +40,40 @@ sealed class Text {
         val fallbackResId: Int = 0,
     ) : Text()
 
+    private data class Concatenated(
+        val text1: Text,
+        val text2: Text,
+    ) : Text()
+
+    infix operator fun plus(other: Text): Text = Concatenated(this, other)
+
+    fun toCharSequence(resources: Resources): kotlin.CharSequence = when (this) {
+        is Res -> {
+            if (args.isNotEmpty()) {
+                resources.getString(resId, *args.toTypedArray())
+            } else {
+                resources.getString(resId)
+            }
+        }
+        is CharSequence -> {
+            rawValue
+        }
+        is Multilingual -> {
+            val locale = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                resources.configuration.locales[0]
+            } else {
+                @Suppress("DEPRECATION")
+                resources.configuration.locale
+            }
+            values[locale] ?: fallback ?: resources.getString(fallbackResId)
+        }
+        is Concatenated -> {
+            SpannableStringBuilder()
+                .append(text1.toCharSequence(resources))
+                .append(text2.toCharSequence(resources))
+        }
+    }
+
     companion object {
         @JvmStatic
         fun of(
@@ -74,27 +109,5 @@ sealed class Text {
 
         @JvmStatic
         fun empty(): Text = CharSequence(rawValue = "")
-    }
-}
-
-fun Text.toCharSequence(resources: Resources): CharSequence = when (this) {
-    is Text.Res -> {
-        if (args.isNotEmpty()) {
-            resources.getString(resId, *args.toTypedArray())
-        } else {
-            resources.getString(resId)
-        }
-    }
-    is Text.CharSequence -> {
-        rawValue
-    }
-    is Text.Multilingual -> {
-        val locale = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            resources.configuration.locales[0]
-        } else {
-            @Suppress("DEPRECATION")
-            resources.configuration.locale
-        }
-        values[locale] ?: fallback ?: resources.getString(fallbackResId)
     }
 }
