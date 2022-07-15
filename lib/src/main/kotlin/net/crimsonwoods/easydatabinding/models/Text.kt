@@ -89,7 +89,8 @@ sealed class Text {
 
         @JvmStatic
         fun of(
-            @StringRes resId: Int, vararg args: Any?,
+            @StringRes resId: Int,
+            vararg args: Any?,
         ): Text = Res(resId = resId, args = args)
 
         @JvmStatic
