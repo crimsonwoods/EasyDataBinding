@@ -15,26 +15,41 @@ class TextTest {
     @Test
     fun toCharSequence() {
         data class Input(
-            val input: Text,
+            val target: Text,
             val expected: CharSequence,
             val description: String,
         )
 
         val inputs = listOf(
             Input(
-                input = Text.of(R.string.test_text),
-                expected = "Testing",
-                description = "Resource",
+                target = Text.empty(),
+                expected = "",
+                description = "empty",
             ),
             Input(
-                input = Text.of(R.string.test_text_with_args, 0, 1),
+                target = Text.of("abc"),
+                expected = "abc",
+                description = "string literal",
+            ),
+            Input(
+                target = Text.of(R.string.test_text),
+                expected = "Testing",
+                description = "string resource",
+            ),
+            Input(
+                target = Text.of(R.string.test_text_with_args, 0, 1),
                 expected = "0/1",
-                description = "Resource with args",
+                description = "string resource with args",
+            ),
+            Input(
+                target = Text.of { resources -> resources.getString(R.string.test_text) },
+                expected = "Testing",
+                description = "builder",
             ),
         )
 
         inputs.forEach { input ->
-            assertEquals(input.expected, input.input.toCharSequence(resources), input.description)
+            assertEquals(input.expected, input.target.toCharSequence(resources), input.description)
         }
     }
 

@@ -17,7 +17,7 @@ sealed class Text {
     ) : Text() {
         constructor(@StringRes resId: Int, vararg args: Any?) : this(
             resId,
-            args.toList()
+            args.toList(),
         )
 
         constructor(@StringRes resId: Int) : this(resId, emptyList())
@@ -38,6 +38,10 @@ sealed class Text {
         val fallback: kotlin.CharSequence? = null,
         @StringRes
         val fallbackResId: Int = 0,
+    ) : Text()
+
+    private data class Builder(
+        val builder: (Resources) -> kotlin.CharSequence,
     ) : Text()
 
     private data class Concatenated(
@@ -67,6 +71,9 @@ sealed class Text {
             }
             values[locale] ?: fallback ?: resources.getString(fallbackResId)
         }
+        is Builder -> {
+            builder(resources)
+        }
         is Concatenated -> {
             SpannableStringBuilder()
                 .append(text1.toCharSequence(resources))
@@ -77,35 +84,41 @@ sealed class Text {
     companion object {
         @JvmStatic
         fun of(
-            @StringRes resId: Int
+            @StringRes resId: Int,
         ): Text = Res(resId = resId)
 
         @JvmStatic
         fun of(
-            @StringRes resId: Int, vararg args: Any?
+            @StringRes resId: Int,
+            vararg args: Any?,
         ): Text = Res(resId = resId, args = args)
 
         @JvmStatic
         fun of(
-            value: kotlin.CharSequence
+            value: kotlin.CharSequence,
         ): Text = CharSequence(rawValue = value)
 
         @JvmStatic
         fun of(
-            vararg values: Pair<Locale, kotlin.CharSequence>
+            vararg values: Pair<Locale, kotlin.CharSequence>,
         ): Text = Multilingual(values = values.toMap())
 
         @JvmStatic
         fun of(
             values: Map<Locale, kotlin.CharSequence>,
-            fallback: kotlin.CharSequence
+            fallback: kotlin.CharSequence,
         ): Text = Multilingual(values = values, fallback = fallback)
 
         @JvmStatic
         fun of(
             values: Map<Locale, kotlin.CharSequence>,
-            @StringRes fallbackResId: Int
+            @StringRes fallbackResId: Int,
         ): Text = Multilingual(values = values, fallback = null, fallbackResId = fallbackResId)
+
+        @JvmStatic
+        fun of(
+            builder: (Resources) -> kotlin.CharSequence,
+        ): Text = Builder(builder = builder)
 
         @JvmStatic
         fun empty(): Text = CharSequence(rawValue = "")
