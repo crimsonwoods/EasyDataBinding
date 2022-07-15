@@ -10,6 +10,34 @@ import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 class TextTest {
+    private val resources = ApplicationProvider.getApplicationContext<Context>().resources
+
+    @Test
+    fun toCharSequence() {
+        data class Input(
+            val input: Text,
+            val expected: CharSequence,
+            val description: String,
+        )
+
+        val inputs = listOf(
+            Input(
+                input = Text.of(R.string.test_text),
+                expected = "Testing",
+                description = "Resource",
+            ),
+            Input(
+                input = Text.of(R.string.test_text_with_args, 0, 1),
+                expected = "0/1",
+                description = "Resource with args",
+            ),
+        )
+
+        inputs.forEach { input ->
+            assertEquals(input.expected, input.input.toCharSequence(resources), input.description)
+        }
+    }
+
     @Test
     fun plus() {
         data class Input(
@@ -39,7 +67,7 @@ class TextTest {
                 description = "Concat resource with args",
             ),
         )
-        val resources = ApplicationProvider.getApplicationContext<Context>().resources
+
         inputs.forEach { input ->
             assertEquals(
                 input.expected,
