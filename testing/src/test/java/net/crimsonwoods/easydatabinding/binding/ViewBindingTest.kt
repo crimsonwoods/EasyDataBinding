@@ -128,7 +128,7 @@ class ViewBindingTest {
             fragment.requireView().findViewById<View>(R.id.border)
                 .setBackground(Background.of(ShapeDrawable(RectShape())))
         }
-        onView(withId(R.id.border)).check(matches(isDrawableClassOf<ShapeDrawable>()))
+        onView(withId(R.id.border)).check(matches(isDrawableClassOf<ShapeDrawable> { background }))
     }
 
     @Test
@@ -161,7 +161,7 @@ class ViewBindingTest {
             fragment.requireView().findViewById<View>(R.id.border)
                 .setBackground(Background.attr(R.attr.selectableItemBackground))
         }
-        onView(withId(R.id.border)).check(matches(isDrawableClassOf<RippleDrawable>()))
+        onView(withId(R.id.border)).check(matches(isDrawableClassOf<RippleDrawable> { background }))
     }
 
     @Test
@@ -170,7 +170,7 @@ class ViewBindingTest {
             fragment.requireView().findViewById<View>(R.id.border)
                 .setBackground(Background.attr(R.attr.colorPrimary))
         }
-        onView(withId(R.id.border)).check(matches(isDrawableClassOf<ColorDrawable>()))
+        onView(withId(R.id.border)).check(matches(isDrawableClassOf<ColorDrawable> { background }))
     }
 
     @Test
@@ -581,14 +581,14 @@ class ViewBindingTest {
         }
     }
 
-    private inline fun <reified T : Drawable> isDrawableClassOf(): Matcher<View> {
+    private inline fun <reified T : Drawable> isDrawableClassOf(crossinline selector: View.() -> Drawable?): Matcher<View> {
         return object : BoundedMatcher<View, View>(View::class.java) {
             override fun describeTo(description: Description) {
                 description.appendText("has background drawable type of ${T::class.java.simpleName}")
             }
 
             override fun matchesSafely(item: View): Boolean {
-                return item.background?.javaClass == T::class.java
+                return item.selector()?.javaClass == T::class.java
             }
         }
     }
