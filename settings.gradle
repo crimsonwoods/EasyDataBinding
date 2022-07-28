@@ -18,3 +18,4 @@ include ':samples:textviewsample'
 include ':lib'
 include ':samples'
 rootProject.name = "EasyDataBinding"
+include ':samples:stateflowsample'
