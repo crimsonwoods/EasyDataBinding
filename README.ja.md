@@ -29,7 +29,7 @@ allprojects {
 
 ```groovy
 dependencies {
-    implementation 'com.github.crimsonwoods:EasyDataBinding:0.1.3'
+    implementation "com.github.crimsonwoods:EasyDataBinding:$latest_version"
 }
 ```
 
@@ -83,6 +83,7 @@ class MyActivityViewModel : ViewModel() {
 __サポート済み__:
 
 - Animation
+- Attr (experimental)
 - Bool
 - Color
 - ColorStateList
@@ -100,7 +101,6 @@ __未サポート__:
 
 - Animator
 - Array (String, Integer, etc.)
-- Attr
 - Font
 - ID
 - Layout
@@ -112,32 +112,34 @@ __未サポート__:
 
 ### View
 
-|XML attribute              |data model|
-|:--------------------------|:---------|
-|android:alpha              |Float     |
-|android:background         |Background|
-|android:backgroundTint     |Tint      |
-|android:clickable          |Bool      |
-|android:contentDescription |Text      |
-|android:enabled            |Bool      |
-|android:focusable          |Bool      |
-|android:longClickable      |Bool      |
-|android:minHeight          |Dimension |
-|android:minWidth           |Dimension |
-|android:padding            |Dimension |
-|android:paddingLeft        |Dimension |
-|android:paddingStart       |Dimension |
-|android:paddingRight       |Dimension |
-|android:paddingEnd         |Dimension |
-|android:paddingTop         |Dimension |
-|android:paddingBottom      |Dimension |
-|android:rotation           |Float     |
-|android:rotationX          |Float     |
-|android:rotationY          |Float     |
-|android:scaleX             |Float     |
-|android:scaleY             |Float     |
-|android:soundEffectsEnabled|Bool      |
-|android:visibility         |Integer   |
+| XML attribute               | data model |
+|:----------------------------|:-----------|
+| android:alpha               | Float      |
+| android:background          | Background |
+| android:backgroundTint      | Tint       |
+| android:clickable           | Bool       |
+| android:contentDescription  | Text       |
+| android:enabled             | Bool       |
+| android:focusable           | Bool       |
+| android:foreground          | Drawable   |
+| android:foregroundTint      | Tint       |
+| android:longClickable       | Bool       |
+| android:minHeight           | Dimension  |
+| android:minWidth            | Dimension  |
+| android:padding             | Dimension  |
+| android:paddingLeft         | Dimension  |
+| android:paddingStart        | Dimension  |
+| android:paddingRight        | Dimension  |
+| android:paddingEnd          | Dimension  |
+| android:paddingTop          | Dimension  |
+| android:paddingBottom       | Dimension  |
+| android:rotation            | Float      |
+| android:rotationX           | Float      |
+| android:rotationY           | Float      |
+| android:scaleX              | Float      |
+| android:scaleY              | Float      |
+| android:soundEffectsEnabled | Bool       |
+| android:visibility          | Integer    |
 
 ### ViewGroup
 
