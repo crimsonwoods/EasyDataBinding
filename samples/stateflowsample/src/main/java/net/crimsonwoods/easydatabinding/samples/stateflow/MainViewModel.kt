@@ -32,7 +32,9 @@ class MainViewModel : ViewModel() {
         Image.of(R.drawable.ic_star),
     )
     private val texts = listOf(
-        Text.of(R.string.text1), Text.of(R.string.text2), Text.of(R.string.text3),
+        Text.of(R.string.text1),
+        Text.of(R.string.text2),
+        Text.of(R.string.text3),
     )
     private val _viewState = MutableStateFlow(ViewState.initial())
 
