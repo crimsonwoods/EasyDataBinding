@@ -3,9 +3,7 @@
 package net.crimsonwoods.easydatabinding.binding
 
 import android.annotation.SuppressLint
-import android.os.Build
 import android.widget.Switch
-import androidx.annotation.RequiresApi
 import androidx.databinding.BindingAdapter
 import kotlin.math.roundToInt
 import net.crimsonwoods.easydatabinding.models.Bool
@@ -60,16 +58,9 @@ fun Switch.setThumbTextPadding(value: Dimension) {
     thumbTextPadding = value.toPx().roundToInt()
 }
 
-@RequiresApi(value = Build.VERSION_CODES.M)
 @BindingAdapter("android:thumbTint")
 fun Switch.setThumbTintList(value: Tint) {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-        thumbTintList = value.toColorStateList()
-    } else {
-        throw UnsupportedOperationException(
-            "BindingAdapter for \"android:thumbTint\" attribute is being supported after Android M or later."
-        )
-    }
+    thumbTintList = value.toColorStateList()
 }
 
 @BindingAdapter("android:track")
@@ -77,14 +68,7 @@ fun Switch.setTrackDrawable(value: Drawable) {
     trackDrawable = value.toDrawable()
 }
 
-@RequiresApi(value = Build.VERSION_CODES.M)
 @BindingAdapter("android:trackTint")
 fun Switch.setTrackTintList(value: Tint) {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-        trackTintList = value.toColorStateList()
-    } else {
-        throw UnsupportedOperationException(
-            "BindingAdapter for \"android:trackTint\" attribute is being supported after Android M or later."
-        )
-    }
+    trackTintList = value.toColorStateList()
 }
