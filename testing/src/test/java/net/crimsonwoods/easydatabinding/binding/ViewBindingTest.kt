@@ -2,7 +2,9 @@ package net.crimsonwoods.easydatabinding.binding
 
 import android.content.res.ColorStateList
 import android.graphics.Color
+import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.ColorStateListDrawable
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.RippleDrawable
 import android.graphics.drawable.ShapeDrawable
@@ -126,7 +128,7 @@ class ViewBindingTest {
             fragment.requireView().findViewById<View>(R.id.border)
                 .setBackground(Background.of(ShapeDrawable(RectShape())))
         }
-        onView(withId(R.id.border)).check(matches(isDrawableClassOf<ShapeDrawable>()))
+        onView(withId(R.id.border)).check(matches(isDrawableClassOf<ShapeDrawable> { background }))
     }
 
     @Test
@@ -159,7 +161,7 @@ class ViewBindingTest {
             fragment.requireView().findViewById<View>(R.id.border)
                 .setBackground(Background.attr(R.attr.selectableItemBackground))
         }
-        onView(withId(R.id.border)).check(matches(isDrawableClassOf<RippleDrawable>()))
+        onView(withId(R.id.border)).check(matches(isDrawableClassOf<RippleDrawable> { background }))
     }
 
     @Test
@@ -168,7 +170,7 @@ class ViewBindingTest {
             fragment.requireView().findViewById<View>(R.id.border)
                 .setBackground(Background.attr(R.attr.colorPrimary))
         }
-        onView(withId(R.id.border)).check(matches(isDrawableClassOf<ColorDrawable>()))
+        onView(withId(R.id.border)).check(matches(isDrawableClassOf<ColorDrawable> { background }))
     }
 
     @Test
@@ -177,9 +179,13 @@ class ViewBindingTest {
             fragment.requireView().findViewById<View>(R.id.border)
                 .setBackgroundTint(Tint.of(android.R.color.tab_indicator_text))
         }
-        onView(withId(R.id.border)).check(matches(withBackgroundTint { tint ->
-            tint.defaultColor == Color.parseColor("#808080")
-        }))
+        onView(withId(R.id.border)).check(
+            matches(
+                withBackgroundTint { tint ->
+                    tint.defaultColor == Color.parseColor("#808080")
+                },
+            ),
+        )
     }
 
     @Test
@@ -188,9 +194,13 @@ class ViewBindingTest {
             fragment.requireView().findViewById<View>(R.id.border)
                 .setBackgroundTint(Tint.of(ColorStateList.valueOf(Color.RED)))
         }
-        onView(withId(R.id.border)).check(matches(withBackgroundTint { tint ->
-            tint.defaultColor == Color.RED
-        }))
+        onView(withId(R.id.border)).check(
+            matches(
+                withBackgroundTint { tint ->
+                    tint.defaultColor == Color.RED
+                },
+            ),
+        )
     }
 
     @Test
@@ -247,6 +257,84 @@ class ViewBindingTest {
                 .setContentDescription(null as Text?)
         }
         onView(withId(R.id.border)).check(matches(withContentDescription(null as String?)))
+    }
+
+    @Test
+    fun testBinding_setForeground_null() {
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<View>(R.id.border)
+                .apply {
+                    foreground = ColorDrawable(Color.RED)
+                    setForeground(null as net.crimsonwoods.easydatabinding.models.Drawable?)
+                }
+        }
+        onView(withId(R.id.border)).check(matches(noForeground()))
+    }
+
+    @Test
+    fun testBinding_setForeground_None() {
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<View>(R.id.border)
+                .apply {
+                    foreground = ColorDrawable(Color.RED)
+                    setForeground(net.crimsonwoods.easydatabinding.models.Drawable.none())
+                }
+        }
+        onView(withId(R.id.border)).check(matches(noForeground()))
+    }
+
+    @Test
+    fun testBinding_setForeground_Color() {
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<View>(R.id.border)
+                .apply {
+                    foreground = null
+                    setForeground(net.crimsonwoods.easydatabinding.models.Drawable.ofColor(Color.RED))
+                }
+        }
+        onView(withId(R.id.border)).check(matches(withForeground(ColorDrawable(Color.RED))))
+    }
+
+    @Test
+    fun testBinding_setForegroundTint_null() {
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<View>(R.id.border)
+                .apply {
+                    foregroundTintList = ColorStateList.valueOf(Color.RED)
+                    setForegroundTint(null as Tint?)
+                }
+        }
+        onView(withId(R.id.border)).check(matches(noForegroundTint()))
+    }
+
+    @Test
+    fun testBinding_setForegroundTint_None() {
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<View>(R.id.border)
+                .apply {
+                    foregroundTintList = ColorStateList.valueOf(Color.RED)
+                    setForegroundTint(Tint.none())
+                }
+        }
+        onView(withId(R.id.border)).check(matches(noForegroundTint()))
+    }
+
+    @Test
+    fun testBinding_setForegroundTint_Color() {
+        scenario.onFragment { fragment ->
+            fragment.requireView().findViewById<View>(R.id.border)
+                .apply {
+                    foregroundTintList = null
+                    setForegroundTint(Tint.of(android.R.color.tab_indicator_text))
+                }
+        }
+        onView(withId(R.id.border)).check(
+            matches(
+                withForegroundTint { tint ->
+                    tint.defaultColor == Color.parseColor("#808080")
+                },
+            ),
+        )
     }
 
     @Test
@@ -429,9 +517,9 @@ class ViewBindingTest {
         onView(withId(R.id.border)).check(
             matches(
                 ViewMatchers.withEffectiveVisibility(
-                    ViewMatchers.Visibility.VISIBLE
-                )
-            )
+                    ViewMatchers.Visibility.VISIBLE,
+                ),
+            ),
         )
     }
 
@@ -444,9 +532,9 @@ class ViewBindingTest {
         onView(withId(R.id.border)).check(
             matches(
                 ViewMatchers.withEffectiveVisibility(
-                    ViewMatchers.Visibility.INVISIBLE
-                )
-            )
+                    ViewMatchers.Visibility.INVISIBLE,
+                ),
+            ),
         )
     }
 
@@ -459,9 +547,9 @@ class ViewBindingTest {
         onView(withId(R.id.border)).check(
             matches(
                 ViewMatchers.withEffectiveVisibility(
-                    ViewMatchers.Visibility.GONE
-                )
-            )
+                    ViewMatchers.Visibility.GONE,
+                ),
+            ),
         )
     }
 
@@ -493,14 +581,14 @@ class ViewBindingTest {
         }
     }
 
-    private inline fun <reified T : Drawable> isDrawableClassOf(): Matcher<View> {
+    private inline fun <reified T : Drawable> isDrawableClassOf(crossinline selector: View.() -> Drawable?): Matcher<View> {
         return object : BoundedMatcher<View, View>(View::class.java) {
             override fun describeTo(description: Description) {
                 description.appendText("has background drawable type of ${T::class.java.simpleName}")
             }
 
             override fun matchesSafely(item: View): Boolean {
-                return item.background?.javaClass == T::class.java
+                return item.selector()?.javaClass == T::class.java
             }
         }
     }
@@ -525,6 +613,82 @@ class ViewBindingTest {
 
             override fun matchesSafely(item: View): Boolean {
                 return item.backgroundTintList == null
+            }
+        }
+    }
+
+    private fun noForeground(): Matcher<View> {
+        return object : BoundedMatcher<View, View>(View::class.java) {
+            override fun describeTo(description: Description) {
+                description.appendText("has foreground")
+            }
+
+            override fun matchesSafely(item: View): Boolean {
+                return item.foreground == null
+            }
+        }
+    }
+
+    private fun withForeground(value: Drawable?): Matcher<View> {
+        return object : BoundedMatcher<View, View>(View::class.java) {
+            override fun describeTo(description: Description) {
+                description.appendText("has foreground with $value")
+            }
+
+            override fun matchesSafely(item: View): Boolean {
+                return item.foreground.drawableEquals(value)
+            }
+
+            private fun Drawable?.drawableEquals(other: Drawable?): Boolean {
+                if ((this == null && other == null) || (this === other)) {
+                    return true
+                }
+                if (this == null || other == null) {
+                    return false
+                }
+                if (this.javaClass !== other.javaClass) {
+                    return false
+                }
+                return when (this) {
+                    is ColorDrawable -> {
+                        color == (other as ColorDrawable).color
+                    }
+                    is ColorStateListDrawable -> {
+                        colorStateList == (other as ColorStateListDrawable).colorStateList
+                    }
+                    is BitmapDrawable -> {
+                        bitmap == (other as BitmapDrawable).bitmap
+                    }
+                    else -> {
+                        // other types are not supported.
+                        false
+                    }
+                }
+            }
+        }
+    }
+
+    private fun noForegroundTint(): Matcher<View> {
+        return object : BoundedMatcher<View, View>(View::class.java) {
+            override fun describeTo(description: Description) {
+                description.appendText("has foreground")
+            }
+
+            override fun matchesSafely(item: View): Boolean {
+                return item.foregroundTintList == null
+            }
+        }
+    }
+
+    private fun withForegroundTint(predicate: (ColorStateList) -> Boolean): Matcher<View> {
+        return object : BoundedMatcher<View, View>(View::class.java) {
+            override fun describeTo(description: Description) {
+                description.appendText("has foreground tint")
+            }
+
+            override fun matchesSafely(item: View): Boolean {
+                val tintList = item.foregroundTintList
+                return tintList != null && predicate(tintList)
             }
         }
     }

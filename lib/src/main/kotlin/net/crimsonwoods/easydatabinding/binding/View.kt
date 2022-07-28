@@ -98,6 +98,16 @@ fun View.setContentDescription(value: Text?) {
     contentDescription = value?.toCharSequence(resources)
 }
 
+@BindingAdapter("android:foreground")
+fun View.setForeground(value: Drawable?) {
+    foreground = value?.toDrawable(context)
+}
+
+@BindingAdapter("android:foregroundTint")
+fun View.setForegroundTint(value: Tint?) {
+    foregroundTintList = value?.toColorStateList(context)
+}
+
 @BindingAdapter("android:paddingStart")
 fun View.setPaddingStart(value: Dimension) {
     updatePaddingRelative(start = value.toPx(context).roundToInt())
